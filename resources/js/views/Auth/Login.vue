@@ -1,0 +1,235 @@
+<template>
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-header">
+        <h1>Anesi Kassa</h1>
+        <p>Вход в систему</p>
+      </div>
+
+      <form @submit.prevent="handleLogin" class="login-form">
+        <div class="form-group">
+          <label for="login">Логин</label>
+          <input
+            id="login"
+            v-model="form.login"
+            type="text"
+            class="form-input"
+            :class="{ 'error': errors.login }"
+            placeholder="Введите логин"
+            required
+          />
+          <span v-if="errors.login" class="error-message">{{ errors.login }}</span>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Пароль</label>
+          <input
+            id="password"
+            v-model="form.password"
+            type="password"
+            class="form-input"
+            :class="{ 'error': errors.password }"
+            placeholder="Введите пароль"
+            required
+          />
+          <span v-if="errors.password" class="error-message">{{ errors.password }}</span>
+        </div>
+
+        <div v-if="authStore.error" class="alert alert-error">
+          {{ authStore.error }}
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+          :disabled="authStore.loading"
+        >
+          {{ authStore.loading ? 'Вход...' : 'Войти' }}
+        </button>
+      </form>
+
+      <div class="login-footer">
+        <p class="test-credentials">
+          <strong>Тестовые данные:</strong><br>
+          Админ: admin / admin123<br>
+          Кассир: cashier1 / cashier123
+        </p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { useAuthStore } from '@/stores/auth';
+
+const router = useRouter();
+const authStore = useAuthStore();
+
+const form = ref({
+  login: '',
+  password: ''
+});
+
+const errors = ref({});
+
+async function handleLogin() {
+  errors.value = {};
+
+  // Basic validation
+  if (!form.value.login) {
+    errors.value.login = 'Логин обязателен';
+    return;
+  }
+
+  if (!form.value.password) {
+    errors.value.password = 'Пароль обязателен';
+    return;
+  }
+
+  try {
+    await authStore.login(form.value);
+    router.push({ name: 'Dashboard' });
+  } catch (err) {
+    console.error('Login error:', err);
+  }
+}
+</script>
+
+<style scoped>
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.login-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 420px;
+  overflow: hidden;
+}
+
+.login-header {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  color: white;
+  padding: 40px 30px;
+  text-align: center;
+}
+
+.login-header h1 {
+  font-size: 32px;
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
+
+.login-header p {
+  margin: 0;
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+.login-form {
+  padding: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.3s;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-input.error {
+  border-color: #e74c3c;
+}
+
+.error-message {
+  display: block;
+  margin-top: 6px;
+  color: #e74c3c;
+  font-size: 13px;
+}
+
+.alert {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.alert-error {
+  background: #fee;
+  border: 1px solid #fcc;
+  color: #c33;
+}
+
+.btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.login-footer {
+  background: #f8f9fa;
+  padding: 20px 30px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.test-credentials {
+  margin: 0;
+  font-size: 13px;
+  color: #666;
+  line-height: 1.6;
+}
+
+.test-credentials strong {
+  color: #333;
+}
+</style>
