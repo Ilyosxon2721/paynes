@@ -8,6 +8,8 @@ use App\Http\Controllers\API\CreditController;
 use App\Http\Controllers\API\IncashController;
 use App\Http\Controllers\API\RateController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +17,40 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
+// Health Check (Public)
+Route::get('/health', function () {
+    $dbStatus = 'disconnected';
+    try {
+        DB::connection()->getPdo();
+        $dbStatus = 'connected';
+    } catch (\Exception $e) {
+        // Database is disconnected
+    }
+
+    $cacheStatus = 'disconnected';
+    try {
+        Cache::put('health_check', true, 1);
+        $cacheStatus = Cache::get('health_check') ? 'connected' : 'disconnected';
+    } catch (\Exception $e) {
+        // Cache is disconnected
+    }
+
+    return response()->json([
+        'status' => 'ok',
+        'timestamp' => now()->toIso8601String(),
+        'services' => [
+            'database' => $dbStatus,
+            'cache' => $cacheStatus,
+        ],
+        'version' => config('app.version', '2.0.0'),
+    ]);
+})->name('health');
+
 // Public routes
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
-// Protected routes
-Route::middleware('auth:sanctum')->group(function () {
+// Protected routes with rate limiting
+Route::middleware(['auth:sanctum', 'throttle:60,1'])->group(function () {
     // Auth
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/user', [AuthController::class, 'user'])->name('user');

@@ -8,6 +8,8 @@ use App\Http\Requests\UpdatePaymentRequest;
 use App\Http\Resources\PaymentResource;
 use App\Models\Payment;
 use App\Models\PaymentType;
+use App\Events\PaymentCreated;
+use App\Http\Responses\ApiResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -100,11 +102,14 @@ class PaymentController extends Controller
 
             DB::commit();
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Платеж успешно создан',
-                'data' => new PaymentResource($payment),
-            ], 201);
+            // Fire PaymentCreated event
+            event(new PaymentCreated($payment));
+
+            return ApiResponse::success(
+                new PaymentResource($payment),
+                'Платеж успешно создан',
+                201
+            );
         } catch (\Exception $e) {
             DB::rollBack();
 
@@ -279,11 +284,14 @@ class PaymentController extends Controller
 
             DB::commit();
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Платеж успешно дублирован',
-                'data' => new PaymentResource($duplicatePayment),
-            ], 201);
+            // Fire PaymentCreated event for duplicated payment
+            event(new PaymentCreated($duplicatePayment));
+
+            return ApiResponse::success(
+                new PaymentResource($duplicatePayment),
+                'Платеж успешно дублирован',
+                201
+            );
         } catch (\Exception $e) {
             DB::rollBack();
 

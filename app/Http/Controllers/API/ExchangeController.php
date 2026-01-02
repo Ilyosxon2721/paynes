@@ -5,11 +5,13 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreExchangeRequest;
 use App\Http\Resources\ExchangeResource;
+use App\Http\Responses\ApiResponse;
 use App\Models\Exchange;
 use App\Models\Rate;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ExchangeController extends Controller
 {
@@ -70,10 +72,10 @@ class ExchangeController extends Controller
             $latestRate = Rate::getLatest();
 
             if (!$latestRate) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Курс не найден. Пожалуйста, добавьте курс перед созданием обмена.',
-                ], 400);
+                return ApiResponse::error(
+                    'Курс не найден. Пожалуйста, добавьте курс перед созданием обмена.',
+                    400
+                );
             }
 
             // Determine which rate to use based on type
@@ -97,11 +99,20 @@ class ExchangeController extends Controller
 
             DB::commit();
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Обмен успешно создан',
-                'data' => new ExchangeResource($exchange),
-            ], 201);
+            // Log exchange creation
+            Log::channel('exchanges')->info('Exchange created', [
+                'exchange_id' => $exchange->id,
+                'type' => $exchange->type,
+                'usd_amount' => $exchange->usd_amount,
+                'uzs_amount' => $exchange->uzs_amount,
+                'cashier_id' => $exchange->cashier_id,
+            ]);
+
+            return ApiResponse::success(
+                new ExchangeResource($exchange),
+                'Обмен успешно создан',
+                201
+            );
         } catch (\Exception $e) {
             DB::rollBack();
 

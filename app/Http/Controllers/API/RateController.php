@@ -7,10 +7,19 @@ use App\Http\Requests\StoreRateRequest;
 use App\Http\Requests\UpdateRateRequest;
 use App\Http\Resources\RateResource;
 use App\Models\Rate;
+use App\Services\CacheService;
+use App\Http\Responses\ApiResponse;
 use Illuminate\Http\JsonResponse;
 
 class RateController extends Controller
 {
+    protected CacheService $cacheService;
+
+    public function __construct(CacheService $cacheService)
+    {
+        $this->cacheService = $cacheService;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -34,29 +43,23 @@ class RateController extends Controller
     }
 
     /**
-     * Get the latest rate.
+     * Get the latest rate with caching.
      */
     public function latest(): JsonResponse
     {
         try {
-            $latestRate = Rate::getLatest();
+            $latestRate = $this->cacheService->getLatestRate();
 
             if (!$latestRate) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Курс не найден',
-                ], 404);
+                return ApiResponse::error('Курс не найден', 404);
             }
 
-            return response()->json([
-                'success' => true,
-                'data' => new RateResource($latestRate),
-            ]);
+            return ApiResponse::success(new RateResource($latestRate));
         } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Ошибка при получении последнего курса: ' . $e->getMessage(),
-            ], 500);
+            return ApiResponse::error(
+                'Ошибка при получении последнего курса: ' . $e->getMessage(),
+                500
+            );
         }
     }
 
@@ -68,16 +71,19 @@ class RateController extends Controller
         try {
             $rate = Rate::create($request->validated());
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Курс успешно создан',
-                'data' => new RateResource($rate),
-            ], 201);
+            // Clear rates cache
+            $this->cacheService->clearRates();
+
+            return ApiResponse::success(
+                new RateResource($rate),
+                'Курс успешно создан',
+                201
+            );
         } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Ошибка при создании курса: ' . $e->getMessage(),
-            ], 500);
+            return ApiResponse::error(
+                'Ошибка при создании курса: ' . $e->getMessage(),
+                500
+            );
         }
     }
 
@@ -110,16 +116,18 @@ class RateController extends Controller
             $rate = Rate::findOrFail($id);
             $rate->update($request->validated());
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Курс успешно обновлен',
-                'data' => new RateResource($rate),
-            ]);
+            // Clear rates cache
+            $this->cacheService->clearRates();
+
+            return ApiResponse::success(
+                new RateResource($rate),
+                'Курс успешно обновлен'
+            );
         } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Ошибка при обновлении курса: ' . $e->getMessage(),
-            ], 500);
+            return ApiResponse::error(
+                'Ошибка при обновлении курса: ' . $e->getMessage(),
+                500
+            );
         }
     }
 
@@ -133,23 +141,20 @@ class RateController extends Controller
 
             // Check if this is the only rate
             if (Rate::count() === 1) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Невозможно удалить последний курс',
-                ], 400);
+                return ApiResponse::error('Невозможно удалить последний курс', 400);
             }
 
             $rate->delete();
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Курс успешно удален',
-            ]);
+            // Clear rates cache
+            $this->cacheService->clearRates();
+
+            return ApiResponse::success(null, 'Курс успешно удален');
         } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Ошибка при удалении курса: ' . $e->getMessage(),
-            ], 500);
+            return ApiResponse::error(
+                'Ошибка при удалении курса: ' . $e->getMessage(),
+                500
+            );
         }
     }
 }

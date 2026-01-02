@@ -5,11 +5,13 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Resources\UserResource;
+use App\Http\Responses\ApiResponse;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
@@ -45,15 +47,18 @@ class AuthController extends Controller
         // Create token for user
         $token = $user->createToken('api-token')->plainTextToken;
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Авторизация прошла успешно.',
-            'data' => [
-                'user' => new UserResource($user),
-                'token' => $token,
-                'token_type' => 'Bearer',
-            ],
-        ], 200);
+        // Log successful login
+        Log::channel('auth')->info('User logged in', [
+            'user_id' => $user->id,
+            'login' => $user->login,
+            'ip' => $request->ip(),
+        ]);
+
+        return ApiResponse::success([
+            'user' => new UserResource($user),
+            'token' => $token,
+            'token_type' => 'Bearer',
+        ], 'Авторизация прошла успешно.');
     }
 
     /**
@@ -64,13 +69,17 @@ class AuthController extends Controller
      */
     public function logout(Request $request): JsonResponse
     {
+        // Log logout
+        Log::channel('auth')->info('User logged out', [
+            'user_id' => $request->user()->id,
+            'login' => $request->user()->login,
+            'ip' => $request->ip(),
+        ]);
+
         // Delete the current access token
         $request->user()->currentAccessToken()->delete();
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Вы успешно вышли из системы.',
-        ], 200);
+        return ApiResponse::success(null, 'Вы успешно вышли из системы.');
     }
 
     /**
@@ -83,9 +92,6 @@ class AuthController extends Controller
     {
         $user = $request->user();
 
-        return response()->json([
-            'success' => true,
-            'data' => new UserResource($user),
-        ], 200);
+        return ApiResponse::success(new UserResource($user));
     }
 }

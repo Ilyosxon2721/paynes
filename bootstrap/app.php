@@ -10,9 +10,16 @@ return Application::configure(basePath: dirname(__DIR__))
         api: __DIR__.'/../routes/api.php',
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
+        then: function ($router) {
+            // Register API v1 routes
+            $router->middleware('api')
+                ->prefix('api/v1')
+                ->group(base_path('routes/api_v1.php'));
+        },
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        // Register SecurityHeaders middleware
+        $middleware->append(\App\Http\Middleware\SecurityHeaders::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

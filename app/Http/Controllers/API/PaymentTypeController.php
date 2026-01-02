@@ -7,10 +7,19 @@ use App\Http\Requests\StorePaymentTypeRequest;
 use App\Http\Requests\UpdatePaymentTypeRequest;
 use App\Http\Resources\PaymentTypeResource;
 use App\Models\PaymentType;
+use App\Services\CacheService;
+use App\Http\Responses\ApiResponse;
 use Illuminate\Http\JsonResponse;
 
 class PaymentTypeController extends Controller
 {
+    protected CacheService $cacheService;
+
+    public function __construct(CacheService $cacheService)
+    {
+        $this->cacheService = $cacheService;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -39,16 +48,19 @@ class PaymentTypeController extends Controller
         try {
             $paymentType = PaymentType::create($request->validated());
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Тип платежа успешно создан',
-                'data' => new PaymentTypeResource($paymentType),
-            ], 201);
+            // Clear payment types cache
+            $this->cacheService->clearPaymentTypes();
+
+            return ApiResponse::success(
+                new PaymentTypeResource($paymentType),
+                'Тип платежа успешно создан',
+                201
+            );
         } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Ошибка при создании типа платежа: ' . $e->getMessage(),
-            ], 500);
+            return ApiResponse::error(
+                'Ошибка при создании типа платежа: ' . $e->getMessage(),
+                500
+            );
         }
     }
 
@@ -81,16 +93,18 @@ class PaymentTypeController extends Controller
             $paymentType = PaymentType::findOrFail($id);
             $paymentType->update($request->validated());
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Тип платежа успешно обновлен',
-                'data' => new PaymentTypeResource($paymentType),
-            ]);
+            // Clear payment types cache
+            $this->cacheService->clearPaymentTypes();
+
+            return ApiResponse::success(
+                new PaymentTypeResource($paymentType),
+                'Тип платежа успешно обновлен'
+            );
         } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Ошибка при обновлении типа платежа: ' . $e->getMessage(),
-            ], 500);
+            return ApiResponse::error(
+                'Ошибка при обновлении типа платежа: ' . $e->getMessage(),
+                500
+            );
         }
     }
 
@@ -104,23 +118,23 @@ class PaymentTypeController extends Controller
 
             // Check if payment type has associated payments
             if ($paymentType->payments()->count() > 0) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Невозможно удалить тип платежа, так как у него есть связанные платежи',
-                ], 400);
+                return ApiResponse::error(
+                    'Невозможно удалить тип платежа, так как у него есть связанные платежи',
+                    400
+                );
             }
 
             $paymentType->delete();
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Тип платежа успешно удален',
-            ]);
+            // Clear payment types cache
+            $this->cacheService->clearPaymentTypes();
+
+            return ApiResponse::success(null, 'Тип платежа успешно удален');
         } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Ошибка при удалении типа платежа: ' . $e->getMessage(),
-            ], 500);
+            return ApiResponse::error(
+                'Ошибка при удалении типа платежа: ' . $e->getMessage(),
+                500
+            );
         }
     }
 }

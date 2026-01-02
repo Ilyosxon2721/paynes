@@ -1,0 +1,54 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'
+
+    - name: Install Composer Dependencies
+      run: composer install --optimize-autoloader --no-dev
+
+    - name: Install NPM Dependencies
+      run: npm ci
+
+    - name: Build Frontend
+      run: npm run build
+
+    - name: Create Deployment Archive
+      run: |
+        tar -czf anesi-kassa-$(date +%Y%m%d-%H%M%S).tar.gz \
+          --exclude='.git' \
+          --exclude='node_modules' \
+          --exclude='tests' \
+          --exclude='.env' \
+          .
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: production-build
+        path: '*.tar.gz'
+        retention-days: 7
+
+    # Uncomment and configure for automatic deployment to your server
+    # - name: Deploy to Server
+    #   uses: appleboy/scp-action@master
+    #   with:
+    #     host: ${{ secrets.SERVER_HOST }}
+    #     username: ${{ secrets.SERVER_USER }}
+    #     key: ${{ secrets.SERVER_SSH_KEY }}
+    #     source: "*.tar.gz"
+    #     target: "/path/to/deployment"
