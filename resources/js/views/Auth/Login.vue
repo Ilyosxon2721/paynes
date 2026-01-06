@@ -98,7 +98,13 @@ async function handleLogin() {
 
   try {
     await authStore.login(form.value);
-    router.push({ name: 'Dashboard' });
+
+    // Redirect based on user role
+    if (authStore.user?.position === 'cashier') {
+      router.push({ name: 'CashierPayments' });
+    } else {
+      router.push({ name: 'Dashboard' });
+    }
   } catch (err) {
     console.error('Login error:', err);
   }
