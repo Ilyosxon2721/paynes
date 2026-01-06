@@ -18,6 +18,11 @@
         text-color="#bfcbd9"
         active-text-color="#ffffff"
       >
+        <el-menu-item index="/cashier">
+          <el-icon><House /></el-icon>
+          <span>Главная</span>
+        </el-menu-item>
+
         <el-menu-item index="/cashier/payments">
           <el-icon><Coin /></el-icon>
           <span>Платежи</span>
@@ -86,6 +91,7 @@ import { useAuthStore } from '../stores/auth';
 import ShiftControls from '../components/ShiftControls.vue';
 import { ElMessage } from 'element-plus';
 import {
+  House,
   Coin,
   Money,
   Wallet,

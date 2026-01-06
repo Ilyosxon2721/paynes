@@ -101,7 +101,7 @@ async function handleLogin() {
 
     // Redirect based on user role
     if (authStore.user?.position === 'cashier') {
-      router.push({ name: 'CashierPayments' });
+      router.push({ name: 'CashierDashboard' });
     } else {
       router.push({ name: 'Dashboard' });
     }

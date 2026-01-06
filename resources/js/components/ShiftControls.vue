@@ -212,7 +212,7 @@
 
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue';
-import axios from 'axios';
+import api from '@/services/api';
 
 const emit = defineEmits(['shift-opened', 'shift-closed', 'shift-changed']);
 
@@ -240,7 +240,7 @@ const closeForm = ref({
 // Загрузка текущей смены
 const loadCurrentShift = async () => {
   try {
-    const response = await axios.get('/api/cashier-shifts/current');
+    const response = await api.get('/cashier-shifts/current');
     currentShift.value = response.data.data;
     emit('shift-changed', currentShift.value);
   } catch (err) {
@@ -264,7 +264,7 @@ const openShift = async () => {
     if (openForm.value.opening_cash_usd !== null) payload.opening_cash_usd = openForm.value.opening_cash_usd;
     if (openForm.value.opening_notes) payload.opening_notes = openForm.value.opening_notes;
 
-    const response = await axios.post('/api/cashier-shifts/open', payload);
+    const response = await api.post('/cashier-shifts/open', payload);
 
     currentShift.value = response.data.data;
     showOpenModal.value = false;
@@ -296,7 +296,7 @@ const closeShift = async () => {
   error.value = null;
 
   try {
-    const response = await axios.post(`/api/cashier-shifts/${currentShift.value.id}/close`, closeForm.value);
+    const response = await api.post(`/cashier-shifts/${currentShift.value.id}/close`, closeForm.value);
 
     const closedShift = response.data.data;
     currentShift.value = null;
@@ -319,7 +319,7 @@ const closeShift = async () => {
 watch(showCloseModal, async (isOpen) => {
   if (isOpen && currentShift.value) {
     try {
-      const response = await axios.get(`/api/cashier-shifts/${currentShift.value.id}/report`);
+      const response = await api.get(`/cashier-shifts/${currentShift.value.id}/report`);
       closingBalances.value = response.data.data.balances;
 
       // Проверяем возможность закрытия

@@ -14,6 +14,11 @@ const routes = [
     meta: { requiresAuth: true, role: 'cashier' },
     children: [
       {
+        path: '',
+        name: 'CashierDashboard',
+        component: () => import('@/views/Dashboard.vue')
+      },
+      {
         path: 'payments',
         name: 'CashierPayments',
         component: () => import('@/views/cashier/Payments.vue')
@@ -127,7 +132,7 @@ router.beforeEach(async (to, from, next) => {
   } else if (to.meta.guest && authStore.isAuthenticated) {
     // Переадресация в зависимости от роли после входа
     if (authStore.user?.position === 'cashier') {
-      next({ name: 'CashierPayments' });
+      next({ name: 'CashierDashboard' });
     } else {
       next({ name: 'Dashboard' });
     }
