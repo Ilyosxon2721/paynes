@@ -266,8 +266,11 @@ watch(() => props.requiredTotal, (newTotal) => {
   validateAmounts();
 });
 
-// Initial validation
+// Initial validation and emit
 validateAmounts();
+
+// Emit initial validation status
+emit('validation-change', isValid.value);
 </script>
 
 <style scoped>
