@@ -11,7 +11,7 @@
       </div>
 
       <nav class="sidebar-nav">
-        <router-link to="/cashier" class="nav-item">
+        <router-link to="/cashier" class="nav-item" exact>
           <span>🏠</span> Главная
         </router-link>
 
@@ -29,10 +29,6 @@
 
         <router-link to="/cashier/incashes" class="nav-item">
           <span>🧰</span> Инкассация
-        </router-link>
-
-        <router-link to="/cashier/reports" class="nav-item">
-          <span>📊</span> Отчеты
         </router-link>
 
         <router-link to="/cashier/tickets" class="nav-item">

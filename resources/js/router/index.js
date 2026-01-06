@@ -21,27 +21,37 @@ const routes = [
       {
         path: 'payments',
         name: 'CashierPayments',
-        component: () => import('@/views/cashier/Payments.vue')
+        component: () => import('@/views/Payments/Index.vue')
+      },
+      {
+        path: 'payments/create',
+        name: 'CashierPaymentsCreate',
+        component: () => import('@/views/Payments/Create.vue')
       },
       {
         path: 'exchanges',
         name: 'CashierExchanges',
-        component: () => import('@/views/cashier/Exchanges.vue')
+        component: () => import('@/views/Exchanges/Index.vue')
+      },
+      {
+        path: 'exchanges/create',
+        name: 'CashierExchangesCreate',
+        component: () => import('@/views/Exchanges/Create.vue')
       },
       {
         path: 'credits',
         name: 'CashierCredits',
-        component: () => import('@/views/cashier/Credits.vue')
+        component: () => import('@/views/Credits/Index.vue')
+      },
+      {
+        path: 'credits/create',
+        name: 'CashierCreditsCreate',
+        component: () => import('@/views/Credits/Create.vue')
       },
       {
         path: 'incashes',
         name: 'CashierIncashes',
-        component: () => import('@/views/cashier/Incashes.vue')
-      },
-      {
-        path: 'reports',
-        name: 'CashierReports',
-        component: () => import('@/views/cashier/Reports.vue')
+        component: () => import('@/views/Incashes/Index.vue')
       },
       {
         path: 'tickets',
