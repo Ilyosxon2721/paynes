@@ -296,7 +296,7 @@
 import { ref, reactive, onMounted } from 'vue';
 import { ElMessage } from 'element-plus';
 import { Plus, Refresh, View, Money } from '@element-plus/icons-vue';
-import axios from 'axios';
+import api from '@/services/api';
 
 const loading = ref(false);
 const creating = ref(false);
@@ -358,7 +358,7 @@ const loadCredits = async () => {
       ...filters,
     };
 
-    const response = await axios.get('/api/credits', { params });
+    const response = await api.get('/credits', { params });
 
     if (response.data.success) {
       credits.value = response.data.data;
@@ -379,7 +379,7 @@ const createCredit = async () => {
 
     creating.value = true;
     try {
-      const response = await axios.post('/api/credits', createForm);
+      const response = await api.post('/credits', createForm);
 
       if (response.data.success) {
         ElMessage.success(response.data.message || 'Кредит успешно создан');

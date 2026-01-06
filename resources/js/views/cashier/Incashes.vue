@@ -204,7 +204,7 @@
 import { ref, reactive, onMounted } from 'vue';
 import { ElMessage } from 'element-plus';
 import { Plus, Refresh, View } from '@element-plus/icons-vue';
-import axios from 'axios';
+import api from '@/services/api';
 
 const loading = ref(false);
 const creating = ref(false);
@@ -255,7 +255,7 @@ const loadIncashes = async () => {
       ...filters,
     };
 
-    const response = await axios.get('/api/incashes', { params });
+    const response = await api.get('/incashes', { params });
 
     if (response.data.success) {
       incashes.value = response.data.data;
@@ -270,7 +270,7 @@ const loadIncashes = async () => {
 
 const loadCurrentRate = async () => {
   try {
-    const response = await axios.get('/api/rates');
+    const response = await api.get('/rates');
     if (response.data.success && response.data.data.length > 0) {
       currentRate.value = response.data.data.find(r => r.is_active) || response.data.data[0];
     }
@@ -303,7 +303,7 @@ const createIncash = async () => {
 
     creating.value = true;
     try {
-      const response = await axios.post('/api/incashes', createForm);
+      const response = await api.post('/incashes', createForm);
 
       if (response.data.success) {
         ElMessage.success(response.data.message || 'Инкассация успешно создана');

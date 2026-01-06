@@ -224,7 +224,7 @@
 import { ref, reactive, computed, onMounted } from 'vue';
 import { ElMessage } from 'element-plus';
 import { Plus, Refresh, View, ShoppingCart, Sell } from '@element-plus/icons-vue';
-import axios from 'axios';
+import api from '@/services/api';
 
 const loading = ref(false);
 const creating = ref(false);
@@ -275,7 +275,7 @@ const loadExchanges = async () => {
       ...filters,
     };
 
-    const response = await axios.get('/api/exchanges', { params });
+    const response = await api.get('/exchanges', { params });
 
     if (response.data.success) {
       exchanges.value = response.data.data;
@@ -290,7 +290,7 @@ const loadExchanges = async () => {
 
 const loadCurrentRate = async () => {
   try {
-    const response = await axios.get('/api/rates');
+    const response = await api.get('/rates');
     if (response.data.success && response.data.data.length > 0) {
       currentRate.value = response.data.data.find(r => r.is_active) || response.data.data[0];
     }
@@ -325,7 +325,7 @@ const createExchange = async () => {
 
     creating.value = true;
     try {
-      const response = await axios.post('/api/exchanges', createForm);
+      const response = await api.post('/exchanges', createForm);
 
       if (response.data.success) {
         ElMessage.success(response.data.message || 'Обмен успешно создан');

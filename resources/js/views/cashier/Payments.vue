@@ -272,7 +272,7 @@
 import { ref, reactive, computed, onMounted } from 'vue';
 import { ElMessage } from 'element-plus';
 import { Plus, Refresh, View } from '@element-plus/icons-vue';
-import axios from 'axios';
+import api from '@/services/api';
 
 const loading = ref(false);
 const creating = ref(false);
@@ -329,7 +329,7 @@ const loadPayments = async () => {
       ...filters,
     };
 
-    const response = await axios.get('/api/payments', { params });
+    const response = await api.get('/payments', { params });
 
     if (response.data.success) {
       payments.value = response.data.data;
@@ -344,7 +344,7 @@ const loadPayments = async () => {
 
 const loadPaymentTypes = async () => {
   try {
-    const response = await axios.get('/api/payment-types');
+    const response = await api.get('/payment-types');
     if (response.data.success) {
       paymentTypes.value = response.data.data;
     }
@@ -381,7 +381,7 @@ const createPayment = async () => {
 
     creating.value = true;
     try {
-      const response = await axios.post('/api/payments', createForm);
+      const response = await api.post('/payments', createForm);
 
       if (response.data.success) {
         ElMessage.success(response.data.message || 'Платеж успешно создан');

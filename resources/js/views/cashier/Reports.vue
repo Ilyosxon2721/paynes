@@ -236,7 +236,7 @@
 import { ref, reactive } from 'vue';
 import { ElMessage } from 'element-plus';
 import { Document, Coin, Money, Wallet, Suitcase } from '@element-plus/icons-vue';
-import axios from 'axios';
+import api from '@/services/api';
 
 const loading = ref(false);
 const dateRange = ref([]);
