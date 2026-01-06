@@ -253,8 +253,17 @@ const selectedPaymentType = computed(() => {
 const calculatedCommission = computed(() => {
   if (!selectedPaymentType.value || !form.value.amount) return 0;
 
-  const percentCommission = form.value.amount * (selectedPaymentType.value.commission_percentage / 100);
-  return Math.max(percentCommission, parseFloat(selectedPaymentType.value.commission_fixed || 0));
+  let commission = 0;
+
+  if (selectedPaymentType.value.commission_percentage) {
+    commission += (form.value.amount * selectedPaymentType.value.commission_percentage) / 100;
+  }
+
+  if (selectedPaymentType.value.commission_fixed) {
+    commission += parseFloat(selectedPaymentType.value.commission_fixed);
+  }
+
+  return Math.round(commission * 100) / 100;
 });
 
 const totalWithCommission = computed(() => {
