@@ -60,11 +60,13 @@
           </div>
 
           <div class="header-actions">
-            <ShiftControls
-              @shift-opened="handleShiftOpened"
-              @shift-closed="handleShiftClosed"
-              @shift-changed="handleShiftChanged"
-            />
+            <div class="shift-controls-wrapper">
+              <ShiftControls
+                @shift-opened="handleShiftOpened"
+                @shift-closed="handleShiftClosed"
+                @shift-changed="handleShiftChanged"
+              />
+            </div>
             <el-button @click="logout" type="danger" :icon="SwitchButton">Выйти</el-button>
           </div>
         </div>
@@ -82,6 +84,7 @@ import { computed, onMounted, ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useAuthStore } from '../stores/auth';
 import ShiftControls from '../components/ShiftControls.vue';
+import { ElMessage } from 'element-plus';
 import {
   Coin,
   Money,
@@ -194,6 +197,14 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.shift-controls-wrapper {
+  margin-right: 8px;
+}
+
+.shift-controls-wrapper :deep(.shift-controls) {
+  margin: 0;
 }
 
 .username {
