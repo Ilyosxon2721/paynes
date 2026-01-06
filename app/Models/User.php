@@ -2,15 +2,27 @@
 
 namespace App\Models;
 
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasName;
+use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser, HasName
 {
     use HasFactory, Notifiable, HasApiTokens, HasRoles;
+
+    /**
+     * Determine if the user can access the given panel.
+     */
+    public function canAccessPanel(Panel $panel): bool
+    {
+        // Только администраторы могут получить доступ к админ-панели
+        return $this->hasRole('admin') && $this->status === 'active';
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -24,7 +36,7 @@ class User extends Authenticatable
         'position',
         'status',
         'branch',
-        'salary_percentage',
+        'reward_percentage',
     ];
 
     /**
@@ -46,7 +58,7 @@ class User extends Authenticatable
     {
         return [
             'password' => 'hashed',
-            'salary_percentage' => 'decimal:2',
+            'reward_percentage' => 'decimal:2',
         ];
     }
 
@@ -72,6 +84,16 @@ class User extends Authenticatable
     public function credits()
     {
         return $this->hasMany(Credit::class, 'cashier_id');
+    }
+
+    public function ticketsCreated()
+    {
+        return $this->hasMany(Ticket::class, 'created_by');
+    }
+
+    public function ticketsAssigned()
+    {
+        return $this->hasMany(Ticket::class, 'assigned_to');
     }
 
     /**
@@ -122,5 +144,13 @@ class User extends Authenticatable
     public function username()
     {
         return 'login';
+    }
+
+    /**
+     * Filament display name for the user menu/avatar.
+     */
+    public function getFilamentName(): string
+    {
+        return $this->full_name ?: ($this->login ?: 'User');
     }
 }

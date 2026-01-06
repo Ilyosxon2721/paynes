@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Example Websocket client</h1>
+    <form action="" name="message">
+        <div class="row">Name: <input type="text" name="fname"></div>
+        <div class="row">Name: <input type="text" name="msg"></div>
+         <input type="submit" name="submit">
+    </form>
+    <div id="status"></div>
+    <script>
+        window.onload = function () {
+            console.log('success');
+            var socket = new WebSocket("wss://echo.websocket.org");
+            var status = document.querySelector('#status');
+
+            socket.onopen = function (event) {
+                console.log('Open');
+                status.innerHTML = 'Connect Success';
+            }
+            socket.onclose = function (event) {
+                console.log('Close');
+                status.innerHTML = 'Socket Close';
+            }
+            socket.onmessage = function(event){
+                console.log('Message');
+                status.innerHTML = event.data;
+            }
+            socket.onerror = function name(event) {
+                console.log('Error');
+                status.innerHTML = 'Error'+event.data;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -18,6 +18,7 @@ class Payment extends Model
     protected $fillable = [
         'list_number',
         'random_number',
+        'share_token',
         'date',
         'time',
         'payment_type_id',
@@ -30,6 +31,12 @@ class Payment extends Model
         'currency',
         'status',
         'cashier_id',
+        'cashier_shift_id',
+        'city',
+        'region',
+        'cash_back',
+        'agent_id',
+        'payment_system',
     ];
 
     /**
@@ -44,6 +51,7 @@ class Payment extends Model
             'amount' => 'decimal:2',
             'commission' => 'decimal:2',
             'total' => 'decimal:2',
+            'cash_back' => 'decimal:2',
         ];
     }
 
@@ -61,6 +69,30 @@ class Payment extends Model
     public function cashier()
     {
         return $this->belongsTo(User::class, 'cashier_id');
+    }
+
+    /**
+     * Get the agent that owns the payment.
+     */
+    public function agent()
+    {
+        return $this->belongsTo(Agent::class);
+    }
+
+    /**
+     * Get the cashier shift that owns the payment.
+     */
+    public function cashierShift()
+    {
+        return $this->belongsTo(CashierShift::class);
+    }
+
+    /**
+     * Get the method details for the payment.
+     */
+    public function methodDetails()
+    {
+        return $this->hasMany(PaymentMethodDetail::class);
     }
 
     /**
@@ -101,5 +133,19 @@ class Payment extends Model
     public function getFormattedTotalAttribute()
     {
         return number_format($this->total, 2, '.', ' ');
+    }
+
+    /**
+     * Generate unique share token for public access
+     *
+     * @return string
+     */
+    public static function generateShareToken(): string
+    {
+        do {
+            $token = hash('sha256', uniqid(mt_rand(), true) . microtime());
+        } while (self::where('share_token', $token)->exists());
+
+        return $token;
     }
 }

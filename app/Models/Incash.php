@@ -22,6 +22,7 @@ class Incash extends Model
         'amount',
         'type',
         'cashier_id',
+        'cashier_shift_id',
         'status',
     ];
 
@@ -44,6 +45,30 @@ class Incash extends Model
     public function cashier()
     {
         return $this->belongsTo(User::class, 'cashier_id');
+    }
+
+    /**
+     * Get the cashier shift that owns the incash.
+     */
+    public function cashierShift()
+    {
+        return $this->belongsTo(CashierShift::class);
+    }
+
+    /**
+     * Scope a query to only include pending incashes.
+     */
+    public function scopePending($query)
+    {
+        return $query->where('status', 'pending');
+    }
+
+    /**
+     * Scope a query to only include confirmed incashes.
+     */
+    public function scopeConfirmed($query)
+    {
+        return $query->where('status', 'confirmed');
     }
 
     /**

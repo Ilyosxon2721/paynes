@@ -1,0 +1,268 @@
+/* byudjet */
+
+div#byudjet-pay {
+    position: absolute;
+    background-color: white;
+    width: 40%;
+    top: 10%;
+    left: 30%;
+    border-radius: 8px;
+}
+
+div#byudjet-pay-header {
+    border-bottom: 1px solid lightgray;
+}
+
+h4#byudjet-pay-header-title {
+    padding: 20px;
+    text-align: left;
+    font-size: 20px;
+}
+
+img#byudjet-pay-header-img {
+    float: right;
+    margin-top: -7%;
+    margin-right: 2%;
+}
+
+div#byudjet-pay-content {
+    padding: 2%;
+}
+
+div#byudjet-pay-content input {
+    width: 42%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    margin-top: 5%;
+    margin-left: 5%;
+    font-size: 16px;
+}
+
+div#byudjet-pay-content select {
+    width: 42%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    margin-top: 5%;
+    margin-left: 5%;
+    font-size: 16px;
+}
+
+button#btn-pay-control {
+    background-color: #198754;
+    border: 1px solid #198754;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    margin-left: 10%;
+    width: 35%;
+    height: 50px;
+    font-size: 18px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+button#btn-pay-load {
+    display: none;
+    background-color: #198754;
+    border: 1px solid #198754;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    margin-left: 10%;
+    width: 35%;
+    height: 50px;
+    font-size: 18px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+button.btn-print-chek {
+    display: none;
+    background-color: #198754;
+    border: 1px solid #198754;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    margin-left: 10%;
+    width: 35%;
+    height: 50px;
+    font-size: 18px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+button.btn-print-chek_comunal {
+    display: none;
+    background-color: #198754;
+    border: 1px solid #198754;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    margin-left: 10%;
+    width: 35%;
+    height: 50px;
+    font-size: 18px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+button#btn-pay-back {
+    background-color: #dc3545;
+    border: 1px solid #dc3545;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    margin-left: 10%;
+    width: 35%;
+    height: 50px;
+    font-size: 18px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+button#btn-pay-comunal-back {
+    background-color: #dc3545;
+    border: 1px solid #dc3545;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    margin-left: 10%;
+    width: 35%;
+    height: 50px;
+    font-size: 18px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+
+/* comunal */
+
+div#comunal-pay {
+    position: absolute;
+    background-color: white;
+    width: 40%;
+    top: 10%;
+    left: 30%;
+    border-radius: 8px;
+}
+
+div#comunal-pay-header {
+    border-bottom: 1px solid lightgray;
+}
+
+h4#comunal-pay-header-title {
+    padding: 20px;
+    text-align: left;
+    font-size: 20px;
+}
+
+img#comunal-pay-header-img {
+    float: right;
+    margin-top: -7%;
+    margin-right: 2%;
+}
+
+div#comunal-pay-content {
+    padding: 2%;
+}
+
+div#comunal-pay-content input {
+    width: 42%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    margin-top: 5%;
+    margin-left: 5%;
+    font-size: 16px;
+}
+
+div#comunal-pay-content select {
+    width: 42%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    margin-top: 5%;
+    margin-left: 5%;
+    font-size: 16px;
+}
+
+button.btn-pay-control {
+    background-color: #198754;
+    border: 1px solid #198754;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    margin-left: 10%;
+    width: 35%;
+    height: 50px;
+    font-size: 18px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+button#btn-pay-clear {
+    background-color: #dc3545;
+    border: 1px solid #dc3545;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    margin-left: 10%;
+    width: 35%;
+    height: 50px;
+    font-size: 18px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+div.chek {
+    margin-top: 100px;
+    background-color: white;
+    width: 50%;
+    overflow: hidden;
+    margin-left: 25%;
+    border-radius: 5px;
+}
+
+h4#print-chek-header {
+    margin-left: 10px;
+    padding: 10px;
+}
+
+div#btns-table-chek {
+    float: right;
+    margin-right: 20px;
+    padding: 10px;
+}
+
+button#cancel-chek {
+    background-color: #dc3545;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px 10px 15px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+button#print {
+    padding: 10px 15px 10px 15px;
+    background-color: #0d6efd;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button#print_byudjet {
+    padding: 10px 15px 10px 15px;
+    background-color: #0d6efd;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

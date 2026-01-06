@@ -21,7 +21,7 @@ class UserResource extends JsonResource
             'position' => $this->position,
             'status' => $this->status,
             'branch' => $this->branch,
-            'salary_percentage' => $this->salary_percentage,
+            'reward_percentage' => $this->reward_percentage,
             'roles' => $this->roles->pluck('name')->toArray(),
             'permissions' => $this->getAllPermissions()->pluck('name')->toArray(),
             'is_admin' => $this->is_admin,

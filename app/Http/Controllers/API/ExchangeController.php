@@ -8,6 +8,7 @@ use App\Http\Resources\ExchangeResource;
 use App\Http\Responses\ApiResponse;
 use App\Models\Exchange;
 use App\Models\Rate;
+use App\Models\CashierShift;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -68,6 +69,18 @@ class ExchangeController extends Controller
         try {
             DB::beginTransaction();
 
+            // Получаем текущую открытую смену кассира
+            $currentShift = CashierShift::where('cashier_id', auth()->id())
+                ->where('status', 'open')
+                ->first();
+
+            if (!$currentShift) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'У вас нет открытой смены. Откройте смену перед созданием обмена.',
+                ], 400);
+            }
+
             // Get latest rate
             $latestRate = Rate::getLatest();
 
@@ -93,9 +106,10 @@ class ExchangeController extends Controller
                 'type' => $request->type,
                 'rate' => $rate,
                 'cashier_id' => auth()->id(),
+                'cashier_shift_id' => $currentShift->id,
             ]);
 
-            $exchange->load(['cashier']);
+            $exchange->load(['cashier', 'cashierShift']);
 
             DB::commit();
 
@@ -106,6 +120,7 @@ class ExchangeController extends Controller
                 'usd_amount' => $exchange->usd_amount,
                 'uzs_amount' => $exchange->uzs_amount,
                 'cashier_id' => $exchange->cashier_id,
+                'cashier_shift_id' => $exchange->cashier_shift_id,
             ]);
 
             return ApiResponse::success(

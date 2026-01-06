@@ -2,7 +2,15 @@
   <div class="login-container">
     <div class="login-card">
       <div class="login-header">
-        <h1>Anesi Kassa</h1>
+        <div class="logo-container">
+          <svg class="logo-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <!-- Simplified P logo -->
+            <path d="M 50 150 L 50 50 Q 50 30 70 30 L 120 30 Q 150 30 150 60 Q 150 90 120 90 L 80 90 L 120 130 L 80 130 Z"
+                  fill="#1A77C9" stroke="none"/>
+          </svg>
+          <h1 class="brand-name">Paynes</h1>
+          <p class="brand-tagline">Комфортные платежи</p>
+        </div>
         <p>Вход в систему</p>
       </div>
 
@@ -103,36 +111,69 @@ async function handleLogin() {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--paynes-gradient-primary);
   padding: 20px;
 }
 
 .login-card {
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+  box-shadow: var(--paynes-shadow-xl);
   width: 100%;
   max-width: 420px;
   overflow: hidden;
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .login-header {
-  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-  color: white;
-  padding: 40px 30px;
+  background: white;
+  color: var(--paynes-blue-dark);
+  padding: 40px 30px 30px;
   text-align: center;
+  border-bottom: 3px solid var(--paynes-blue-primary);
 }
 
-.login-header h1 {
-  font-size: 32px;
-  margin: 0 0 8px 0;
-  font-weight: 600;
+.login-header .logo-container {
+  margin-bottom: 20px;
+}
+
+.login-header .logo-svg {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 12px;
+  display: block;
+}
+
+.login-header .brand-name {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--paynes-blue-primary);
+  margin: 0 0 4px 0;
+  letter-spacing: 1px;
+}
+
+.login-header .brand-tagline {
+  font-size: 14px;
+  color: var(--paynes-gray-600);
+  margin: 0 0 16px 0;
 }
 
 .login-header p {
   margin: 0;
   font-size: 16px;
-  opacity: 0.9;
+  font-weight: 500;
+  color: var(--paynes-gray-600);
 }
 
 .login-form {
@@ -162,8 +203,8 @@ async function handleLogin() {
 }
 
 .form-input:focus {
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: var(--paynes-blue-primary);
+  box-shadow: 0 0 0 3px rgba(26, 119, 201, 0.1);
 }
 
 .form-input.error {
@@ -202,13 +243,15 @@ async function handleLogin() {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--paynes-gradient-primary);
   color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .btn-primary:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 8px 20px rgba(26, 119, 201, 0.4);
 }
 
 .btn-primary:disabled {

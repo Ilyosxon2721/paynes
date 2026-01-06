@@ -26,6 +26,9 @@ class Credit extends Model
         'confirmed_by',
         'status',
         'cashier_id',
+        'cashier_shift_id',
+        'remaining_balance',
+        'total_repaid',
     ];
 
     /**
@@ -39,6 +42,8 @@ class Credit extends Model
             'date' => 'date',
             'debit' => 'decimal:2',
             'credit' => 'decimal:2',
+            'remaining_balance' => 'decimal:2',
+            'total_repaid' => 'decimal:2',
         ];
     }
 
@@ -48,6 +53,22 @@ class Credit extends Model
     public function cashier()
     {
         return $this->belongsTo(User::class, 'cashier_id');
+    }
+
+    /**
+     * Get the cashier shift that owns the credit.
+     */
+    public function cashierShift()
+    {
+        return $this->belongsTo(CashierShift::class);
+    }
+
+    /**
+     * Get the repayments for the credit.
+     */
+    public function repayments()
+    {
+        return $this->hasMany(CreditRepayment::class);
     }
 
     /**

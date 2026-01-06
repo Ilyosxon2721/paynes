@@ -8,7 +8,23 @@
       "Bash(npm install)",
       "Bash(npm run build:*)",
       "Bash(php:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nfeat: Integrate professional improvements and enterprise features\n\n- Event-driven architecture with PaymentCreated event and listener\n- CacheService for optimizing rates and payment types queries\n- Unified ApiResponse helper for consistent API responses\n- Enhanced logging with custom channels \\(payments, exchanges, credits, auth, security\\)\n- SecurityHeaders middleware for protection against common vulnerabilities\n- API versioning support \\(v1 routes\\)\n- Comprehensive testing infrastructure \\(Feature + Unit tests\\)\n- CI/CD pipelines with GitHub Actions\n- Docker containerization with docker-compose\n- Professional documentation \\(CHANGELOG, CONTRIBUTING, LICENSE\\)\n- Production deployment guides\n- Integration complete report\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push:*)",
+      "Bash(powershell -Command:*)",
+      "Bash(git commit:*)",
+      "Bash(dir:*)",
+      "Bash(grep:*)",
+      "Bash(npm install:*)",
+      "Bash(if not exist \"public\\\\images\\\\logos\" mkdir \"public\\\\images\\\\logos\")",
+      "Bash(copy \"assets\\\\logos\\\\Paynesi_logo.png\" \"public\\\\images\\\\logos\\\\logo.png\")",
+      "Bash(copy \"assets\\\\logos\\\\Paynesi all.png\" \"public\\\\images\\\\logos\\\\logo-full.png\")",
+      "Bash(cat:*)",
+      "Bash(findstr:*)",
+      "Bash(mysql -h 83.69.139.168 -u uz123_SuperAdmin -pBankir2721 uz123_paynes -e \"SHOW TABLES LIKE ''%kvit%'' OR SHOW TABLES LIKE ''%receipt%'' OR SHOW TABLES LIKE ''%check%'';\")",
+      "Bash(if not exist \"d:\\\\server\\\\OSPanel\\\\home\\\\paynes\\\\resources\\\\js\\\\views\\\\Incashes\" mkdir \"d:\\\\server\\\\OSPanel\\\\home\\\\paynes\\\\resources\\\\js\\\\views\\\\Incashes\")",
+      "Bash(mysql:*)",
+      "Bash(ls:*)"
     ]
   }
 }

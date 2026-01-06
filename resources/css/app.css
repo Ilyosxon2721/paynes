@@ -1,3 +1,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Paynes Brand Colors - Based on logo */
+:root {
+  /* Primary Blues - from logo */
+  --paynes-blue-primary: #1A77C9;
+  --paynes-blue-dark: #0D4F8F;
+  --paynes-blue-light: #4A9AE1;
+  --paynes-blue-lighter: #7CB8ED;
+
+  /* Gradients */
+  --paynes-gradient-primary: linear-gradient(135deg, #1A77C9 0%, #0D4F8F 100%);
+  --paynes-gradient-light: linear-gradient(135deg, #4A9AE1 0%, #1A77C9 100%);
+
+  /* Accent Colors */
+  --paynes-accent: #2E8FD9;
+  --paynes-success: #10B981;
+  --paynes-warning: #F59E0B;
+  --paynes-danger: #EF4444;
+
+  /* Neutrals */
+  --paynes-gray-50: #F9FAFB;
+  --paynes-gray-100: #F3F4F6;
+  --paynes-gray-200: #E5E7EB;
+  --paynes-gray-300: #D1D5DB;
+  --paynes-gray-400: #9CA3AF;
+  --paynes-gray-500: #6B7280;
+  --paynes-gray-600: #4B5563;
+  --paynes-gray-700: #374151;
+  --paynes-gray-800: #1F2937;
+  --paynes-gray-900: #111827;
+
+  /* Shadow */
+  --paynes-shadow-sm: 0 1px 2px 0 rgba(26, 119, 201, 0.05);
+  --paynes-shadow-md: 0 4px 6px -1px rgba(26, 119, 201, 0.1);
+  --paynes-shadow-lg: 0 10px 15px -3px rgba(26, 119, 201, 0.15);
+  --paynes-shadow-xl: 0 20px 25px -5px rgba(26, 119, 201, 0.2);
+}

@@ -8,6 +8,8 @@ use App\Http\Requests\UpdatePaymentRequest;
 use App\Http\Resources\PaymentResource;
 use App\Models\Payment;
 use App\Models\PaymentType;
+use App\Models\PaymentMethodDetail;
+use App\Models\CashierShift;
 use App\Events\PaymentCreated;
 use App\Http\Responses\ApiResponse;
 use Illuminate\Http\JsonResponse;
@@ -22,7 +24,7 @@ class PaymentController extends Controller
     public function index(Request $request): JsonResponse
     {
         try {
-            $query = Payment::with(['paymentType', 'cashier']);
+            $query = Payment::with(['paymentType', 'cashier', 'agent', 'cashierShift', 'methodDetails']);
 
             // Filter by status
             if ($request->has('status')) {
@@ -32,11 +34,37 @@ class PaymentController extends Controller
             // Filter by date
             if ($request->has('date')) {
                 $query->byDate($request->date);
+            } else {
+                // Для кассиров по умолчанию показываем только платежи текущей смены
+                if (auth()->user()->position === 'cashier') {
+                    $currentShift = CashierShift::where('cashier_id', auth()->id())
+                        ->where('status', 'open')
+                        ->first();
+
+                    if ($currentShift) {
+                        $query->where('cashier_shift_id', $currentShift->id);
+                    }
+                }
+            }
+
+            // Filter by cashier_shift_id
+            if ($request->has('cashier_shift_id')) {
+                $query->where('cashier_shift_id', $request->cashier_shift_id);
             }
 
             // Filter by cashier_id
             if ($request->has('cashier_id')) {
                 $query->byCashier($request->cashier_id);
+            }
+
+            // Filter by city
+            if ($request->has('city')) {
+                $query->where('city', $request->city);
+            }
+
+            // Filter by region
+            if ($request->has('region')) {
+                $query->where('region', $request->region);
             }
 
             // Order by latest
@@ -46,12 +74,14 @@ class PaymentController extends Controller
 
             return response()->json([
                 'success' => true,
-                'data' => PaymentResource::collection($payments),
-                'meta' => [
-                    'current_page' => $payments->currentPage(),
-                    'last_page' => $payments->lastPage(),
-                    'per_page' => $payments->perPage(),
-                    'total' => $payments->total(),
+                'data' => [
+                    'data' => PaymentResource::collection($payments),
+                    'meta' => [
+                        'current_page' => $payments->currentPage(),
+                        'last_page' => $payments->lastPage(),
+                        'per_page' => $payments->perPage(),
+                        'total' => $payments->total(),
+                    ],
                 ],
             ]);
         } catch (\Exception $e) {
@@ -70,6 +100,18 @@ class PaymentController extends Controller
         try {
             DB::beginTransaction();
 
+            // Получаем текущую открытую смену кассира
+            $currentShift = CashierShift::where('cashier_id', auth()->id())
+                ->where('status', 'open')
+                ->first();
+
+            if (!$currentShift) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'У вас нет открытой смены. Откройте смену перед созданием платежа.',
+                ], 400);
+            }
+
             // Get payment type for commission calculation
             $paymentType = PaymentType::findOrFail($request->payment_type_id);
 
@@ -80,10 +122,29 @@ class PaymentController extends Controller
             // Generate random number (6 digits)
             $randomNumber = str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT);
 
+            $resolvedPaymentMethod = $request->payment_method;
+            if ($resolvedPaymentMethod && in_array($resolvedPaymentMethod, ['transfer', 'p2p'], true)) {
+                $resolvedPaymentMethod = 'card';
+            }
+
+            if (!$resolvedPaymentMethod && $request->has('method_details') && is_array($request->method_details)) {
+                $allCash = true;
+                foreach ($request->method_details as $detail) {
+                    if (($detail['method'] ?? null) !== 'cash') {
+                        $allCash = false;
+                        break;
+                    }
+                }
+                $resolvedPaymentMethod = $allCash ? 'cash' : 'card';
+            }
+
+            $resolvedPaymentMethod = $resolvedPaymentMethod ?: 'cash';
+
             // Create payment
             $payment = Payment::create([
                 'list_number' => $request->list_number,
                 'random_number' => $randomNumber,
+                'share_token' => Payment::generateShareToken(),
                 'date' => now()->toDateString(),
                 'time' => now()->toTimeString(),
                 'payment_type_id' => $request->payment_type_id,
@@ -92,13 +153,41 @@ class PaymentController extends Controller
                 'amount' => $request->amount,
                 'commission' => $commission,
                 'total' => $total,
-                'payment_method' => $request->payment_method,
+                'payment_method' => $resolvedPaymentMethod, // Для обратной совместимости
                 'currency' => $request->currency,
                 'status' => 'pending',
                 'cashier_id' => auth()->id(),
+                'cashier_shift_id' => $currentShift->id,
+                'city' => $request->city,
+                'region' => $request->region,
+                'cash_back' => $request->cash_back,
+                'agent_id' => $request->agent_id,
+                'payment_system' => $request->payment_system,
             ]);
 
-            $payment->load(['paymentType', 'cashier']);
+            // Создаем детали методов оплаты, если переданы
+            if ($request->has('method_details') && is_array($request->method_details)) {
+                foreach ($request->method_details as $detail) {
+                    PaymentMethodDetail::create([
+                        'payment_id' => $payment->id,
+                        'method' => $detail['method'],
+                        'amount' => $detail['amount'],
+                        'payment_system' => $detail['payment_system'] ?? null,
+                        'reference' => $detail['reference'] ?? null,
+                    ]);
+                }
+            } else {
+                // Для обратной совместимости: создаем одну деталь на всю сумму
+                PaymentMethodDetail::create([
+                    'payment_id' => $payment->id,
+                    'method' => $request->payment_method ?? 'cash',
+                    'amount' => $total,
+                    'payment_system' => $request->payment_system,
+                    'reference' => null,
+                ]);
+            }
+
+            $payment->load(['paymentType', 'cashier', 'agent', 'cashierShift', 'methodDetails']);
 
             DB::commit();
 
@@ -126,7 +215,7 @@ class PaymentController extends Controller
     public function show(string $id): JsonResponse
     {
         try {
-            $payment = Payment::with(['paymentType', 'cashier'])->findOrFail($id);
+            $payment = Payment::with(['paymentType', 'cashier', 'cashierShift', 'methodDetails', 'agent'])->findOrFail($id);
 
             return response()->json([
                 'success' => true,
@@ -257,7 +346,19 @@ class PaymentController extends Controller
         try {
             DB::beginTransaction();
 
-            $originalPayment = Payment::findOrFail($id);
+            $originalPayment = Payment::with('methodDetails')->findOrFail($id);
+
+            // Получаем текущую открытую смену кассира
+            $currentShift = CashierShift::where('cashier_id', auth()->id())
+                ->where('status', 'open')
+                ->first();
+
+            if (!$currentShift) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'У вас нет открытой смены. Откройте смену перед дублированием платежа.',
+                ], 400);
+            }
 
             // Generate new random number
             $randomNumber = str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT);
@@ -266,6 +367,7 @@ class PaymentController extends Controller
             $duplicatePayment = Payment::create([
                 'list_number' => $originalPayment->list_number,
                 'random_number' => $randomNumber,
+                'share_token' => Payment::generateShareToken(),
                 'date' => now()->toDateString(),
                 'time' => now()->toTimeString(),
                 'payment_type_id' => $originalPayment->payment_type_id,
@@ -278,9 +380,26 @@ class PaymentController extends Controller
                 'currency' => $originalPayment->currency,
                 'status' => 'pending',
                 'cashier_id' => auth()->id(),
+                'cashier_shift_id' => $currentShift->id,
+                'city' => $originalPayment->city,
+                'region' => $originalPayment->region,
+                'cash_back' => $originalPayment->cash_back,
+                'agent_id' => $originalPayment->agent_id,
+                'payment_system' => $originalPayment->payment_system,
             ]);
 
-            $duplicatePayment->load(['paymentType', 'cashier']);
+            // Дублируем детали методов оплаты
+            foreach ($originalPayment->methodDetails as $detail) {
+                PaymentMethodDetail::create([
+                    'payment_id' => $duplicatePayment->id,
+                    'method' => $detail->method,
+                    'amount' => $detail->amount,
+                    'payment_system' => $detail->payment_system,
+                    'reference' => $detail->reference,
+                ]);
+            }
+
+            $duplicatePayment->load(['paymentType', 'cashier', 'cashierShift', 'methodDetails', 'agent']);
 
             DB::commit();
 
@@ -302,3 +421,8 @@ class PaymentController extends Controller
         }
     }
 }
+
+
+
+
+

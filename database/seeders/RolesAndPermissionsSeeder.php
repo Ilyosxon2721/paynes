@@ -74,6 +74,22 @@ class RolesAndPermissionsSeeder extends Seeder
             'reports.export',
         ];
 
+        // Создание прав для agents (агенты)
+        $agentPermissions = [
+            'agents.view',
+            'agents.create',
+            'agents.update',
+            'agents.delete',
+        ];
+
+        // Создание прав для fines (штрафы)
+        $finePermissions = [
+            'fines.view',
+            'fines.create',
+            'fines.update',
+            'fines.delete',
+        ];
+
         // Объединение всех прав
         $allPermissions = array_merge(
             $paymentPermissions,
@@ -82,7 +98,9 @@ class RolesAndPermissionsSeeder extends Seeder
             $incashPermissions,
             $ratePermissions,
             $userPermissions,
-            $reportPermissions
+            $reportPermissions,
+            $agentPermissions,
+            $finePermissions
         );
 
         // Создание всех прав

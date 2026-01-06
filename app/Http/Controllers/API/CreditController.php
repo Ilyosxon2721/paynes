@@ -9,6 +9,8 @@ use App\Http\Requests\RepaymentCreditRequest;
 use App\Http\Resources\CreditResource;
 use App\Http\Responses\ApiResponse;
 use App\Models\Credit;
+use App\Models\CashierShift;
+use App\Models\CreditRepayment;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -64,6 +66,18 @@ class CreditController extends Controller
         try {
             DB::beginTransaction();
 
+            // Получаем текущую открытую смену кассира
+            $currentShift = CashierShift::where('cashier_id', auth()->id())
+                ->where('status', 'open')
+                ->first();
+
+            if (!$currentShift) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'У вас нет открытой смены. Откройте смену перед созданием кредита.',
+                ], 400);
+            }
+
             // Create credit
             $credit = Credit::create([
                 'date' => now()->toDateString(),
@@ -76,13 +90,16 @@ class CreditController extends Controller
                 'confirmed_by' => null,
                 'status' => 'pending',
                 'cashier_id' => auth()->id(),
+                'cashier_shift_id' => $currentShift->id,
+                'remaining_balance' => 0, // Будет установлен при подтверждении
+                'total_repaid' => 0,
             ]);
 
             // Generate account number using model method
             $accountNumber = $credit->generateAccountNumber();
             $credit->update(['account_number' => $accountNumber]);
 
-            $credit->load(['cashier']);
+            $credit->load(['cashier', 'cashierShift']);
 
             DB::commit();
 
@@ -107,7 +124,7 @@ class CreditController extends Controller
     public function show(string $id): JsonResponse
     {
         try {
-            $credit = Credit::with(['cashier'])->findOrFail($id);
+            $credit = Credit::with(['cashier', 'cashierShift', 'repayments'])->findOrFail($id);
 
             return response()->json([
                 'success' => true,
@@ -188,7 +205,7 @@ class CreditController extends Controller
         try {
             DB::beginTransaction();
 
-            $credit = Credit::findOrFail($id);
+            $credit = Credit::with('cashierShift')->findOrFail($id);
 
             if ($credit->status === 'confirmed') {
                 return response()->json([
@@ -197,18 +214,40 @@ class CreditController extends Controller
                 ], 400);
             }
 
+            // Проверяем, что смена еще открыта
+            if ($credit->cashierShift && $credit->cashierShift->status === 'closed') {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Смена уже закрыта. Невозможно подтвердить кредит.',
+                ], 400);
+            }
+
+            // Проверяем наличие достаточных средств в кассе (для debit - выдача)
+            if ($credit->debit > 0 && $credit->cashierShift) {
+                $currentBalances = $credit->cashierShift->calculateClosingBalances();
+
+                if ($currentBalances['cash_uzs'] < $credit->debit) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Недостаточно наличных в кассе для выдачи кредита. Доступно: ' . number_format($currentBalances['cash_uzs'], 2) . ' UZS',
+                    ], 400);
+                }
+            }
+
+            // Подтверждаем кредит и устанавливаем остаток долга
             $credit->update([
                 'status' => 'confirmed',
                 'confirmed_by' => auth()->user()->name ?? auth()->id(),
+                'remaining_balance' => $credit->debit, // Весь debit становится долгом
             ]);
 
-            $credit->load(['cashier']);
+            $credit->load(['cashier', 'cashierShift']);
 
             DB::commit();
 
             return response()->json([
                 'success' => true,
-                'message' => 'Кредит успешно подтвержден',
+                'message' => 'Кредит успешно подтвержден. Сумма ' . number_format($credit->debit, 2) . ' UZS вычтена из баланса кассы.',
                 'data' => new CreditResource($credit),
             ]);
         } catch (\Exception $e) {
@@ -224,12 +263,12 @@ class CreditController extends Controller
     /**
      * Repay the credit.
      */
-    public function repay(RepaymentCreditRequest $request): JsonResponse
+    public function repay(RepaymentCreditRequest $request, string $id): JsonResponse
     {
         try {
             DB::beginTransaction();
 
-            $credit = Credit::findOrFail($request->credit_id);
+            $credit = Credit::with('cashierShift')->findOrFail($id);
 
             if ($credit->status !== 'confirmed') {
                 return response()->json([
@@ -238,28 +277,49 @@ class CreditController extends Controller
                 ], 400);
             }
 
-            // Calculate new credit amount
-            $newCreditAmount = $credit->credit - $request->amount;
-
-            if ($newCreditAmount < 0) {
+            // Проверяем остаток долга
+            if ($request->amount > $credit->remaining_balance) {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Сумма погашения превышает остаток кредита',
+                    'message' => 'Сумма погашения (' . number_format($request->amount, 2) . ') превышает остаток долга (' . number_format($credit->remaining_balance, 2) . ')',
                 ], 400);
             }
 
-            // Update credit amount
-            $credit->update([
-                'credit' => $newCreditAmount,
+            // Получаем текущую открытую смену кассира
+            $currentShift = CashierShift::where('cashier_id', auth()->id())
+                ->where('status', 'open')
+                ->first();
+
+            if (!$currentShift) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'У вас нет открытой смены. Откройте смену перед погашением кредита.',
+                ], 400);
+            }
+
+            // Создаем запись о погашении
+            $repayment = CreditRepayment::create([
+                'credit_id' => $credit->id,
+                'cashier_shift_id' => $currentShift->id,
+                'amount' => $request->amount,
+                'repayment_date' => now()->toDateString(),
+                'repayment_time' => now()->toTimeString(),
+                'notes' => $request->notes,
             ]);
 
-            $credit->load(['cashier']);
+            // Обновляем кредит
+            $credit->update([
+                'remaining_balance' => $credit->remaining_balance - $request->amount,
+                'total_repaid' => $credit->total_repaid + $request->amount,
+            ]);
+
+            $credit->load(['cashier', 'cashierShift', 'repayments']);
 
             DB::commit();
 
             return response()->json([
                 'success' => true,
-                'message' => 'Кредит успешно погашен на сумму ' . $request->amount,
+                'message' => 'Кредит успешно погашен на сумму ' . number_format($request->amount, 2) . ' UZS. Остаток долга: ' . number_format($credit->remaining_balance, 2) . ' UZS',
                 'data' => new CreditResource($credit),
             ]);
         } catch (\Exception $e) {

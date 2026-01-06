@@ -1,0 +1,592 @@
+[06-Jan-2022 10:46:40 Asia/Tashkent] PHP Notice:  session_start(): A session had already been started - ignoring in /home/uz123/my.xn--80aumk.uz/php/config.php on line 2
+[06-Jan-2022 10:47:56 Asia/Tashkent] PHP Notice:  session_start(): A session had already been started - ignoring in /home/uz123/my.xn--80aumk.uz/php/config.php on line 2
+[10-Jan-2022 11:48:52 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[10-Jan-2022 16:11:20 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[18-Jan-2022 09:22:00 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[18-Jan-2022 14:46:31 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[18-Jan-2022 14:46:39 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[18-Jan-2022 14:46:43 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[18-Jan-2022 14:46:43 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[18-Jan-2022 14:46:43 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[19-Jan-2022 10:31:10 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[19-Jan-2022 10:31:17 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[24-Jan-2022 12:17:04 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[27-Jan-2022 09:53:27 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[01-Feb-2022 17:44:50 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[12-Feb-2022 17:13:31 Asia/Tashkent] PHP Warning:  mysqli::__construct(): Error while reading greeting packet. PID=34519 in /home/uz123/public_html/php/config.php on line 7
+[12-Feb-2022 17:13:31 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2006): MySQL server has gone away in /home/uz123/public_html/php/config.php on line 7
+[12-Feb-2022 17:16:40 Asia/Tashkent] PHP Warning:  mysqli::__construct(): Error while reading greeting packet. PID=54855 in /home/uz123/public_html/php/config.php on line 7
+[12-Feb-2022 17:16:40 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2006): MySQL server has gone away in /home/uz123/public_html/php/config.php on line 7
+[18-Mar-2022 15:55:36 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[18-Mar-2022 15:55:57 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[25-Apr-2022 15:17:14 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[29-Apr-2022 12:00:47 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[10-May-2022 17:19:39 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[10-May-2022 17:19:48 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[16-May-2022 09:56:11 Asia/Tashkent] PHP Notice:  Undefined index: user_id in /home/uz123/public_html/php/select_in_mysql_sum.php on line 3
+[16-May-2022 09:56:11 Asia/Tashkent] PHP Notice:  Undefined index: user_id in /home/uz123/public_html/php/select_in_mysql_sum.php on line 4
+[16-May-2022 09:56:11 Asia/Tashkent] PHP Notice:  Undefined variable: poss in /home/uz123/public_html/php/select_in_mysql_sum.php on line 11
+[16-May-2022 09:56:11 Asia/Tashkent] PHP Notice:  Trying to access array offset on value of type null in /home/uz123/public_html/php/select_in_mysql_sum.php on line 11
+[16-May-2022 09:56:11 Asia/Tashkent] PHP Notice:  Undefined variable: poss in /home/uz123/public_html/php/select_in_mysql_sum.php on line 12
+[16-May-2022 09:56:11 Asia/Tashkent] PHP Notice:  Trying to access array offset on value of type null in /home/uz123/public_html/php/select_in_mysql_sum.php on line 12
+[16-May-2022 09:56:12 Asia/Tashkent] PHP Fatal error:  Uncaught Error: Unsupported operand types in /home/uz123/public_html/php/select_in_mysql_sum.php:96
+Stack trace:
+#0 {main}
+  thrown in /home/uz123/public_html/php/select_in_mysql_sum.php on line 96
+[16-May-2022 09:56:12 Asia/Tashkent] PHP Notice:  Undefined index: user_id in /home/uz123/public_html/php/select_in_mysql_usd.php on line 3
+[16-May-2022 09:56:12 Asia/Tashkent] PHP Notice:  Undefined index: user_id in /home/uz123/public_html/php/select_in_mysql_usd.php on line 4
+[16-May-2022 09:56:12 Asia/Tashkent] PHP Notice:  Undefined variable: poss in /home/uz123/public_html/php/select_in_mysql_usd.php on line 11
+[16-May-2022 09:56:12 Asia/Tashkent] PHP Notice:  Trying to access array offset on value of type null in /home/uz123/public_html/php/select_in_mysql_usd.php on line 11
+[16-May-2022 09:56:12 Asia/Tashkent] PHP Notice:  Undefined variable: poss in /home/uz123/public_html/php/select_in_mysql_usd.php on line 12
+[16-May-2022 09:56:12 Asia/Tashkent] PHP Notice:  Trying to access array offset on value of type null in /home/uz123/public_html/php/select_in_mysql_usd.php on line 12
+[16-May-2022 09:56:12 Asia/Tashkent] PHP Notice:  Undefined variable: usdend in /home/uz123/public_html/php/select_in_mysql_usd.php on line 96
+[16-May-2022 23:03:09 Asia/Tashkent] PHP Notice:  Trying to access array offset on value of type null in /home/uz123/public_html/php/select_in_mysql_sum.php on line 96
+[16-May-2022 23:03:14 Asia/Tashkent] PHP Notice:  Trying to access array offset on value of type null in /home/uz123/public_html/php/select_in_mysql_sum.php on line 96
+[27-Jun-2022 11:43:18 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[17-Jul-2022 19:07:53 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[18-Jul-2022 09:41:09 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[23-Jul-2022 11:15:09 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[23-Jul-2022 17:25:07 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[23-Jul-2022 17:25:19 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[23-Jul-2022 17:25:22 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[23-Jul-2022 17:25:23 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[23-Jul-2022 17:25:23 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[23-Jul-2022 17:25:23 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[23-Jul-2022 17:25:23 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[23-Jul-2022 17:25:23 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[23-Jul-2022 17:25:23 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[30-Jul-2022 10:30:59 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[27-Aug-2022 16:33:51 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[12-Oct-2022 14:08:32 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[12-Oct-2022 14:08:36 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[31-Oct-2022 22:53:32 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[03-Jan-2023 22:46:52 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Jan-2023 18:26:40 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[13-Jan-2023 15:09:57 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[18-Jan-2023 18:21:26 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[21-Jan-2023 16:09:26 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[24-Jan-2023 10:44:32 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[26-Jan-2023 12:02:35 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[09-Feb-2023 08:02:21 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[09-Feb-2023 08:03:29 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[09-Feb-2023 08:03:30 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[09-Feb-2023 08:03:30 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[09-Feb-2023 08:06:11 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[09-Feb-2023 08:06:53 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[09-Feb-2023 08:06:55 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[09-Feb-2023 08:06:55 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[09-Feb-2023 08:06:55 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[09-Feb-2023 08:06:55 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[10-Feb-2023 11:01:03 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[15-Feb-2023 12:04:11 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[15-Feb-2023 14:23:52 Asia/Tashkent] PHP Warning:  Division by zero in /home/uz123/public_html/php/select_in_mysql_sum.php on line 89
+[15-Feb-2023 14:23:52 Asia/Tashkent] PHP Warning:  Division by zero in /home/uz123/public_html/php/select_in_mysql_usd.php on line 89
+[15-Feb-2023 14:55:53 Asia/Tashkent] PHP Warning:  Division by zero in /home/uz123/public_html/php/select_in_mysql_usd.php on line 89
+[15-Feb-2023 14:55:53 Asia/Tashkent] PHP Warning:  Division by zero in /home/uz123/public_html/php/select_in_mysql_sum.php on line 89
+[15-Feb-2023 14:57:08 Asia/Tashkent] PHP Warning:  Division by zero in /home/uz123/public_html/php/select_in_mysql_sum.php on line 89
+[15-Feb-2023 14:57:08 Asia/Tashkent] PHP Warning:  Division by zero in /home/uz123/public_html/php/select_in_mysql_usd.php on line 89
+[15-Feb-2023 15:07:07 Asia/Tashkent] PHP Warning:  Division by zero in /home/uz123/public_html/php/select_in_mysql_usd.php on line 89
+[15-Feb-2023 15:07:07 Asia/Tashkent] PHP Warning:  Division by zero in /home/uz123/public_html/php/select_in_mysql_sum.php on line 89
+[15-Feb-2023 15:09:39 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[21-Feb-2023 16:26:01 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[22-Feb-2023 14:35:06 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[24-Feb-2023 22:48:04 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[24-Feb-2023 22:48:05 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[28-Feb-2023 19:04:32 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[28-Feb-2023 22:30:48 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[28-Feb-2023 22:44:22 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[16-Mar-2023 12:45:11 Asia/Tashkent] PHP Notice:  A non well formed numeric value encountered in /home/uz123/public_html/php/pay_credit.php on line 16
+[16-Mar-2023 12:45:11 Asia/Tashkent] PHP Notice:  A non well formed numeric value encountered in /home/uz123/public_html/php/pay_credit.php on line 26
+[27-Mar-2023 17:17:46 Asia/Tashkent] PHP Notice:  A non well formed numeric value encountered in /home/uz123/public_html/php/pay_credit.php on line 16
+[27-Mar-2023 17:17:46 Asia/Tashkent] PHP Notice:  A non well formed numeric value encountered in /home/uz123/public_html/php/pay_credit.php on line 26
+[30-Mar-2023 14:14:54 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[31-Mar-2023 16:57:24 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[31-Mar-2023 17:51:55 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[03-Apr-2023 08:57:06 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[03-Apr-2023 08:57:26 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[03-Apr-2023 14:51:26 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[04-Apr-2023 17:10:21 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[05-Apr-2023 13:39:07 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[05-Apr-2023 13:39:35 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[06-Apr-2023 14:11:12 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[07-Apr-2023 10:21:22 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[07-Apr-2023 15:09:28 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[30-Apr-2023 12:55:50 Asia/Tashkent] PHP Notice:  A non well formed numeric value encountered in /home/uz123/public_html/php/pay_credit.php on line 16
+[30-Apr-2023 12:55:50 Asia/Tashkent] PHP Notice:  A non well formed numeric value encountered in /home/uz123/public_html/php/pay_credit.php on line 26
+[07-May-2023 16:15:36 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[07-May-2023 16:15:40 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[08-May-2023 08:41:09 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[08-May-2023 08:41:17 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[08-May-2023 08:55:33 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[08-May-2023 09:00:00 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[08-May-2023 09:02:58 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[08-May-2023 09:03:49 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[08-May-2023 09:05:19 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[12-May-2023 09:17:51 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[12-May-2023 09:18:11 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[12-May-2023 09:18:14 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[12-May-2023 09:18:19 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[12-May-2023 09:18:29 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[12-May-2023 09:18:32 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[12-May-2023 09:18:40 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[12-May-2023 09:18:41 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[12-May-2023 09:18:45 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[12-May-2023 09:18:55 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[12-May-2023 09:19:03 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[05-Jun-2023 09:57:43 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[05-Jun-2023 09:58:53 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[05-Jun-2023 10:09:55 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[12-Jun-2023 09:45:34 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[13-Jun-2023 08:45:16 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[13-Jun-2023 08:45:26 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[13-Jun-2023 08:45:28 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[13-Jun-2023 10:18:11 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[13-Jun-2023 10:18:21 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[13-Jun-2023 10:18:26 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[15-Jun-2023 16:21:14 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[16-Jun-2023 08:56:59 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[17-Jun-2023 12:13:43 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[20-Jun-2023 09:06:27 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[21-Jun-2023 11:02:45 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[21-Jun-2023 14:11:04 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[21-Jun-2023 19:12:52 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[22-Jun-2023 16:49:16 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[24-Jun-2023 09:25:57 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[24-Jun-2023 09:26:06 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[24-Jun-2023 09:26:10 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[26-Jun-2023 14:22:31 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[03-Jul-2023 13:25:40 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[03-Jul-2023 13:25:47 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[03-Jul-2023 13:25:50 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[03-Jul-2023 13:26:06 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[03-Jul-2023 13:26:18 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[03-Jul-2023 13:26:19 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[03-Jul-2023 13:26:19 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[03-Jul-2023 13:26:19 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[03-Jul-2023 13:26:20 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[03-Jul-2023 13:26:20 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[03-Jul-2023 13:26:20 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[03-Jul-2023 13:26:20 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[03-Jul-2023 13:26:38 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[03-Jul-2023 14:05:19 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[03-Jul-2023 14:58:53 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[03-Jul-2023 15:12:10 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[03-Jul-2023 15:58:15 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[04-Jul-2023 11:53:21 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[04-Jul-2023 11:53:31 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[04-Jul-2023 11:53:32 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[04-Jul-2023 11:53:34 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[05-Jul-2023 09:40:20 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[05-Jul-2023 11:40:29 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[05-Jul-2023 13:53:39 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[06-Jul-2023 12:09:18 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[06-Jul-2023 12:09:20 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[06-Jul-2023 12:17:10 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[06-Jul-2023 12:17:20 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[06-Jul-2023 12:17:39 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[06-Jul-2023 12:17:45 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[06-Jul-2023 12:17:46 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[06-Jul-2023 12:17:47 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[06-Jul-2023 12:17:47 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[06-Jul-2023 12:17:47 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[06-Jul-2023 18:31:04 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[07-Jul-2023 14:10:16 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[07-Jul-2023 14:46:47 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[07-Jul-2023 14:46:54 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[07-Jul-2023 14:46:57 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[07-Jul-2023 14:46:58 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[07-Jul-2023 14:46:58 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[07-Jul-2023 14:47:00 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[07-Jul-2023 14:47:07 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[07-Jul-2023 14:47:16 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[07-Jul-2023 14:47:17 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[07-Jul-2023 14:47:17 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[07-Jul-2023 14:47:17 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[08-Jul-2023 10:36:09 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[08-Jul-2023 13:36:21 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[10-Jul-2023 14:00:10 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[10-Jul-2023 14:25:17 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[10-Jul-2023 18:39:44 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[11-Jul-2023 14:01:53 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[11-Jul-2023 15:58:40 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[13-Jul-2023 11:14:23 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[13-Jul-2023 11:14:36 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[13-Jul-2023 11:14:37 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[13-Jul-2023 15:07:02 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[13-Jul-2023 15:07:03 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[13-Jul-2023 16:44:18 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[13-Jul-2023 16:44:18 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[13-Jul-2023 16:44:18 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[13-Jul-2023 16:44:18 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[13-Jul-2023 16:44:18 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[13-Jul-2023 18:28:59 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[14-Jul-2023 09:14:05 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[14-Jul-2023 14:04:34 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[15-Jul-2023 10:25:00 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[17-Jul-2023 09:44:27 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[17-Jul-2023 09:44:27 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[17-Jul-2023 13:30:11 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[19-Jul-2023 12:08:36 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[21-Jul-2023 18:16:38 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[21-Jul-2023 18:16:50 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[21-Jul-2023 18:16:53 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[21-Jul-2023 18:16:54 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[22-Jul-2023 17:19:33 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[22-Jul-2023 17:19:57 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[22-Jul-2023 17:20:08 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[25-Jul-2023 08:45:55 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[25-Jul-2023 14:13:03 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[28-Jul-2023 08:22:52 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[28-Jul-2023 08:22:52 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[28-Jul-2023 08:23:01 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[28-Jul-2023 17:04:38 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[29-Jul-2023 13:27:18 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[01-Aug-2023 18:07:15 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[02-Aug-2023 09:47:45 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[02-Aug-2023 09:47:54 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[02-Aug-2023 09:47:57 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[02-Aug-2023 09:47:58 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[02-Aug-2023 09:47:58 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[02-Aug-2023 14:06:58 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[02-Aug-2023 17:32:52 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[02-Aug-2023 17:33:02 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[02-Aug-2023 17:33:04 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[02-Aug-2023 17:33:04 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[02-Aug-2023 18:42:07 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[02-Aug-2023 18:42:13 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[02-Aug-2023 18:42:15 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[02-Aug-2023 18:42:15 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[02-Aug-2023 18:42:16 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[07-Aug-2023 14:18:50 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[07-Aug-2023 14:18:50 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[07-Aug-2023 15:02:16 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[08-Aug-2023 09:43:51 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[08-Aug-2023 16:29:58 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[10-Aug-2023 09:15:59 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[16-Aug-2023 09:29:35 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[16-Aug-2023 18:26:30 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[17-Aug-2023 14:18:24 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[18-Aug-2023 11:22:25 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[21-Aug-2023 18:36:12 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[23-Aug-2023 14:22:02 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[25-Aug-2023 16:48:20 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[30-Aug-2023 12:55:27 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[30-Aug-2023 12:55:46 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[30-Aug-2023 12:55:46 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[30-Aug-2023 15:07:57 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[31-Aug-2023 09:27:37 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[04-Sep-2023 09:52:00 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[04-Sep-2023 09:52:06 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[13-Sep-2023 16:00:33 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[18-Sep-2023 16:07:07 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[19-Sep-2023 13:47:24 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[26-Sep-2023 15:32:57 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[26-Sep-2023 16:09:57 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[11-Oct-2023 09:25:23 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[13-Oct-2023 14:09:16 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[19-Oct-2023 14:01:38 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[20-Oct-2023 09:34:47 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[27-Oct-2023 14:24:13 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[07-Nov-2023 11:27:35 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[07-Nov-2023 11:27:35 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[07-Nov-2023 11:27:40 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[09-Nov-2023 17:14:12 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[04-Dec-2023 11:13:14 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[04-Dec-2023 06:21:27 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/uz123/public_html/php/auth.php on line 3
+[04-Dec-2023 06:21:29 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/uz123/public_html/php/auth.php on line 3
+[04-Dec-2023 06:21:29 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/uz123/public_html/php/auth.php on line 3
+[04-Dec-2023 06:21:50 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/uz123/public_html/php/auth.php on line 3
+[04-Dec-2023 06:21:50 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/uz123/public_html/php/auth.php on line 3
+[04-Dec-2023 06:27:16 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/uz123/public_html/php/auth.php on line 3
+[04-Dec-2023 06:27:16 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/uz123/public_html/php/auth.php on line 3
+[04-Dec-2023 06:27:16 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/uz123/public_html/php/auth.php on line 3
+[04-Dec-2023 06:27:16 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/uz123/public_html/php/auth.php on line 3
+[04-Dec-2023 06:27:16 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/uz123/public_html/php/auth.php on line 3
+[04-Dec-2023 06:27:16 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/uz123/public_html/php/auth.php on line 3
+[04-Dec-2023 06:27:17 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/uz123/public_html/php/auth.php on line 3
+[04-Dec-2023 06:33:55 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/uz123/public_html/php/auth.php on line 3
+[04-Dec-2023 06:33:55 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/uz123/public_html/php/auth.php on line 3
+[04-Dec-2023 06:33:55 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/uz123/public_html/php/auth.php on line 3
+[04-Dec-2023 06:33:55 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/uz123/public_html/php/auth.php on line 3
+[04-Dec-2023 06:33:55 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/uz123/public_html/php/auth.php on line 3
+[04-Dec-2023 06:33:55 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/uz123/public_html/php/auth.php on line 3
+[04-Dec-2023 06:33:55 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/uz123/public_html/php/auth.php on line 3
+[04-Dec-2023 06:33:55 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/uz123/public_html/php/auth.php on line 3
+[04-Dec-2023 06:33:55 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/uz123/public_html/php/auth.php on line 3
+[04-Dec-2023 06:33:55 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/uz123/public_html/php/auth.php on line 3
+[04-Dec-2023 06:33:55 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/uz123/public_html/php/auth.php on line 3
+[04-Dec-2023 06:33:55 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/uz123/public_html/php/auth.php on line 3
+[04-Dec-2023 06:33:55 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/uz123/public_html/php/auth.php on line 3
+[09-Dec-2023 10:27:13 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[11-Dec-2023 10:47:08 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/1040): Too many connections in /home/uz123/public_html/php/config.php on line 7
+[11-Dec-2023 10:47:12 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/1040): Too many connections in /home/uz123/public_html/php/config.php on line 7
+[11-Dec-2023 10:49:49 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (08004/1040): Too many connections in /home/uz123/public_html/php/config.php on line 7
+[11-Dec-2023 10:51:42 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (08004/1040): Too many connections in /home/uz123/public_html/php/config.php on line 7
+[11-Dec-2023 10:52:03 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/1040): Too many connections in /home/uz123/public_html/php/config.php on line 7
+[11-Dec-2023 10:52:08 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/1040): Too many connections in /home/uz123/public_html/php/config.php on line 7
+[11-Dec-2023 10:52:13 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (08004/1040): Too many connections in /home/uz123/public_html/php/config.php on line 7
+[11-Dec-2023 10:54:28 Asia/Tashkent] PHP Warning:  mysqli_query(): MySQL server has gone away in /home/uz123/public_html/php/auth.php on line 11
+[11-Dec-2023 10:54:28 Asia/Tashkent] PHP Warning:  mysqli_query(): Error reading result set's header in /home/uz123/public_html/php/auth.php on line 11
+[11-Dec-2023 10:54:28 Asia/Tashkent] PHP Warning:  mysqli_fetch_all() expects parameter 1 to be mysqli_result, bool given in /home/uz123/public_html/php/auth.php on line 12
+[11-Dec-2023 10:54:28 Asia/Tashkent] PHP Warning:  Invalid argument supplied for foreach() in /home/uz123/public_html/php/auth.php on line 13
+[11-Dec-2023 10:54:28 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[11-Dec-2023 10:55:13 Asia/Tashkent] PHP Warning:  mysqli_query(): MySQL server has gone away in /home/uz123/public_html/php/auth.php on line 11
+[11-Dec-2023 10:55:13 Asia/Tashkent] PHP Warning:  mysqli_query(): Error reading result set's header in /home/uz123/public_html/php/auth.php on line 11
+[11-Dec-2023 10:55:13 Asia/Tashkent] PHP Warning:  mysqli_fetch_all() expects parameter 1 to be mysqli_result, bool given in /home/uz123/public_html/php/auth.php on line 12
+[11-Dec-2023 10:55:13 Asia/Tashkent] PHP Warning:  Invalid argument supplied for foreach() in /home/uz123/public_html/php/auth.php on line 13
+[11-Dec-2023 10:55:13 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[11-Dec-2023 10:56:00 Asia/Tashkent] PHP Warning:  mysqli_query(): MySQL server has gone away in /home/uz123/public_html/php/auth.php on line 11
+[11-Dec-2023 10:56:00 Asia/Tashkent] PHP Warning:  mysqli_query(): Error reading result set's header in /home/uz123/public_html/php/auth.php on line 11
+[11-Dec-2023 10:56:00 Asia/Tashkent] PHP Warning:  mysqli_fetch_all() expects parameter 1 to be mysqli_result, bool given in /home/uz123/public_html/php/auth.php on line 12
+[11-Dec-2023 10:56:00 Asia/Tashkent] PHP Warning:  Invalid argument supplied for foreach() in /home/uz123/public_html/php/auth.php on line 13
+[11-Dec-2023 10:56:00 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[11-Dec-2023 10:56:47 Asia/Tashkent] PHP Warning:  mysqli_query(): MySQL server has gone away in /home/uz123/public_html/php/auth.php on line 11
+[11-Dec-2023 10:56:47 Asia/Tashkent] PHP Warning:  mysqli_query(): Error reading result set's header in /home/uz123/public_html/php/auth.php on line 11
+[11-Dec-2023 10:56:47 Asia/Tashkent] PHP Warning:  mysqli_fetch_all() expects parameter 1 to be mysqli_result, bool given in /home/uz123/public_html/php/auth.php on line 12
+[11-Dec-2023 10:56:47 Asia/Tashkent] PHP Warning:  Invalid argument supplied for foreach() in /home/uz123/public_html/php/auth.php on line 13
+[11-Dec-2023 10:56:47 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[11-Dec-2023 10:56:47 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (08004/1040): Too many connections in /home/uz123/public_html/php/config.php on line 7
+[11-Dec-2023 10:56:47 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (08004/1040): Too many connections in /home/uz123/public_html/php/config.php on line 7
+[11-Dec-2023 10:56:47 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (08004/1040): Too many connections in /home/uz123/public_html/php/config.php on line 7
+[11-Dec-2023 10:56:47 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (08004/1040): Too many connections in /home/uz123/public_html/php/config.php on line 7
+[11-Dec-2023 10:57:47 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (08004/1040): Too many connections in /home/uz123/public_html/php/config.php on line 7
+[11-Dec-2023 10:57:47 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (08004/1040): Too many connections in /home/uz123/public_html/php/config.php on line 7
+[11-Dec-2023 10:58:02 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (08004/1040): Too many connections in /home/uz123/public_html/php/config.php on line 7
+[11-Dec-2023 13:32:58 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (08004/1040): Too many connections in /home/uz123/public_html/php/config.php on line 7
+[13-Dec-2023 19:40:45 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[13-Dec-2023 19:40:50 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[13-Dec-2023 19:41:32 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[13-Dec-2023 19:41:34 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[14-Dec-2023 07:31:14 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[14-Dec-2023 07:31:34 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[14-Dec-2023 07:31:41 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[14-Dec-2023 07:31:47 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[14-Dec-2023 07:31:48 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[14-Dec-2023 07:31:48 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[14-Dec-2023 07:31:48 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[14-Dec-2023 07:31:48 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[14-Dec-2023 13:53:57 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[06-Jan-2024 15:44:07 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[09-Jan-2024 09:11:07 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[09-Jan-2024 09:11:09 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[17-Jan-2024 08:58:41 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[20-Jan-2024 09:58:10 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[22-Jan-2024 12:14:35 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[30-Jan-2024 16:56:35 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[31-Jan-2024 18:14:34 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[07-Feb-2024 17:21:05 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[08-Feb-2024 10:38:24 Asia/Tashkent] PHP Warning:  Division by zero in /home/uz123/public_html/php/select_in_mysql_sum.php on line 90
+[08-Feb-2024 10:38:24 Asia/Tashkent] PHP Warning:  Division by zero in /home/uz123/public_html/php/select_in_mysql_usd.php on line 89
+[08-Feb-2024 10:38:33 Asia/Tashkent] PHP Warning:  Division by zero in /home/uz123/public_html/php/select_in_mysql_sum.php on line 90
+[08-Feb-2024 10:38:33 Asia/Tashkent] PHP Warning:  Division by zero in /home/uz123/public_html/php/select_in_mysql_usd.php on line 89
+[12-Feb-2024 15:57:38 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[20-Feb-2024 12:02:18 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[27-Feb-2024 17:16:33 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/1130): Host 'localhost' is not allowed to connect to this MariaDB server in /home/uz123/public_html/php/config.php on line 7
+[28-Feb-2024 11:01:53 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[01-Mar-2024 09:31:01 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[01-Mar-2024 09:34:38 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[01-Mar-2024 09:34:47 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[01-Mar-2024 09:34:49 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[05-Mar-2024 15:33:03 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[13-Mar-2024 08:58:09 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[02-May-2024 21:37:42 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[02-May-2024 21:37:50 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[02-May-2024 21:37:51 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[15-May-2024 08:58:56 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[15-May-2024 08:59:06 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[24-May-2024 09:17:15 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[27-May-2024 09:25:40 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[04-Jun-2024 14:08:40 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[05-Jun-2024 17:35:00 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[07-Jun-2024 09:27:46 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[14-Jun-2024 09:35:02 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[19-Jun-2024 09:06:51 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[24-Jun-2024 08:22:54 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[24-Jun-2024 08:22:58 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[24-Jun-2024 08:22:59 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[24-Jun-2024 08:23:11 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[24-Jun-2024 08:23:12 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[24-Jun-2024 08:23:13 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[24-Jun-2024 08:23:13 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[24-Jun-2024 08:23:13 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[24-Jun-2024 08:23:46 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[24-Jun-2024 08:23:47 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[24-Jun-2024 08:23:48 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[26-Jun-2024 09:25:41 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[28-Jun-2024 15:35:56 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[28-Jun-2024 17:02:18 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[29-Jun-2024 20:45:58 Asia/Tashkent] PHP Notice:  Undefined index: user_id in /home/uz123/public_html/php/select_in_mysql_sum.php on line 3
+[29-Jun-2024 20:45:58 Asia/Tashkent] PHP Notice:  Undefined index: user_id in /home/uz123/public_html/php/select_in_mysql_sum.php on line 4
+[29-Jun-2024 20:45:58 Asia/Tashkent] PHP Notice:  Undefined variable: poss in /home/uz123/public_html/php/select_in_mysql_sum.php on line 11
+[29-Jun-2024 20:45:58 Asia/Tashkent] PHP Notice:  Undefined variable: poss in /home/uz123/public_html/php/select_in_mysql_sum.php on line 12
+[29-Jun-2024 20:45:58 Asia/Tashkent] PHP Fatal error:  Uncaught Error: Unsupported operand types in /home/uz123/public_html/php/select_in_mysql_sum.php:97
+Stack trace:
+#0 {main}
+  thrown in /home/uz123/public_html/php/select_in_mysql_sum.php on line 97
+[29-Jun-2024 20:45:58 Asia/Tashkent] PHP Notice:  Undefined index: user_id in /home/uz123/public_html/php/select_in_mysql_usd.php on line 3
+[29-Jun-2024 20:45:58 Asia/Tashkent] PHP Notice:  Undefined index: user_id in /home/uz123/public_html/php/select_in_mysql_usd.php on line 4
+[29-Jun-2024 20:45:58 Asia/Tashkent] PHP Notice:  Undefined variable: poss in /home/uz123/public_html/php/select_in_mysql_usd.php on line 11
+[29-Jun-2024 20:45:58 Asia/Tashkent] PHP Notice:  Undefined variable: poss in /home/uz123/public_html/php/select_in_mysql_usd.php on line 12
+[29-Jun-2024 20:45:58 Asia/Tashkent] PHP Notice:  Undefined variable: usdend in /home/uz123/public_html/php/select_in_mysql_usd.php on line 96
+[02-Jul-2024 10:46:27 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[02-Jul-2024 16:02:41 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[06-Jul-2024 10:53:54 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[02-Aug-2024 14:21:18 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[03-Aug-2024 14:47:52 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[14-Aug-2024 14:32:14 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[16-Oct-2024 17:06:31 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[18-Oct-2024 16:06:27 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[21-Oct-2024 16:02:44 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[09-Nov-2024 17:02:15 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[17-Jan-2025 15:46:24 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[18-Jan-2025 09:11:05 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[06-Feb-2025 14:11:05 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[21-Feb-2025 10:52:31 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[25-Feb-2025 09:42:34 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[11-Mar-2025 14:51:50 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 14:51:50 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 14:51:50 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 14:51:50 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 14:51:50 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 14:51:50 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 14:52:09 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 14:52:09 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 14:52:09 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 14:52:25 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 14:52:25 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 14:52:25 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 14:53:24 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 14:53:24 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 14:53:34 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 14:53:38 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 14:54:20 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 14:54:28 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 14:54:53 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 14:54:53 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 14:54:53 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 14:55:04 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 14:55:10 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 14:55:16 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 14:55:30 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 14:55:30 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 15:57:26 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[11-Mar-2025 16:03:29 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[17-Mar-2025 16:12:43 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[17-Mar-2025 16:12:47 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[17-Mar-2025 16:12:47 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[17-Mar-2025 16:12:48 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[17-Mar-2025 16:12:48 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[17-Mar-2025 16:12:59 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[17-Mar-2025 16:13:01 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[17-Mar-2025 16:13:02 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[17-Mar-2025 16:13:02 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[17-Mar-2025 16:13:11 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[17-Mar-2025 16:13:53 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[17-Mar-2025 16:13:53 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[17-Mar-2025 16:13:53 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[25-Mar-2025 14:01:03 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[12-Apr-2025 14:44:03 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[12-Apr-2025 14:44:03 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[12-Apr-2025 14:44:06 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[12-Apr-2025 14:44:06 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[12-Apr-2025 14:44:06 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[12-Apr-2025 14:44:06 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[12-Apr-2025 14:46:30 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[12-Apr-2025 14:46:33 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[12-Apr-2025 14:48:11 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[12-Apr-2025 14:48:11 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[12-Apr-2025 14:48:11 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[12-Apr-2025 14:48:11 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[12-Apr-2025 14:48:17 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[12-Apr-2025 14:48:17 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[12-Apr-2025 14:48:18 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[12-Apr-2025 14:48:18 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[12-Apr-2025 14:50:14 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[12-Apr-2025 14:50:14 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[12-Apr-2025 14:50:14 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[12-Apr-2025 14:50:14 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[12-Apr-2025 14:50:14 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[12-Apr-2025 14:50:15 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[12-Apr-2025 14:50:20 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[12-Apr-2025 15:46:35 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[12-Apr-2025 15:46:44 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:10:23 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:10:27 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:10:51 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:10:52 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:10:58 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:10:58 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:11:12 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:11:14 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:11:16 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:11:18 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:11:29 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:11:29 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:11:33 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:11:35 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:11:35 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:11:36 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:11:40 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:11:40 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:11:40 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:11:40 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:11:41 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:11:41 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:11:41 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:11:45 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:11:45 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:11:47 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:11:49 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:11:50 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:11:50 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:11:54 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:12:12 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:12:27 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:12:51 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:13:35 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:14:22 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:14:22 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:14:24 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:14:24 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:14:25 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:14:25 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:14:25 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:14:26 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:14:47 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:14:48 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:14:48 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:14:49 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:14:49 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:14:50 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:14:50 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:14:50 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:15:05 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:15:05 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:15:05 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:15:36 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:15:36 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:15:36 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:15:37 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:15:37 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:15:37 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:15:37 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:15:37 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:15:38 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[28-Apr-2025 14:15:38 Asia/Tashkent] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in /home/uz123/public_html/php/config.php on line 7
+[21-May-2025 14:32:05 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[11-Jun-2025 09:48:23 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[11-Jun-2025 09:48:30 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[11-Jun-2025 09:48:31 Asia/Tashkent] PHP Notice:  Undefined variable: user_id in /home/uz123/public_html/php/auth.php on line 19
+[22-Aug-2025 16:31:46 Asia/Tashkent] PHP Notice:  Undefined index: user_id in /home/uz123/public_html/php/select_in_mysql_usd.php on line 3
+[22-Aug-2025 16:31:46 Asia/Tashkent] PHP Notice:  Undefined index: user_id in /home/uz123/public_html/php/select_in_mysql_usd.php on line 4
+[22-Aug-2025 16:31:46 Asia/Tashkent] PHP Notice:  Undefined variable: poss in /home/uz123/public_html/php/select_in_mysql_usd.php on line 11
+[22-Aug-2025 16:31:46 Asia/Tashkent] PHP Notice:  Undefined variable: poss in /home/uz123/public_html/php/select_in_mysql_usd.php on line 12
+[22-Aug-2025 16:31:46 Asia/Tashkent] PHP Notice:  Undefined variable: usdend in /home/uz123/public_html/php/select_in_mysql_usd.php on line 96
+[22-Aug-2025 16:31:46 Asia/Tashkent] PHP Notice:  Undefined index: user_id in /home/uz123/public_html/php/select_in_mysql_sum.php on line 3
+[22-Aug-2025 16:31:46 Asia/Tashkent] PHP Notice:  Undefined index: user_id in /home/uz123/public_html/php/select_in_mysql_sum.php on line 4
+[22-Aug-2025 16:31:46 Asia/Tashkent] PHP Notice:  Undefined variable: poss in /home/uz123/public_html/php/select_in_mysql_sum.php on line 11
+[22-Aug-2025 16:31:46 Asia/Tashkent] PHP Notice:  Undefined variable: poss in /home/uz123/public_html/php/select_in_mysql_sum.php on line 12
+[22-Aug-2025 16:31:46 Asia/Tashkent] PHP Fatal error:  Uncaught Error: Unsupported operand types in /home/uz123/public_html/php/select_in_mysql_sum.php:97
+Stack trace:
+#0 {main}
+  thrown in /home/uz123/public_html/php/select_in_mysql_sum.php on line 97

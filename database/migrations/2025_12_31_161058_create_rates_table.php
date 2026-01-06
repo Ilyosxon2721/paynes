@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('rates', function (Blueprint $table) {
             $table->id();
+            $table->enum('currency_from', ['UZS', 'USD'])->default('USD');
+            $table->enum('currency_to', ['UZS', 'USD'])->default('UZS');
             $table->decimal('buy_rate', 10, 2);
             $table->decimal('sell_rate', 10, 2);
-            $table->date('date');
+            $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
     }

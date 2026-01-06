@@ -1,0 +1,1 @@
+<p id="welcome">Привет <?php  echo $user_fio;?>!</p>

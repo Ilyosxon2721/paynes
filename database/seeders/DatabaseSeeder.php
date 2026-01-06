@@ -14,17 +14,25 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            // Сначала создаем роли и права
+            // 1. Сначала создаем роли и права
             RolesAndPermissionsSeeder::class,
 
-            // Затем создаем типы платежей
+            // 2. Затем создаем пользователей (они зависят от ролей)
+            AdminUserSeeder::class,
+
+            // 3. Затем создаем типы платежей
             PaymentTypesSeeder::class,
 
-            // Затем создаем пользователей (они зависят от ролей)
-            UsersSeeder::class,
-
-            // И в конце курсы валют
-            RatesSeeder::class,
+            // 4. И в конце курсы валют
+            ExchangeRatesSeeder::class,
         ]);
+
+        $this->command->newLine();
+        $this->command->info('✅ Все базовые данные успешно созданы!');
+        $this->command->newLine();
+        $this->command->info('🔐 Для входа используйте:');
+        $this->command->info('   Администратор: login=admin, password=admin123');
+        $this->command->info('   Кассир: login=cashier, password=cashier123');
+        $this->command->newLine();
     }
 }

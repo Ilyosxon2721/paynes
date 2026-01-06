@@ -1,13 +1,18 @@
-<template>
+﻿<template>
   <div class="layout">
     <aside class="sidebar">
       <div class="sidebar-header">
-        <h1>Anesi Kassa</h1>
+        <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 50 150 L 50 50 Q 50 30 70 30 L 120 30 Q 150 30 150 60 Q 150 90 120 90 L 80 90 L 120 130 L 80 130 Z"
+                fill="white" stroke="none"/>
+        </svg>
+        <h1>Paynes</h1>
+        <p class="tagline">Платежная система</p>
       </div>
 
-      <nav class="sidebar-nav">
+                        <nav class="sidebar-nav">
         <router-link to="/" class="nav-item">
-          <span>📊</span> Главная
+          <span>🏠</span> Главная
         </router-link>
 
         <router-link to="/payments" class="nav-item">
@@ -15,7 +20,7 @@
         </router-link>
 
         <router-link to="/payment-types" class="nav-item" v-if="authStore.isAdmin">
-          <span>📋</span> Типы платежей
+          <span>🧾</span> Типы платежей
         </router-link>
 
         <router-link to="/exchanges" class="nav-item">
@@ -27,20 +32,25 @@
         </router-link>
 
         <router-link to="/incashes" class="nav-item">
-          <span>💵</span> Инкассация
+          <span>🧰</span> Инкассация
         </router-link>
 
         <router-link to="/rates" class="nav-item" v-if="authStore.isAdmin">
           <span>📈</span> Курсы валют
         </router-link>
+
+        <router-link to="/tickets" class="nav-item">
+          <span>💬</span> Чат/Тикеты
+        </router-link>
       </nav>
+
 
       <div class="sidebar-footer">
         <div class="user-info">
           <div class="user-name">{{ authStore.user?.full_name }}</div>
           <div class="user-position">{{ positionText }}</div>
         </div>
-        <button @click="handleLogout" class="logout-btn">Выход</button>
+        <button @click="handleLogout" class="logout-btn">Выйти</button>
       </div>
     </aside>
 
@@ -75,8 +85,8 @@ async function handleLogout() {
 }
 
 .sidebar {
-  width: 260px;
-  background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+  width: 280px;
+  background: var(--paynes-gradient-primary);
   color: white;
   display: flex;
   flex-direction: column;
@@ -84,17 +94,34 @@ async function handleLogout() {
   height: 100vh;
   left: 0;
   top: 0;
+  box-shadow: var(--paynes-shadow-lg);
 }
 
 .sidebar-header {
   padding: 24px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+}
+
+.sidebar-header .logo {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 12px;
+  display: block;
 }
 
 .sidebar-header h1 {
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-header .tagline {
+  font-size: 12px;
   margin: 0;
+  opacity: 0.85;
+  font-weight: 400;
 }
 
 .sidebar-nav {
@@ -120,10 +147,11 @@ async function handleLogout() {
 }
 
 .nav-item.router-link-active {
-  background: rgba(52, 152, 219, 0.2);
+  background: rgba(255, 255, 255, 0.15);
   color: white;
-  border-left: 3px solid #3498db;
-  padding-left: 17px;
+  border-left: 4px solid white;
+  padding-left: 16px;
+  font-weight: 600;
 }
 
 .nav-item span {
@@ -169,9 +197,14 @@ async function handleLogout() {
 
 .main-content {
   flex: 1;
-  margin-left: 260px;
+  margin-left: 280px;
   padding: 30px;
-  background: #f5f5f5;
+  background: var(--paynes-gray-50);
   min-height: 100vh;
 }
 </style>
+
+
+
+
+

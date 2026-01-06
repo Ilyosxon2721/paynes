@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('login')->unique();
             $table->string('full_name');
+            $table->string('added_by')->nullable();
             $table->string('password');
             $table->enum('position', ['admin', 'cashier'])->default('cashier');
             $table->enum('status', ['active', 'blocked'])->default('active');
             $table->string('branch')->nullable();
-            $table->decimal('salary_percentage', 5, 2)->default(0);
+            $table->decimal('reward_percentage', 5, 2)->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

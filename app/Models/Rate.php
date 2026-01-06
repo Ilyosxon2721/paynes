@@ -15,9 +15,11 @@ class Rate extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'currency_from',
+        'currency_to',
         'buy_rate',
         'sell_rate',
-        'date',
+        'is_active',
     ];
 
     /**
@@ -28,19 +30,29 @@ class Rate extends Model
     protected function casts(): array
     {
         return [
-            'date' => 'date',
             'buy_rate' => 'decimal:2',
             'sell_rate' => 'decimal:2',
+            'is_active' => 'boolean',
         ];
     }
 
     /**
-     * Get the latest rate.
+     * Get the latest active rate.
      *
      * @return Rate|null
      */
     public static function getLatest()
     {
-        return static::orderBy('date', 'desc')->orderBy('created_at', 'desc')->first();
+        return static::where('is_active', true)
+            ->orderBy('created_at', 'desc')
+            ->first();
+    }
+
+    /**
+     * Scope a query to only include active rates.
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
     }
 }

@@ -1,0 +1,28 @@
+@media (max-width: 1440px) {
+    /* Menu right */
+    div#menu-right {
+        position: fixed;
+        background-color: #f7f7f7;
+        width: 18%;
+        height: 93.5%;
+        top: 6.5%;
+        bottom: 0;
+        right: 0;
+        border-left: 1px solid #9dacb3;
+    }
+    div#menu-left {
+        position: fixed;
+        background-color: rgb(28, 26, 32);
+        width: 15%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        bottom: 0;
+    }
+    div.logo h1 {
+        font-family: 'Courgette', cursive;
+        color: rgb(29, 24, 24);
+        font-size: 25px;
+        display: none;
+    }
+}

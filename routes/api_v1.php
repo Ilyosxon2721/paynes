@@ -28,25 +28,25 @@ Route::middleware(['auth:sanctum', 'throttle:60,1'])->group(function () {
     Route::get('/user', [AuthController::class, 'user'])->name('v1.user');
 
     // Payments
-    Route::apiResource('payments', PaymentController::class);
+    Route::apiResource('payments', PaymentController::class)->names('v1.payments');
     Route::post('/payments/{id}/confirm', [PaymentController::class, 'confirm'])->name('v1.payments.confirm');
     Route::post('/payments/{id}/duplicate', [PaymentController::class, 'duplicate'])->name('v1.payments.duplicate');
 
     // Payment Types
-    Route::apiResource('payment-types', PaymentTypeController::class);
+    Route::apiResource('payment-types', PaymentTypeController::class)->names('v1.payment-types');
 
     // Exchanges
-    Route::apiResource('exchanges', ExchangeController::class)->except(['update']);
+    Route::apiResource('exchanges', ExchangeController::class)->except(['update'])->names('v1.exchanges');
 
     // Credits
-    Route::apiResource('credits', CreditController::class);
+    Route::apiResource('credits', CreditController::class)->names('v1.credits');
     Route::post('/credits/{id}/confirm', [CreditController::class, 'confirm'])->name('v1.credits.confirm');
     Route::post('/credits/repay', [CreditController::class, 'repay'])->name('v1.credits.repay');
 
     // Incashes
-    Route::apiResource('incashes', IncashController::class)->except(['update']);
+    Route::apiResource('incashes', IncashController::class)->except(['update'])->names('v1.incashes');
 
     // Rates
     Route::get('/rates/latest', [RateController::class, 'latest'])->name('v1.rates.latest');
-    Route::apiResource('rates', RateController::class);
+    Route::apiResource('rates', RateController::class)->names('v1.rates');
 });

@@ -24,7 +24,7 @@ class StoreIncashRequest extends FormRequest
         return [
             'account_number' => ['required', 'in:001,002,003,840'],
             'amount' => ['required', 'numeric', 'min:0'],
-            'type' => ['required', 'string'],
+            'type' => ['required', 'in:income,expense'],
         ];
     }
 
@@ -42,7 +42,7 @@ class StoreIncashRequest extends FormRequest
             'amount.numeric' => 'Сумма должна быть числом',
             'amount.min' => 'Сумма не может быть отрицательной',
             'type.required' => 'Тип обязателен для заполнения',
-            'type.string' => 'Тип должен быть строкой',
+            'type.in' => 'Тип должен быть: приход (income) или расход (expense)',
         ];
     }
 }

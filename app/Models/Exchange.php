@@ -23,6 +23,7 @@ class Exchange extends Model
         'type',
         'rate',
         'cashier_id',
+        'cashier_shift_id',
     ];
 
     /**
@@ -46,6 +47,14 @@ class Exchange extends Model
     public function cashier()
     {
         return $this->belongsTo(User::class, 'cashier_id');
+    }
+
+    /**
+     * Get the cashier shift that owns the exchange.
+     */
+    public function cashierShift()
+    {
+        return $this->belongsTo(CashierShift::class);
     }
 
     /**

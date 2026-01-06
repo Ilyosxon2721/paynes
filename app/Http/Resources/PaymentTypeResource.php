@@ -19,6 +19,7 @@ class PaymentTypeResource extends JsonResource
             'name' => $this->name,
             'organization' => $this->organization,
             'bank' => $this->bank,
+            'bank_name' => $this->bank, // Alias for compatibility
             'account_number' => $this->account_number,
             'mfo' => $this->mfo,
             'inn' => $this->inn,

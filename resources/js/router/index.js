@@ -9,6 +9,43 @@ const routes = [
     meta: { guest: true }
   },
   {
+    path: '/cashier',
+    component: () => import('@/layouts/CashierLayout.vue'),
+    meta: { requiresAuth: true, role: 'cashier' },
+    children: [
+      {
+        path: 'payments',
+        name: 'CashierPayments',
+        component: () => import('@/views/cashier/Payments.vue')
+      },
+      {
+        path: 'exchanges',
+        name: 'CashierExchanges',
+        component: () => import('@/views/cashier/Exchanges.vue')
+      },
+      {
+        path: 'credits',
+        name: 'CashierCredits',
+        component: () => import('@/views/cashier/Credits.vue')
+      },
+      {
+        path: 'incashes',
+        name: 'CashierIncashes',
+        component: () => import('@/views/cashier/Incashes.vue')
+      },
+      {
+        path: 'reports',
+        name: 'CashierReports',
+        component: () => import('@/views/cashier/Reports.vue')
+      },
+      {
+        path: 'tickets',
+        name: 'CashierTickets',
+        component: () => import('@/views/Tickets/Index.vue')
+      }
+    ]
+  },
+  {
     path: '/',
     component: () => import('@/layouts/MainLayout.vue'),
     meta: { requiresAuth: true },
@@ -59,14 +96,14 @@ const routes = [
         component: () => import('@/views/Incashes/Index.vue')
       },
       {
-        path: 'incashes/create',
-        name: 'IncashesCreate',
-        component: () => import('@/views/Incashes/Create.vue')
-      },
-      {
         path: 'rates',
         name: 'Rates',
         component: () => import('@/views/Rates/Index.vue')
+      },
+      {
+        path: 'tickets',
+        name: 'Tickets',
+        component: () => import('@/views/Tickets/Index.vue')
       }
     ]
   }
@@ -77,13 +114,23 @@ const router = createRouter({
   routes
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const authStore = useAuthStore();
+
+  // Проверка аутентификации пользователя
+  if (authStore.isAuthenticated && !authStore.user) {
+    await authStore.checkAuth();
+  }
 
   if (to.meta.requiresAuth && !authStore.isAuthenticated) {
     next({ name: 'Login' });
   } else if (to.meta.guest && authStore.isAuthenticated) {
-    next({ name: 'Dashboard' });
+    // Переадресация в зависимости от роли после входа
+    if (authStore.user?.position === 'cashier') {
+      next({ name: 'CashierPayments' });
+    } else {
+      next({ name: 'Dashboard' });
+    }
   } else {
     next();
   }
