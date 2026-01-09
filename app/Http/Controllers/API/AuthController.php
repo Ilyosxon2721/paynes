@@ -17,6 +17,60 @@ use Illuminate\Validation\ValidationException;
 class AuthController extends Controller
 {
     /**
+     * Handle a registration request.
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function register(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'login' => 'required|string|max:255|unique:users,login',
+            'email' => 'required|email|max:255|unique:users,email',
+            'phone' => 'nullable|string|max:50',
+            'branch' => 'nullable|string|max:255',
+            'password' => 'required|string|min:6|confirmed',
+        ], [
+            'login.unique' => 'Этот логин уже занят.',
+            'email.unique' => 'Этот email уже зарегистрирован.',
+            'password.confirmed' => 'Пароли не совпадают.',
+            'password.min' => 'Пароль должен быть минимум 6 символов.',
+        ]);
+
+        $user = User::create([
+            'name' => $validated['name'],
+            'login' => $validated['login'],
+            'email' => $validated['email'],
+            'phone' => $validated['phone'] ?? null,
+            'branch' => $validated['branch'] ?? null,
+            'password' => $validated['password'],
+            'position' => 'agent',
+            'status' => 'inactive', // Requires admin activation
+        ]);
+
+        // Assign agent role if exists
+        if ($user->hasRole === null) {
+            try {
+                $user->assignRole('cashier');
+            } catch (\Exception $e) {
+                // Role might not exist
+            }
+        }
+
+        Log::channel('auth')->info('New agent registered', [
+            'user_id' => $user->id,
+            'login' => $user->login,
+            'email' => $user->email,
+            'ip' => $request->ip(),
+        ]);
+
+        return ApiResponse::success([
+            'user' => new UserResource($user),
+        ], 'Регистрация успешна! Ваш аккаунт будет активирован после проверки администратором.');
+    }
+
+    /**
      * Handle a login request to the application.
      *
      * @param LoginRequest $request

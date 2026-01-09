@@ -52,6 +52,7 @@ Route::get('/health', function () {
 
 // Public routes
 Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 // Public receipt access (no authentication required)
 Route::get('/receipts/{token}', [PublicReceiptController::class, 'show'])

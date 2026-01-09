@@ -20,6 +20,7 @@
               {{ lang.flag }}
             </button>
           </div>
+          <router-link to="/register" class="btn btn-primary">{{ t.nav.register }}</router-link>
           <router-link to="/login" class="btn btn-outline">{{ t.nav.login }}</router-link>
         </div>
       </div>
@@ -33,7 +34,7 @@
           <h1 class="hero-title">{{ t.hero.title }}</h1>
           <p class="hero-subtitle">{{ t.hero.subtitle }}</p>
           <div class="hero-buttons">
-            <router-link to="/login" class="btn btn-primary btn-lg">{{ t.hero.cta }}</router-link>
+            <router-link to="/register" class="btn btn-primary btn-lg">{{ t.hero.cta }}</router-link>
             <a href="#features" class="btn btn-ghost btn-lg">{{ t.hero.learn }}</a>
           </div>
           <div class="hero-stats">
@@ -87,7 +88,7 @@
             <ul class="features-list">
               <li v-for="(f, j) in plan.features" :key="j">✓ {{ f }}</li>
             </ul>
-            <router-link to="/login" class="btn" :class="plan.popular ? 'btn-primary' : 'btn-outline'">
+            <router-link to="/register" class="btn" :class="plan.popular ? 'btn-primary' : 'btn-outline'">
               {{ t.pricing.start }}
             </router-link>
           </div>
@@ -114,7 +115,7 @@
       <div class="container">
         <h2>{{ t.cta.title }}</h2>
         <p>{{ t.cta.subtitle }}</p>
-        <router-link to="/login" class="btn btn-primary btn-lg">{{ t.cta.button }}</router-link>
+        <router-link to="/register" class="btn btn-primary btn-lg">{{ t.cta.button }}</router-link>
       </div>
     </section>
 
@@ -164,7 +165,7 @@ const setLang = (lang) => { currentLang.value = lang; };
 
 const translations = {
   ru: {
-    nav: { features: 'Возможности', pricing: 'Тарифы', faq: 'FAQ', login: 'Войти' },
+    nav: { features: 'Возможности', pricing: 'Тарифы', faq: 'FAQ', login: 'Войти', register: 'Регистрация' },
     hero: {
       title: 'Современная система управления платежами',
       subtitle: 'Полный контроль бизнеса для агентов платежных систем. Платежи, обмен валют, кредиты и отчёты — всё в одном месте.',
@@ -201,9 +202,9 @@ const translations = {
       month: 'мес',
       start: 'Начать',
       plans: [
-        { name: 'Стартовый', price: '299 000 UZS', features: ['1 кассир', 'Базовые платежи', 'Отчёты за 30 дней', 'Email поддержка'], popular: false },
-        { name: 'Бизнес', price: '599 000 UZS', features: ['5 кассиров', 'Все модули', 'Неограниченные отчёты', 'Приоритетная поддержка', 'API доступ'], popular: true },
-        { name: 'Корпоративный', price: '1 199 000 UZS', features: ['Безлимит кассиров', 'Белый лейбл', 'Выделенный сервер', '24/7 поддержка', 'Кастомизация'], popular: false }
+        { name: 'Стартовый', price: '299 000 UZS', features: ['1 кассир', '1 филиал', 'Отчёты за 30 дней', 'Email поддержка'], popular: false },
+        { name: 'Бизнес', price: '599 000 UZS', features: ['5 кассиров', '1 менеджер', '3 филиала', 'Неограниченные отчёты', 'Приоритетная поддержка'], popular: true },
+        { name: 'Корпоративный', price: '1 199 000 UZS', features: ['15 кассиров', '3 менеджера', '10 филиалов', 'Брендинг', '24/7 поддержка'], popular: false }
       ]
     },
     faq: {
@@ -219,7 +220,7 @@ const translations = {
     footer: { desc: 'Современная система для агентов платежных систем', product: 'Продукт', contact: 'Контакты', rights: 'Все права защищены' }
   },
   uz: {
-    nav: { features: 'Imkoniyatlar', pricing: 'Tariflar', faq: 'FAQ', login: 'Kirish' },
+    nav: { features: 'Imkoniyatlar', pricing: 'Tariflar', faq: 'FAQ', login: 'Kirish', register: 'Ro\'yxatdan o\'tish' },
     hero: {
       title: 'Zamonaviy to\'lov boshqaruv tizimi',
       subtitle: 'To\'lov tizimlari agentlari uchun biznesni to\'liq nazorat qilish. To\'lovlar, valyuta ayirboshlash, kreditlar va hisobotlar — barchasi bir joyda.',
@@ -256,9 +257,9 @@ const translations = {
       month: 'oy',
       start: 'Boshlash',
       plans: [
-        { name: 'Boshlang\'ich', price: '299 000 UZS', features: ['1 kassir', 'Asosiy to\'lovlar', '30 kunlik hisobotlar', 'Email yordam'], popular: false },
-        { name: 'Biznes', price: '599 000 UZS', features: ['5 kassir', 'Barcha modullar', 'Cheksiz hisobotlar', 'Ustuvor yordam', 'API kirish'], popular: true },
-        { name: 'Korporativ', price: '1 199 000 UZS', features: ['Cheksiz kassirlar', 'Oq yorliq', 'Ajratilgan server', '24/7 yordam', 'Moslash'], popular: false }
+        { name: 'Boshlang\'ich', price: '299 000 UZS', features: ['1 kassir', '1 filial', '30 kunlik hisobotlar', 'Email yordam'], popular: false },
+        { name: 'Biznes', price: '599 000 UZS', features: ['5 kassir', '1 menejer', '3 filial', 'Cheksiz hisobotlar', 'Ustuvor yordam'], popular: true },
+        { name: 'Korporativ', price: '1 199 000 UZS', features: ['15 kassir', '3 menejer', '10 filial', 'Brending', '24/7 yordam'], popular: false }
       ]
     },
     faq: {
@@ -274,7 +275,7 @@ const translations = {
     footer: { desc: 'To\'lov tizimlari agentlari uchun zamonaviy tizim', product: 'Mahsulot', contact: 'Aloqa', rights: 'Barcha huquqlar himoyalangan' }
   },
   en: {
-    nav: { features: 'Features', pricing: 'Pricing', faq: 'FAQ', login: 'Login' },
+    nav: { features: 'Features', pricing: 'Pricing', faq: 'FAQ', login: 'Login', register: 'Sign Up' },
     hero: {
       title: 'Modern Payment Management System',
       subtitle: 'Complete business control for payment system agents. Payments, currency exchange, credits and reports — all in one place.',
@@ -311,9 +312,9 @@ const translations = {
       month: 'mo',
       start: 'Get Started',
       plans: [
-        { name: 'Starter', price: '299 000 UZS', features: ['1 cashier', 'Basic payments', '30-day reports', 'Email support'], popular: false },
-        { name: 'Business', price: '599 000 UZS', features: ['5 cashiers', 'All modules', 'Unlimited reports', 'Priority support', 'API access'], popular: true },
-        { name: 'Enterprise', price: '1 199 000 UZS', features: ['Unlimited cashiers', 'White label', 'Dedicated server', '24/7 support', 'Customization'], popular: false }
+        { name: 'Starter', price: '299 000 UZS', features: ['1 cashier', '1 branch', '30-day reports', 'Email support'], popular: false },
+        { name: 'Business', price: '599 000 UZS', features: ['5 cashiers', '1 manager', '3 branches', 'Unlimited reports', 'Priority support'], popular: true },
+        { name: 'Enterprise', price: '1 199 000 UZS', features: ['15 cashiers', '3 managers', '10 branches', 'Branding', '24/7 support'], popular: false }
       ]
     },
     faq: {
