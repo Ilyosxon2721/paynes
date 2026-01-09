@@ -129,6 +129,11 @@ const routes = [
         path: 'tickets',
         name: 'Tickets',
         component: () => import('@/views/Tickets/Index.vue')
+      },
+      {
+        path: 'users',
+        name: 'Users',
+        component: () => import('@/views/Users/Index.vue')
       }
     ]
   }

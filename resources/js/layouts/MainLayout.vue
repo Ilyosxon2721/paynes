@@ -39,6 +39,10 @@
           <span>📈</span> Курсы валют
         </router-link>
 
+        <router-link to="/users" class="nav-item" v-if="authStore.isAdmin">
+          <span>👥</span> Сотрудники
+        </router-link>
+
         <router-link to="/tickets" class="nav-item">
           <span>💬</span> Чат/Тикеты
         </router-link>

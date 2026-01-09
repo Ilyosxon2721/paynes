@@ -103,4 +103,9 @@ Route::middleware(['auth:sanctum', 'throttle:60,1'])->group(function () {
     Route::get('/tickets/branches', [TicketController::class, 'branches'])->name('tickets.branches');
     Route::apiResource('tickets', TicketController::class)->only(['index', 'show', 'store', 'update']);
     Route::post('/tickets/{ticket}/messages', [TicketController::class, 'storeMessage'])->name('tickets.messages.store');
+
+    // Users (Employees)
+    Route::get('/users/roles', [\App\Http\Controllers\API\UserController::class, 'getRoles'])->name('users.roles');
+    Route::get('/users/permissions', [\App\Http\Controllers\API\UserController::class, 'getPermissions'])->name('users.permissions');
+    Route::apiResource('users', \App\Http\Controllers\API\UserController::class);
 });
