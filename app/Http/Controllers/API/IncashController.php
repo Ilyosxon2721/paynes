@@ -28,6 +28,22 @@ class IncashController extends Controller
                 $query->byAccountNumber($request->account_number);
             }
 
+            // Для кассиров всегда показываем только их инкассации
+            if (auth()->user()->position === 'cashier') {
+                $query->where('cashier_id', auth()->id());
+
+                // Если дата не указана, показываем только инкассации текущей смены
+                if (!$request->has('date')) {
+                    $currentShift = \App\Models\CashierShift::where('cashier_id', auth()->id())
+                        ->where('status', 'open')
+                        ->first();
+
+                    if ($currentShift) {
+                        $query->where('cashier_shift_id', $currentShift->id);
+                    }
+                }
+            }
+
             // Filter by date
             if ($request->has('date')) {
                 $query->whereDate('date', $request->date);

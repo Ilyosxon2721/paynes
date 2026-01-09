@@ -33,6 +33,22 @@ class ExchangeController extends Controller
                 }
             }
 
+            // Для кассиров всегда показываем только их обмены
+            if (auth()->user()->position === 'cashier') {
+                $query->where('cashier_id', auth()->id());
+
+                // Если дата не указана, показываем только обмены текущей смены
+                if (!$request->has('date')) {
+                    $currentShift = CashierShift::where('cashier_id', auth()->id())
+                        ->where('status', 'open')
+                        ->first();
+
+                    if ($currentShift) {
+                        $query->where('cashier_shift_id', $currentShift->id);
+                    }
+                }
+            }
+
             // Filter by date
             if ($request->has('date')) {
                 $query->byDate($request->date);

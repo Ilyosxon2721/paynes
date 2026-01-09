@@ -31,12 +31,12 @@ class PaymentController extends Controller
                 $query->where('status', $request->status);
             }
 
-            // Filter by date
-            if ($request->has('date')) {
-                $query->byDate($request->date);
-            } else {
-                // Для кассиров по умолчанию показываем только платежи текущей смены
-                if (auth()->user()->position === 'cashier') {
+            // Для кассиров всегда показываем только их платежи
+            if (auth()->user()->position === 'cashier') {
+                $query->where('cashier_id', auth()->id());
+
+                // Если дата не указана, показываем только платежи текущей смены
+                if (!$request->has('date')) {
                     $currentShift = CashierShift::where('cashier_id', auth()->id())
                         ->where('status', 'open')
                         ->first();
@@ -45,6 +45,11 @@ class PaymentController extends Controller
                         $query->where('cashier_shift_id', $currentShift->id);
                     }
                 }
+            }
+
+            // Filter by date
+            if ($request->has('date')) {
+                $query->byDate($request->date);
             }
 
             // Filter by cashier_shift_id
