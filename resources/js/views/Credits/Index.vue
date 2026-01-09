@@ -13,18 +13,17 @@
     </div>
     <div v-else class="table-card">
       <table class="data-table">
-        <thead>
-          <tr>
-            <th>Дата/Время</th>
-            <th>Получатель</th>
-            <th>Номер счета</th>
-            <th>Филиал</th>
-            <th>Дебет</th>
-            <th>Кредит</th>
-            <th>Статус</th>
-            <th>Действия</th>
-          </tr>
-        </thead>
+              <thead>
+        <tr>
+          <th>Дата/время</th>
+          <th>Получатель</th>
+          <th>Счет</th>
+          <th>Филиал</th>
+          <th>Сумма</th>
+          <th>Статус</th>
+          <th>Действия</th>
+        </tr>
+      </thead>
         <tbody>
           <tr v-for="credit in credits" :key="credit.id">
             <td>
@@ -34,8 +33,7 @@
             <td>{{ credit.recipient }}</td>
             <td class="font-mono">{{ credit.account_number }}</td>
             <td>{{ credit.branch }}</td>
-            <td>{{ formatNumber(credit.debit) }} UZS</td>
-            <td>{{ formatNumber(credit.credit) }} UZS</td>
+            <td>{{ formatNumber(credit.amount ?? credit.debit) }} UZS</td>
             <td>
               <span class="badge" :class="`badge-${getStatusClass(credit.status)}`">
                 {{ getStatusText(credit.status) }}
@@ -44,7 +42,7 @@
             <td>
               <div class="action-buttons">
                 <button
-                  v-if="credit.status === 'pending'"
+                  v-if="authStore.isAdmin && credit.status === 'pending'"
                   @click="confirmCredit(credit.id)"
                   class="btn-action btn-success"
                   title="Подтвердить"
@@ -70,8 +68,10 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useAuthStore } from '@/stores/auth';
 import api from '@/services/api';
 
+const authStore = useAuthStore();
 const credits = ref([]);
 const loading = ref(false);
 
@@ -152,3 +152,6 @@ function getStatusClass(status) {
 .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(102,126,234,0.4); }
 </style>
+
+
+

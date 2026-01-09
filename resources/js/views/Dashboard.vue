@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div class="dashboard">
     <h1 class="page-title">Главная панель</h1>
 
@@ -10,8 +10,22 @@
       </div>
     </div>
 
-    <!-- Balance Cards for Cashiers -->
-    <BalanceCards v-if="isCashier" :balances="balances" />
+    <div v-if="isAdmin" class="branch-filter">
+      <div class="filter-group">
+        <label>Филиал</label>
+        <select v-model="selectedBranch" @change="loadStats" class="filter-select">
+          <option value="">Все филиалы</option>
+          <option v-for="branch in branches" :key="branch" :value="branch">
+            {{ branch }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <h3 v-if="isAdmin" class="section-title">{{ branchTitle }}</h3>
+
+    <!-- Balance Cards -->
+    <BalanceCards v-if="isCashier || isAdmin" :balances="balances" />
 
     <div class="stats-grid">
       <div class="stat-card">
@@ -63,6 +77,60 @@
       </div>
     </div>
 
+    <div v-if="isAdmin && selectedBranch" class="overall-section">
+      <h3 class="section-title">Общий итог</h3>
+      <BalanceCards :balances="overallBalances" />
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">💳</div>
+          <div class="stat-info">
+            <div class="stat-label">Платежи</div>
+            <div class="stat-value" v-if="loading">...</div>
+            <div class="stat-value" v-else>
+              <div class="stat-count">{{ overallStats.payments?.count || 0 }}</div>
+              <div class="stat-amount">{{ formatNumber(overallStats.payments?.total) }} UZS</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">💱</div>
+          <div class="stat-info">
+            <div class="stat-label">Обмен валют</div>
+            <div class="stat-value" v-if="loading">...</div>
+            <div class="stat-value" v-else>
+              <div class="stat-count">{{ overallStats.exchanges?.count || 0 }}</div>
+              <div class="stat-amount">{{ formatNumber(overallStats.exchanges?.total) }} UZS</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">💰</div>
+          <div class="stat-info">
+            <div class="stat-label">Кредиты</div>
+            <div class="stat-value" v-if="loading">...</div>
+            <div class="stat-value" v-else>
+              <div class="stat-count">{{ overallStats.credits?.count || 0 }}</div>
+              <div class="stat-amount">{{ formatNumber(overallStats.credits?.total) }} UZS</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">💵</div>
+          <div class="stat-info">
+            <div class="stat-label">Инкассации</div>
+            <div class="stat-value" v-if="loading">...</div>
+            <div class="stat-value" v-else>
+              <div class="stat-count">{{ overallStats.incashes?.count || 0 }}</div>
+              <div class="stat-amount">{{ formatNumber(overallStats.incashes?.total) }} UZS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="quick-actions">
       <h3>Быстрые действия</h3>
       <div class="action-buttons">
@@ -106,20 +174,37 @@ const isCashier = computed(() => {
   return authStore.user?.position === 'cashier';
 });
 
-const stats = ref({
+const isAdmin = computed(() => {
+  return authStore.user?.position === 'admin';
+});
+
+const defaultStats = () => ({
   payments: { count: 0, total: 0 },
   exchanges: { count: 0, total: 0 },
   credits: { count: 0, total: 0 },
   incashes: { count: 0, total: 0 }
 });
-const cashierData = ref(null);
-const balances = ref({
+
+const defaultBalances = () => ({
   cash_uzs: 0,
   cashless_uzs: 0,
   card_uzs: 0,
   p2p_uzs: 0,
   cash_usd: 0,
 });
+
+const stats = ref(defaultStats());
+const overallStats = ref(defaultStats());
+const cashierData = ref(null);
+const balances = ref(defaultBalances());
+const overallBalances = ref(defaultBalances());
+const branches = ref([]);
+const selectedBranch = ref('');
+
+const branchTitle = computed(() => {
+  return selectedBranch.value ? `Филиал: ${selectedBranch.value}` : 'Все филиалы';
+});
+
 const loading = ref(false);
 
 async function loadStats() {
@@ -153,12 +238,7 @@ async function loadStats() {
         };
       }
     } else {
-      // For admins, load general stats
-      const today = new Date().toISOString().split('T')[0];
-      const response = await api.get(`/reports/general?start_date=${today}&end_date=${today}`);
-      if (response.data.success) {
-        stats.value = response.data.data;
-      }
+      await loadAdminStats();
     }
   } catch (error) {
     console.error('Error loading stats:', error);
@@ -167,6 +247,29 @@ async function loadStats() {
   }
 }
 
+async function loadAdminStats() {
+  const today = new Date().toISOString().split('T')[0];
+  const baseParams = { start_date: today, end_date: today };
+
+  const overallResponse = await api.get('/reports/general', { params: baseParams });
+  if (overallResponse.data.success) {
+    overallStats.value = overallResponse.data.data;
+    overallBalances.value = overallResponse.data.data.balances || defaultBalances();
+    branches.value = overallResponse.data.data.branches || [];
+  }
+
+  if (selectedBranch.value) {
+    const branchResponse = await api.get('/reports/general', { params: { ...baseParams, branch: selectedBranch.value } });
+    if (branchResponse.data.success) {
+      stats.value = branchResponse.data.data;
+      balances.value = branchResponse.data.data.balances || defaultBalances();
+      return;
+    }
+  }
+
+  stats.value = overallStats.value;
+  balances.value = overallBalances.value;
+}
 function formatNumber(value) {
   return new Intl.NumberFormat('ru-RU', {
     minimumFractionDigits: 2,
@@ -238,6 +341,47 @@ onMounted(() => {
   font-weight: 500;
   backdrop-filter: blur(10px);
 }
+
+.branch-filter {
+  background: white;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 320px;
+}
+
+.filter-group label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.filter-select {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  background: white;
+}
+
+.section-title {
+  margin: 0 0 16px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.overall-section {
+  margin-top: 24px;
+}
+
 
 .stats-grid {
   display: grid;
@@ -342,3 +486,9 @@ onMounted(() => {
   font-size: 15px;
 }
 </style>
+
+
+
+
+
+

@@ -21,6 +21,7 @@ class CreditResource extends JsonResource
             'recipient' => $this->recipient,
             'account_number' => $this->account_number,
             'branch' => $this->branch,
+            'amount' => $this->debit > 0 ? $this->debit : $this->credit,
             'debit' => $this->debit,
             'credit' => $this->credit,
             'remaining_balance' => $this->remaining_balance,

@@ -139,7 +139,10 @@ class CashierShift extends Model
         ];
 
         // Платежи: суммируем по методам оплаты
-        $payments = $this->payments()->confirmed()->with('methodDetails')->get();
+        $payments = $this->payments()
+            ->whereIn('status', ['pending', 'confirmed', 'processed'])
+            ->with('methodDetails')
+            ->get();
         foreach ($payments as $payment) {
             foreach ($payment->methodDetails as $detail) {
                 if ($detail->method === 'cash') {
@@ -167,9 +170,12 @@ class CashierShift extends Model
         }
 
         // Кредиты: выдача уменьшает наличные UZS
-        $credits = $this->credits()->confirmed()->get();
+        $credits = $this->credits()
+            ->whereIn('status', ['pending', 'confirmed'])
+            ->get();
         foreach ($credits as $credit) {
-            $balances['cash_uzs'] -= $credit->debit;
+            $creditAmount = $credit->debit > 0 ? $credit->debit : $credit->credit;
+            $balances['cash_uzs'] -= $creditAmount;
         }
 
         // Погашения кредитов: увеличивают наличные UZS
@@ -179,13 +185,38 @@ class CashierShift extends Model
         }
 
         // Инкассации: приход увеличивает, расход уменьшает
-        $incashes = $this->incashes()->confirmed()->get();
+        $incashes = $this->incashes()
+            ->whereIn('status', ['pending', 'confirmed'])
+            ->get();
         foreach ($incashes as $incash) {
-            if ($incash->type === 'income') {
-                $balances['cash_uzs'] += $incash->amount;
-            } else {
-                $balances['cash_uzs'] -= $incash->amount;
+            $targetKey = match ($incash->account_number) {
+                '002' => 'cashless_uzs',
+                '003' => 'card_uzs',
+                '840' => 'cash_usd',
+                default => 'cash_uzs',
+            };
+
+            $amount = (float) $incash->amount;
+            if ($incash->type === 'expense') {
+                $amount *= -1;
             }
+
+            $balances[$targetKey] += $amount;
+        }
+
+        return self::normalizeBalances($balances);
+    }
+
+    public static function normalizeBalances(array $balances): array
+    {
+        foreach ($balances as $key => $value) {
+            if ($value === null) {
+                $balances[$key] = 0;
+                continue;
+            }
+
+            $amount = is_numeric($value) ? (float) $value : 0.0;
+            $balances[$key] = $amount < 0 ? 0 : $amount;
         }
 
         return $balances;
@@ -238,7 +269,9 @@ class CashierShift extends Model
             ],
             'credits' => [
                 'count' => $this->credits()->count(),
-                'total' => $this->credits()->sum('debit'),
+                'total' => $this->credits()->get()->sum(function ($credit) {
+                    return $credit->debit > 0 ? $credit->debit : $credit->credit;
+                }),
             ],
             'incashes' => [
                 'count' => $this->incashes()->count(),

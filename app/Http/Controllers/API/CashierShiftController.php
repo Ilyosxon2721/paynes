@@ -113,16 +113,24 @@ class CashierShiftController extends Controller
                 ->first();
 
             // Создаем новую смену
+            $openingBalances = CashierShift::normalizeBalances([
+                'cash_uzs' => $request->opening_cash_uzs ?? ($lastShift->closing_cash_uzs ?? 0),
+                'cashless_uzs' => $request->opening_cashless_uzs ?? ($lastShift->closing_cashless_uzs ?? 0),
+                'card_uzs' => $request->opening_card_uzs ?? ($lastShift->closing_card_uzs ?? 0),
+                'p2p_uzs' => $request->opening_p2p_uzs ?? ($lastShift->closing_p2p_uzs ?? 0),
+                'cash_usd' => $request->opening_cash_usd ?? ($lastShift->closing_cash_usd ?? 0),
+            ]);
+
             $shift = CashierShift::create([
                 'cashier_id' => auth()->id(),
                 'shift_date' => now()->toDateString(),
                 'opened_at' => now()->toTimeString(),
                 'status' => 'open',
-                'opening_cash_uzs' => $request->opening_cash_uzs ?? ($lastShift->closing_cash_uzs ?? 0),
-                'opening_cashless_uzs' => $request->opening_cashless_uzs ?? ($lastShift->closing_cashless_uzs ?? 0),
-                'opening_card_uzs' => $request->opening_card_uzs ?? ($lastShift->closing_card_uzs ?? 0),
-                'opening_p2p_uzs' => $request->opening_p2p_uzs ?? ($lastShift->closing_p2p_uzs ?? 0),
-                'opening_cash_usd' => $request->opening_cash_usd ?? ($lastShift->closing_cash_usd ?? 0),
+                'opening_cash_uzs' => $openingBalances['cash_uzs'],
+                'opening_cashless_uzs' => $openingBalances['cashless_uzs'],
+                'opening_card_uzs' => $openingBalances['card_uzs'],
+                'opening_p2p_uzs' => $openingBalances['p2p_uzs'],
+                'opening_cash_usd' => $openingBalances['cash_usd'],
                 'opening_notes' => $request->opening_notes,
             ]);
 
@@ -265,13 +273,13 @@ class CashierShiftController extends Controller
 
             // Получаем текущие балансы
             $balances = $shift->status === 'closed'
-                ? [
+                ? CashierShift::normalizeBalances([
                     'cash_uzs' => $shift->closing_cash_uzs,
                     'cashless_uzs' => $shift->closing_cashless_uzs,
                     'card_uzs' => $shift->closing_card_uzs,
                     'p2p_uzs' => $shift->closing_p2p_uzs,
                     'cash_usd' => $shift->closing_cash_usd,
-                ]
+                ])
                 : $shift->calculateClosingBalances();
 
             return response()->json([

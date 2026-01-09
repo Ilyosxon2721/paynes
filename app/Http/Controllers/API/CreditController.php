@@ -78,6 +78,8 @@ class CreditController extends Controller
                 ], 400);
             }
 
+            $amount = $request->input('amount') ?? $request->debit ?? $request->credit ?? 0;
+
             // Create credit
             $credit = Credit::create([
                 'date' => now()->toDateString(),
@@ -85,8 +87,8 @@ class CreditController extends Controller
                 'recipient' => $request->recipient,
                 'account_number' => null, // Will be generated after creation
                 'branch' => $request->branch,
-                'debit' => $request->debit,
-                'credit' => $request->credit,
+                'debit' => $amount,
+                'credit' => 0,
                 'confirmed_by' => null,
                 'status' => 'pending',
                 'cashier_id' => auth()->id(),
@@ -152,9 +154,12 @@ class CreditController extends Controller
             $updateData = $request->only([
                 'recipient',
                 'branch',
-                'debit',
-                'credit',
             ]);
+
+            if ($request->has('amount')) {
+                $updateData['debit'] = $request->amount;
+                $updateData['credit'] = 0;
+            }
 
             $credit->update($updateData);
             $credit->load(['cashier']);
@@ -203,6 +208,14 @@ class CreditController extends Controller
     public function confirm(string $id): JsonResponse
     {
         try {
+            $user = auth()->user();
+            if (!$user || (!$user->hasRole('admin') && $user->position !== 'admin')) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Только администратор может подтверждать кредиты.',
+                ], 403);
+            }
+
             DB::beginTransaction();
 
             $credit = Credit::with('cashierShift')->findOrFail($id);
@@ -223,10 +236,12 @@ class CreditController extends Controller
             }
 
             // Проверяем наличие достаточных средств в кассе (для debit - выдача)
-            if ($credit->debit > 0 && $credit->cashierShift) {
+            $creditAmount = $credit->debit > 0 ? $credit->debit : $credit->credit;
+
+            if ($creditAmount > 0 && $credit->cashierShift) {
                 $currentBalances = $credit->cashierShift->calculateClosingBalances();
 
-                if ($currentBalances['cash_uzs'] < $credit->debit) {
+                if ($currentBalances['cash_uzs'] < $creditAmount) {
                     return response()->json([
                         'success' => false,
                         'message' => 'Недостаточно наличных в кассе для выдачи кредита. Доступно: ' . number_format($currentBalances['cash_uzs'], 2) . ' UZS',
@@ -238,7 +253,7 @@ class CreditController extends Controller
             $credit->update([
                 'status' => 'confirmed',
                 'confirmed_by' => auth()->user()->name ?? auth()->id(),
-                'remaining_balance' => $credit->debit, // Весь debit становится долгом
+                'remaining_balance' => $creditAmount,
             ]);
 
             $credit->load(['cashier', 'cashierShift']);
@@ -247,7 +262,7 @@ class CreditController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'Кредит успешно подтвержден. Сумма ' . number_format($credit->debit, 2) . ' UZS вычтена из баланса кассы.',
+                'message' => 'Кредит успешно подтвержден. Сумма ' . number_format($creditAmount, 2) . ' UZS вычтена из баланса кассы.',
                 'data' => new CreditResource($credit),
             ]);
         } catch (\Exception $e) {
@@ -332,3 +347,8 @@ class CreditController extends Controller
         }
     }
 }
+
+
+
+
+

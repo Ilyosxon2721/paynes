@@ -23,8 +23,8 @@
             <label for="type">Тип операции *</label>
             <select id="type" v-model="form.type" class="form-select" required>
               <option value="">Выберите тип</option>
-              <option value="Приход">Приход</option>
-              <option value="Расход">Расход</option>
+              <option value="income">Приход</option>
+              <option value="expense">Расход</option>
             </select>
           </div>
 
@@ -93,3 +93,4 @@ async function handleSubmit() {
 .btn-secondary { background: #6c757d; color: white; }
 .btn-secondary:hover { background: #5a6268; }
 </style>
+

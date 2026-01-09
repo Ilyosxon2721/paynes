@@ -8,6 +8,7 @@ use App\Models\Exchange;
 use App\Models\Credit;
 use App\Models\Incash;
 use App\Models\CashierShift;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,7 +23,10 @@ class ReportController extends Controller
         try {
             $startDate = $request->input('start_date');
             $endDate = $request->input('end_date');
-            $cashierId = auth()->id();
+            $user = auth()->user();
+            $isAdmin = $user && ($user->hasRole('admin') || $user->position === 'admin');
+            $cashierId = $isAdmin ? $request->input('cashier_id') : $user->id;
+            $branch = $isAdmin ? $request->input('branch') : null;
 
             // Validate dates
             if (!$startDate || !$endDate) {
@@ -32,33 +36,90 @@ class ReportController extends Controller
                 ], 400);
             }
 
-            // Get payments data
-            $paymentsQuery = Payment::where('cashier_id', $cashierId)
-                ->whereBetween('date', [$startDate, $endDate]);
+            $applyScope = function ($query) use ($cashierId, $branch, $isAdmin) {
+                if (!$isAdmin || $cashierId) {
+                    $query->where('cashier_id', $cashierId);
+                }
 
-            $paymentsCount = $paymentsQuery->count();
-            $paymentsTotal = $paymentsQuery->sum('total');
+                if ($branch) {
+                    $query->whereHas('cashier', function ($branchQuery) use ($branch) {
+                        $branchQuery->where('branch', $branch);
+                    });
+                }
+            };
+
+            $branches = [];
+            if ($isAdmin) {
+                $branches = User::where('position', 'cashier')
+                    ->whereNotNull('branch')
+                    ->where('branch', '!=', '')
+                    ->orderBy('branch')
+                    ->distinct()
+                    ->pluck('branch')
+                    ->values();
+            }
+
+            // Get payments data
+            $paymentsQuery = Payment::whereBetween('date', [$startDate, $endDate]);
+            $applyScope($paymentsQuery);
+
+            $paymentsCount = (clone $paymentsQuery)->count();
+            $paymentsTotal = (clone $paymentsQuery)->sum('total');
 
             // Get exchanges data
-            $exchangesQuery = Exchange::where('cashier_id', $cashierId)
-                ->whereBetween('date', [$startDate, $endDate]);
+            $exchangesQuery = Exchange::whereBetween('date', [$startDate, $endDate]);
+            $applyScope($exchangesQuery);
 
-            $exchangesCount = $exchangesQuery->count();
-            $exchangesTotal = $exchangesQuery->sum('uzs_amount');
+            $exchangesCount = (clone $exchangesQuery)->count();
+            $exchangesTotal = (clone $exchangesQuery)->sum('uzs_amount');
 
             // Get credits data
-            $creditsQuery = Credit::where('cashier_id', $cashierId)
-                ->whereBetween('date', [$startDate, $endDate]);
+            $creditsQuery = Credit::whereBetween('date', [$startDate, $endDate]);
+            $applyScope($creditsQuery);
 
-            $creditsCount = $creditsQuery->count();
-            $creditsTotal = $creditsQuery->sum('credit');
+            $creditsCount = (clone $creditsQuery)->count();
+            $creditsTotal = (clone $creditsQuery)
+                ->selectRaw('SUM(CASE WHEN debit > 0 THEN debit ELSE credit END) as total')
+                ->value('total');
 
             // Get incashes data
-            $incashesQuery = Incash::where('cashier_id', $cashierId)
-                ->whereBetween('date', [$startDate, $endDate]);
+            $incashesQuery = Incash::whereBetween('date', [$startDate, $endDate]);
+            $applyScope($incashesQuery);
 
-            $incashesCount = $incashesQuery->count();
-            $incashesTotal = $incashesQuery->sum('total');
+            $incashesCount = (clone $incashesQuery)->count();
+            $incashesIncome = (clone $incashesQuery)->where('type', 'income')->sum('amount');
+            $incashesExpense = (clone $incashesQuery)->where('type', 'expense')->sum('amount');
+            $incashesTotal = $incashesIncome - $incashesExpense;
+
+            $shiftQuery = CashierShift::with(['payments.methodDetails', 'exchanges', 'credits', 'creditRepayments', 'incashes'])
+                ->where('status', 'open');
+
+            if (!$isAdmin || $cashierId) {
+                $shiftQuery->where('cashier_id', $cashierId);
+            }
+
+            if ($branch) {
+                $shiftQuery->whereHas('cashier', function ($branchQuery) use ($branch) {
+                    $branchQuery->where('branch', $branch);
+                });
+            }
+
+            $balances = [
+                'cash_uzs' => 0,
+                'cashless_uzs' => 0,
+                'card_uzs' => 0,
+                'p2p_uzs' => 0,
+                'cash_usd' => 0,
+            ];
+
+            foreach ($shiftQuery->get() as $shift) {
+                $shiftBalances = $shift->calculateClosingBalances();
+                foreach ($balances as $key => $value) {
+                    $balances[$key] += $shiftBalances[$key] ?? 0;
+                }
+            }
+
+            $balances = CashierShift::normalizeBalances($balances);
 
             return response()->json([
                 'success' => true,
@@ -79,6 +140,8 @@ class ReportController extends Controller
                         'count' => $incashesCount,
                         'total' => $incashesTotal,
                     ],
+                    'balances' => $balances,
+                    'branches' => $branches,
                 ],
             ]);
         } catch (\Exception $e) {
@@ -117,7 +180,10 @@ class ReportController extends Controller
             $shift->load(['cashier', 'payments.paymentType', 'payments.methodDetails', 'exchanges', 'credits.repayments', 'incashes']);
 
             // Платежи: детальная аналитика
-            $payments = $shift->payments()->confirmed()->with(['paymentType', 'methodDetails'])->get();
+            $payments = $shift->payments()
+                ->whereIn('status', ['pending', 'confirmed', 'processed'])
+                ->with(['paymentType', 'methodDetails'])
+                ->get();
             $paymentsTotal = $payments->sum('total');
             $paymentsCount = $payments->count();
 
@@ -181,8 +247,12 @@ class ReportController extends Controller
             ];
 
             // Кредиты
-            $credits = $shift->credits()->confirmed()->get();
-            $totalIssued = $credits->sum('debit');
+            $credits = $shift->credits()
+                ->whereIn('status', ['pending', 'confirmed'])
+                ->get();
+            $totalIssued = $credits->sum(function ($credit) {
+                return $credit->debit > 0 ? $credit->debit : $credit->credit;
+            });
             $totalRepaid = $credits->sum('total_repaid');
             $outstanding = $credits->sum('remaining_balance');
 
@@ -194,7 +264,9 @@ class ReportController extends Controller
             ];
 
             // Инкассации
-            $incashes = $shift->incashes()->confirmed()->get();
+            $incashes = $shift->incashes()
+                ->whereIn('status', ['pending', 'confirmed'])
+                ->get();
             $incashesIncome = $incashes->where('type', 'income');
             $incashesExpense = $incashes->where('type', 'expense');
 
@@ -212,13 +284,13 @@ class ReportController extends Controller
 
             // Балансы
             $balances = $shift->status === 'closed'
-                ? [
+                ? CashierShift::normalizeBalances([
                     'cash_uzs' => $shift->closing_cash_uzs,
                     'cashless_uzs' => $shift->closing_cashless_uzs,
                     'card_uzs' => $shift->closing_card_uzs,
                     'p2p_uzs' => $shift->closing_p2p_uzs,
                     'cash_usd' => $shift->closing_cash_usd,
-                ]
+                ])
                 : $shift->calculateClosingBalances();
 
             return response()->json([
@@ -256,3 +328,4 @@ class ReportController extends Controller
         }
     }
 }
+

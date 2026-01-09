@@ -24,8 +24,7 @@ class StoreCreditRequest extends FormRequest
         return [
             'recipient' => ['required', 'string', 'max:255'],
             'branch' => ['nullable', 'string'],
-            'debit' => ['required', 'numeric', 'min:0'],
-            'credit' => ['required', 'numeric', 'min:0'],
+            'amount' => ['required', 'numeric', 'min:0'],
         ];
     }
 
@@ -37,16 +36,14 @@ class StoreCreditRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'recipient.required' => 'Получатель обязателен для заполнения',
-            'recipient.string' => 'Получатель должен быть строкой',
-            'recipient.max' => 'Получатель не должен превышать 255 символов',
-            'branch.string' => 'Филиал должен быть строкой',
-            'debit.required' => 'Дебет обязателен для заполнения',
-            'debit.numeric' => 'Дебет должен быть числом',
-            'debit.min' => 'Дебет не может быть отрицательным',
-            'credit.required' => 'Кредит обязателен для заполнения',
-            'credit.numeric' => 'Кредит должен быть числом',
-            'credit.min' => 'Кредит не может быть отрицательным',
+            'recipient.required' => 'Получатель обязателен для заполнения.',
+            'recipient.string' => 'Получатель должен быть строкой.',
+            'recipient.max' => 'Получатель не должен превышать 255 символов.',
+            'branch.string' => 'Филиал должен быть строкой.',
+            'amount.required' => 'Сумма обязательна для заполнения.',
+            'amount.numeric' => 'Сумма должна быть числом.',
+            'amount.min' => 'Сумма не должна быть меньше 0.',
         ];
     }
 }
+

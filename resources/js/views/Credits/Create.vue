@@ -15,17 +15,12 @@
         <div class="form-row">
           <div class="form-group">
             <label for="branch">Филиал *</label>
-            <input id="branch" v-model="form.branch" type="text" class="form-input" placeholder="Название филиала" required />
+            <input id="branch" v-model="form.branch" type="text" class="form-input" placeholder="Филиал" required />
           </div>
 
           <div class="form-group">
-            <label for="debit">Дебет *</label>
-            <input id="debit" v-model.number="form.debit" type="number" step="0.01" class="form-input" placeholder="0.00" required />
-          </div>
-
-          <div class="form-group">
-            <label for="credit">Кредит</label>
-            <input id="credit" v-model.number="form.credit" type="number" step="0.01" class="form-input" placeholder="0.00" />
+            <label for="amount">Сумма кредита *</label>
+            <input id="amount" v-model.number="form.amount" type="number" step="0.01" class="form-input" placeholder="0.00" required />
           </div>
         </div>
 
@@ -48,7 +43,7 @@ import { useRouter } from 'vue-router';
 import api from '@/services/api';
 
 const router = useRouter();
-const form = ref({ recipient: '', branch: '', debit: 0, credit: 0 });
+const form = ref({ recipient: '', branch: '', amount: 0 });
 const submitError = ref(null);
 const loading = ref(false);
 
@@ -73,7 +68,7 @@ async function handleSubmit() {
 .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
 .page-title { font-size: 32px; font-weight: 600; color: #2c3e50; margin: 0; }
 .form-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-.form-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.form-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
 .form-group { margin-bottom: 20px; }
 .form-group label { display: block; margin-bottom: 8px; font-weight: 500; color: #333; font-size: 14px; }
 .form-input { width: 100%; padding: 12px 16px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 15px; transition: all 0.2s; outline: none; }
@@ -88,3 +83,4 @@ async function handleSubmit() {
 .btn-secondary { background: #6c757d; color: white; }
 .btn-secondary:hover { background: #5a6268; }
 </style>
+
