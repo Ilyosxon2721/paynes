@@ -3,10 +3,14 @@ import { useAuthStore } from '@/stores/auth';
 
 const routes = [
   {
-    path: '/landing',
+    path: '/',
     name: 'Landing',
     component: () => import('@/views/Landing.vue'),
     meta: { guest: true, public: true }
+  },
+  {
+    path: '/landing',
+    redirect: '/'
   },
   {
     path: '/register',

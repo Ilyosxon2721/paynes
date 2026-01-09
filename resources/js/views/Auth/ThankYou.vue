@@ -30,7 +30,7 @@
       </div>
 
       <div class="actions">
-        <router-link to="/landing" class="btn btn-primary">На главную</router-link>
+        <router-link to="/" class="btn btn-primary">На главную</router-link>
         <router-link to="/login" class="btn btn-outline">Войти в систему</router-link>
       </div>
     </div>

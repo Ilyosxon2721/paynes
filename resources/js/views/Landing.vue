@@ -46,6 +46,37 @@
       </div>
     </section>
 
+    <!-- Demo Screenshot Section -->
+    <section class="demo-section">
+      <div class="container">
+        <div class="demo-wrapper demo-placeholder">
+          <div class="demo-content">
+            <div class="demo-sidebar">
+              <div class="demo-logo">💳 Paynes</div>
+              <div class="demo-nav-item active">📊 Dashboard</div>
+              <div class="demo-nav-item">💳 Платежи</div>
+              <div class="demo-nav-item">💱 Обмен</div>
+              <div class="demo-nav-item">📈 Отчёты</div>
+            </div>
+            <div class="demo-main">
+              <div class="demo-kpi-row">
+                <div class="demo-kpi"><span class="kpi-value">245</span><span class="kpi-label">Платежей</span></div>
+                <div class="demo-kpi"><span class="kpi-value">$1.2M</span><span class="kpi-label">Сумма</span></div>
+                <div class="demo-kpi"><span class="kpi-value">18</span><span class="kpi-label">Кассиров</span></div>
+                <div class="demo-kpi"><span class="kpi-value">12</span><span class="kpi-label">Ожидание</span></div>
+              </div>
+              <div class="demo-table">
+                <div class="demo-table-header">Последние транзакции</div>
+                <div class="demo-table-row" v-for="i in 4" :key="i">
+                  <span>09.01.2026</span><span>Кассир {{ i }}</span><span>Paynet</span><span>150 000 UZS</span><span class="status-badge">✓</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Features Section -->
     <section id="features" class="features">
       <div class="container">
@@ -91,6 +122,27 @@
             <router-link to="/register" class="btn" :class="plan.popular ? 'btn-primary' : 'btn-outline'">
               {{ t.pricing.start }}
             </router-link>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+      <div class="container">
+        <h2 class="section-title">{{ t.testimonials.title }}</h2>
+        <p class="section-subtitle">{{ t.testimonials.subtitle }}</p>
+        <div class="testimonials-grid">
+          <div class="testimonial-card" v-for="(review, i) in t.testimonials.items" :key="i">
+            <div class="testimonial-rating">★★★★★</div>
+            <p class="testimonial-text">"{{ review.text }}"</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">{{ review.name.charAt(0) }}</div>
+              <div class="author-info">
+                <div class="author-name">{{ review.name }}</div>
+                <div class="author-role">{{ review.role }}</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -216,6 +268,15 @@ const translations = {
         { q: 'Как обеспечивается безопасность?', a: 'Шифрование данных, двухфакторная аутентификация, резервное копирование.' }
       ]
     },
+    testimonials: {
+      title: 'Отзывы клиентов',
+      subtitle: 'Что говорят наши пользователи о Paynes',
+      items: [
+        { name: 'Алишер Каримов', role: 'Владелец точки, Ташкент', text: 'Раньше тратил часы на отчёты. Теперь всё автоматически. Экономлю 2 часа каждый день!' },
+        { name: 'Мадина Рахимова', role: 'Менеджер сети, Самарканд', text: 'Контролирую 5 точек с телефона. Вижу все платежи и остатки в реальном времени.' },
+        { name: 'Бахтиёр Усманов', role: 'Агент Paynet, Фергана', text: 'Система окупилась за первый месяц. Теперь нет ошибок в расчётах комиссий.' }
+      ]
+    },
     cta: { title: 'Готовы автоматизировать бизнес?', subtitle: 'Присоединяйтесь к 500+ агентам, которые уже используют Paynes', button: 'Начать бесплатно' },
     footer: { desc: 'Современная система для агентов платежных систем', product: 'Продукт', contact: 'Контакты', rights: 'Все права защищены' }
   },
@@ -269,6 +330,15 @@ const translations = {
         { q: 'Sinov muddati bormi?', a: 'Ha, har qanday tarifda dastlabki 14 kun bepul.' },
         { q: 'Qaysi to\'lov tizimlari qo\'llab-quvvatlanadi?', a: 'Paynet, Click, Payme, UzCard, Humo va boshqa mashhur tizimlar.' },
         { q: 'Xavfsizlik qanday ta\'minlanadi?', a: 'Ma\'lumotlarni shifrlash, ikki faktorli autentifikatsiya, zaxira nusxa yaratish.' }
+      ]
+    },
+    testimonials: {
+      title: 'Mijozlar sharhlari',
+      subtitle: 'Foydalanuvchilarimiz Paynes haqida nima deyishadi',
+      items: [
+        { name: 'Alisher Karimov', role: 'Nuqta egasi, Toshkent', text: 'Ilgari hisobotlarga soatlab vaqt sarflardim. Endi hammasi avtomatik. Har kuni 2 soat tejashyapman!' },
+        { name: 'Madina Rahimova', role: 'Tarmoq menejeri, Samarqand', text: '5 ta nuqtani telefondan boshqaraman. Barcha to\'lovlar va qoldiqlarni real vaqtda ko\'raman.' },
+        { name: 'Baxtiyor Usmanov', role: 'Paynet agenti, Farg\'ona', text: 'Tizim birinchi oyda o\'zini oqladi. Endi komissiyalarni hisoblashda xatolar yo\'q.' }
       ]
     },
     cta: { title: 'Biznesni avtomatlashtirish uchun tayyormisiz?', subtitle: 'Paynes dan foydalanayotgan 500+ agentlarga qo\'shiling', button: 'Bepul boshlash' },
@@ -326,6 +396,15 @@ const translations = {
         { q: 'How is security ensured?', a: 'Data encryption, two-factor authentication, backup.' }
       ]
     },
+    testimonials: {
+      title: 'Customer Reviews',
+      subtitle: 'What our users say about Paynes',
+      items: [
+        { name: 'Alisher Karimov', role: 'Shop Owner, Tashkent', text: 'Used to spend hours on reports. Now everything is automatic. Saving 2 hours every day!' },
+        { name: 'Madina Rahimova', role: 'Network Manager, Samarkand', text: 'I control 5 locations from my phone. See all payments and balances in real time.' },
+        { name: 'Bakhtiyor Usmanov', role: 'Paynet Agent, Fergana', text: 'The system paid for itself in the first month. No more errors in commission calculations.' }
+      ]
+    },
     cta: { title: 'Ready to automate your business?', subtitle: 'Join 500+ agents already using Paynes', button: 'Start Free' },
     footer: { desc: 'Modern system for payment system agents', product: 'Product', contact: 'Contact', rights: 'All rights reserved' }
   }
@@ -339,8 +418,8 @@ const t = computed(() => translations[currentLang.value]);
 
 .landing-page {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: linear-gradient(180deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-  color: #fff;
+  background: #f8fafc;
+  color: #1f2937;
   min-height: 100vh;
 }
 
@@ -353,9 +432,10 @@ const t = computed(() => translations[currentLang.value]);
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(15, 12, 41, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .header .container {
@@ -367,11 +447,11 @@ const t = computed(() => translations[currentLang.value]);
 
 .logo { display: flex; align-items: center; gap: 10px; }
 .logo-icon { font-size: 28px; }
-.logo-text { font-size: 24px; font-weight: 700; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.logo-text { font-size: 24px; font-weight: 700; color: #1f6fd6; }
 
 .nav { display: flex; gap: 30px; }
-.nav a { color: rgba(255,255,255,0.8); text-decoration: none; transition: 0.3s; }
-.nav a:hover { color: #fff; }
+.nav a { color: #6b7280; text-decoration: none; transition: 0.3s; font-weight: 500; }
+.nav a:hover { color: #1f6fd6; }
 
 .header-actions { display: flex; align-items: center; gap: 15px; }
 .lang-switcher { display: flex; gap: 5px; }
@@ -390,12 +470,12 @@ const t = computed(() => translations[currentLang.value]);
   border: none;
 }
 
-.btn-primary { background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4); }
-.btn-outline { background: transparent; border: 2px solid rgba(255,255,255,0.3); color: #fff; }
-.btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
-.btn-ghost { background: transparent; color: rgba(255,255,255,0.8); }
-.btn-ghost:hover { color: #fff; }
+.btn-primary { background: #1f6fd6; color: #fff; }
+.btn-primary:hover { background: #1a5bb8; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(31, 111, 214, 0.3); }
+.btn-outline { background: transparent; border: 2px solid #1f6fd6; color: #1f6fd6; }
+.btn-outline:hover { background: #1f6fd6; color: #fff; }
+.btn-ghost { background: transparent; color: #6b7280; }
+.btn-ghost:hover { color: #1f6fd6; }
 .btn-lg { padding: 16px 32px; font-size: 18px; }
 
 /* Hero */
@@ -406,110 +486,246 @@ const t = computed(() => translations[currentLang.value]);
   padding-top: 80px;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0f9ff 100%);
 }
 
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 30% 50%, rgba(102, 126, 234, 0.3), transparent 50%),
-              radial-gradient(circle at 70% 50%, rgba(118, 75, 162, 0.3), transparent 50%);
+  background: radial-gradient(circle at 30% 50%, rgba(31, 111, 214, 0.1), transparent 50%),
+              radial-gradient(circle at 70% 50%, rgba(14, 165, 233, 0.1), transparent 50%);
 }
 
 .hero-content { position: relative; text-align: center; max-width: 800px; margin: 0 auto; }
-.hero-title { font-size: clamp(32px, 6vw, 56px); font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
-.hero-subtitle { font-size: clamp(16px, 2vw, 20px); color: rgba(255,255,255,0.8); margin-bottom: 40px; line-height: 1.6; }
+.hero-title { font-size: clamp(32px, 6vw, 56px); font-weight: 800; line-height: 1.2; margin-bottom: 20px; color: #0f172a; }
+.hero-subtitle { font-size: clamp(16px, 2vw, 20px); color: #64748b; margin-bottom: 40px; line-height: 1.6; }
 .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; }
-
 .hero-stats { display: flex; gap: 50px; justify-content: center; flex-wrap: wrap; }
 .stat { text-align: center; }
-.stat-value { display: block; font-size: 36px; font-weight: 700; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.stat-label { color: rgba(255,255,255,0.6); font-size: 14px; }
-
-/* Sections */
-.section-title { font-size: clamp(28px, 4vw, 42px); text-align: center; margin-bottom: 15px; }
-.section-subtitle { text-align: center; color: rgba(255,255,255,0.7); margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto; }
+.stat-value { font-size: 36px; font-weight: 800; color: #1f6fd6; display: block; }
+.stat-label { font-size: 14px; color: #64748b; }
 
 /* Features */
-.features { padding: 100px 0; }
-.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; }
+.features { padding: 100px 0; background: #fff; }
+.section-title { text-align: center; font-size: clamp(28px, 4vw, 40px); font-weight: 700; margin-bottom: 15px; color: #0f172a; }
+.section-subtitle { text-align: center; color: #64748b; margin-bottom: 60px; font-size: 18px; }
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
 .feature-card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: #fff;
+  border: 1px solid #e5e7eb;
   border-radius: 16px;
   padding: 30px;
   transition: all 0.3s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
-.feature-card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.1); border-color: rgba(102, 126, 234, 0.5); }
+.feature-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: #1f6fd6; }
 .feature-icon { font-size: 40px; margin-bottom: 15px; }
-.feature-card h3 { font-size: 20px; margin-bottom: 10px; }
-.feature-card p { color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.6; }
+.feature-title { font-size: 18px; font-weight: 600; margin-bottom: 10px; color: #0f172a; }
+.feature-desc { color: #64748b; font-size: 14px; line-height: 1.6; }
 
 /* How It Works */
-.how-it-works { padding: 100px 0; background: rgba(0,0,0,0.2); }
-.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
-.step { text-align: center; }
-.step-number { width: 60px; height: 60px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; margin: 0 auto 20px; }
-.step h3 { font-size: 22px; margin-bottom: 10px; }
-.step p { color: rgba(255,255,255,0.7); }
+.how-it-works { padding: 100px 0; background: #f8fafc; }
+.steps { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; }
+.step { text-align: center; max-width: 300px; }
+.step-number { width: 60px; height: 60px; background: #1f6fd6; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; margin: 0 auto 20px; }
+.step-title { font-size: 18px; font-weight: 600; margin-bottom: 10px; color: #0f172a; }
+.step-desc { color: #64748b; font-size: 14px; }
 
 /* Pricing */
-.pricing { padding: 100px 0; }
+.pricing { padding: 100px 0; background: #fff; }
 .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
 .pricing-card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: #fff;
+  border: 2px solid #e5e7eb;
   border-radius: 20px;
   padding: 40px 30px;
   text-align: center;
-  position: relative;
   transition: all 0.3s;
 }
-.pricing-card.popular { border-color: #667eea; transform: scale(1.05); }
-.pricing-card:hover { transform: translateY(-5px); }
-.pricing-card.popular:hover { transform: scale(1.05) translateY(-5px); }
-.popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #667eea, #764ba2); padding: 5px 20px; border-radius: 20px; font-size: 12px; font-weight: 600; }
-.pricing-card h3 { font-size: 24px; margin-bottom: 15px; }
-.price { font-size: 32px; font-weight: 700; margin-bottom: 25px; }
-.price span { font-size: 16px; color: rgba(255,255,255,0.6); }
-.features-list { list-style: none; margin-bottom: 30px; text-align: left; }
-.features-list li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); }
+.pricing-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0,0,0,0.1); }
+.pricing-card.popular { border-color: #1f6fd6; position: relative; transform: scale(1.05); }
+.pricing-card.popular:hover { transform: scale(1.05) translateY(-10px); }
+.popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #1f6fd6; color: #fff; padding: 5px 20px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.pricing-name { font-size: 22px; font-weight: 700; margin-bottom: 10px; color: #0f172a; }
+.pricing-price { font-size: 36px; font-weight: 800; color: #1f6fd6; margin-bottom: 5px; }
+.pricing-period { color: #64748b; margin-bottom: 30px; font-size: 14px; }
+.pricing-features { list-style: none; margin-bottom: 30px; }
+.pricing-features li { padding: 10px 0; color: #64748b; font-size: 14px; border-bottom: 1px solid #f1f5f9; }
+.pricing-features li:last-child { border-bottom: none; }
 
 /* FAQ */
-.faq { padding: 100px 0; background: rgba(0,0,0,0.2); }
+.faq { padding: 100px 0; background: #f8fafc; }
 .faq-list { max-width: 700px; margin: 0 auto; }
 .faq-item {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: #fff;
+  border: 1px solid #e5e7eb;
   border-radius: 12px;
   margin-bottom: 15px;
   overflow: hidden;
   cursor: pointer;
   transition: all 0.3s;
 }
-.faq-item:hover { border-color: rgba(255,255,255,0.2); }
-.faq-question { padding: 20px; display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
-.faq-toggle { font-size: 24px; color: #667eea; }
-.faq-answer { padding: 0 20px 20px; color: rgba(255,255,255,0.7); line-height: 1.6; }
+.faq-item:hover { border-color: #1f6fd6; }
+.faq-question { padding: 20px; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #0f172a; }
+.faq-toggle { font-size: 24px; color: #1f6fd6; }
+.faq-answer { padding: 0 20px 20px; color: #64748b; line-height: 1.6; }
+
+/* Demo Screenshot */
+.demo-section {
+  padding: 0 0 60px;
+  margin-top: -60px;
+  position: relative;
+  z-index: 10;
+}
+.demo-wrapper {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 12px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+}
+
+/* Inline Demo Dashboard */
+.demo-placeholder {
+  background: #f8fafc;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.demo-content {
+  display: flex;
+  min-height: 400px;
+}
+.demo-sidebar {
+  width: 180px;
+  background: #1f2937;
+  padding: 20px 15px;
+  flex-shrink: 0;
+}
+.demo-logo {
+  color: #1f6fd6;
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+.demo-nav-item {
+  color: #9ca3af;
+  font-size: 13px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 5px;
+}
+.demo-nav-item.active {
+  background: #1f6fd6;
+  color: #fff;
+}
+.demo-main {
+  flex: 1;
+  padding: 25px;
+  background: #f1f5f9;
+}
+.demo-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+}
+.demo-kpi {
+  background: #fff;
+  border-radius: 12px;
+  padding: 18px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.kpi-value {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+}
+.kpi-label {
+  font-size: 12px;
+  color: #6b7280;
+}
+.demo-table {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.demo-table-header {
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+.demo-table-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 13px;
+  color: #374151;
+}
+.demo-table-row:last-child { border-bottom: none; }
+.status-badge {
+  background: #dcfce7;
+  color: #16a34a;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+}
+
+/* Testimonials */
+.testimonials { padding: 100px 0; background: #fff; }
+.testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+.testimonial-card {
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 30px;
+  transition: all 0.3s;
+}
+.testimonial-card:hover { transform: translateY(-5px); border-color: #1f6fd6; box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+.testimonial-rating { color: #f59e0b; font-size: 16px; margin-bottom: 15px; letter-spacing: 2px; }
+.testimonial-text { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 20px; font-style: italic; }
+.testimonial-author { display: flex; align-items: center; gap: 12px; }
+.author-avatar {
+  width: 44px;
+  height: 44px;
+  background: #1f6fd6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+}
+.author-name { font-weight: 600; font-size: 15px; color: #0f172a; }
+.author-role { font-size: 13px; color: #64748b; }
 
 /* CTA */
 .cta {
   padding: 100px 0;
   text-align: center;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+  background: linear-gradient(135deg, #1f6fd6 0%, #0ea5e9 100%);
+  color: #fff;
 }
-.cta h2 { font-size: clamp(28px, 4vw, 38px); margin-bottom: 15px; }
-.cta p { color: rgba(255,255,255,0.7); margin-bottom: 30px; }
+.cta h2 { font-size: clamp(28px, 4vw, 38px); margin-bottom: 15px; color: #fff; }
+.cta p { color: rgba(255,255,255,0.9); margin-bottom: 30px; }
+.cta .btn-primary { background: #fff; color: #1f6fd6; }
+.cta .btn-primary:hover { background: #f8fafc; }
 
 /* Footer */
-.footer { padding: 60px 0 30px; background: rgba(0,0,0,0.3); }
+.footer { padding: 60px 0 30px; background: #0f172a; color: #fff; }
 .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-.footer-logo .logo-text { font-size: 20px; }
-.footer-logo p { color: rgba(255,255,255,0.6); margin-top: 10px; font-size: 14px; }
-.footer-links h4, .footer-contact h4 { margin-bottom: 15px; font-size: 16px; }
-.footer-links a { display: block; color: rgba(255,255,255,0.6); text-decoration: none; padding: 5px 0; transition: 0.3s; }
+.footer-logo .logo-text { font-size: 20px; color: #1f6fd6; }
+.footer-logo p { color: #94a3b8; margin-top: 10px; font-size: 14px; }
+.footer-links h4, .footer-contact h4 { margin-bottom: 15px; font-size: 16px; color: #fff; }
+.footer-links a { display: block; color: #94a3b8; text-decoration: none; padding: 5px 0; transition: 0.3s; }
 .footer-links a:hover { color: #fff; }
-.footer-contact p { color: rgba(255,255,255,0.6); padding: 5px 0; font-size: 14px; }
-.footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); font-size: 14px; }
+.footer-contact p { color: #94a3b8; padding: 5px 0; font-size: 14px; }
+.footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid #1e293b; color: #64748b; font-size: 14px; }
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -519,5 +735,9 @@ const t = computed(() => translations[currentLang.value]);
   .hero-stats { gap: 30px; }
   .pricing-card.popular { transform: none; }
   .pricing-card.popular:hover { transform: translateY(-5px); }
+  .demo-content { flex-direction: column; }
+  .demo-sidebar { width: 100%; }
+  .demo-kpi-row { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
+

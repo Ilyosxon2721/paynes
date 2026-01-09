@@ -2,7 +2,7 @@
   <div class="register-container">
     <div class="register-card">
       <div class="register-header">
-        <router-link to="/landing" class="back-link">← Назад</router-link>
+        <router-link to="/" class="back-link">← Назад</router-link>
         <div class="logo-container">
           <span class="logo-icon">💳</span>
           <h1 class="brand-name">Paynes</h1>

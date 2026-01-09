@@ -1,3 +1,7 @@
+/* Paynes Design System */
+@import './paynes-theme.css';
+@import './paynes-components.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -16,9 +20,6 @@
 
   /* Accent Colors */
   --paynes-accent: #2E8FD9;
-  --paynes-success: #10B981;
-  --paynes-warning: #F59E0B;
-  --paynes-danger: #EF4444;
 
   /* Neutrals */
   --paynes-gray-50: #F9FAFB;
