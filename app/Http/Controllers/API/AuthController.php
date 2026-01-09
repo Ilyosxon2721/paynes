@@ -25,6 +25,7 @@ class AuthController extends Controller
     public function register(Request $request): JsonResponse
     {
         $validated = $request->validate([
+            'tariff' => 'required|string|in:starter,business,enterprise',
             'name' => 'required|string|max:255',
             'login' => 'required|string|max:255|unique:users,login',
             'email' => 'required|email|max:255|unique:users,email',
@@ -32,11 +33,19 @@ class AuthController extends Controller
             'branch' => 'nullable|string|max:255',
             'password' => 'required|string|min:6|confirmed',
         ], [
+            'tariff.required' => 'Выберите тариф.',
+            'tariff.in' => 'Некорректный тариф.',
             'login.unique' => 'Этот логин уже занят.',
             'email.unique' => 'Этот email уже зарегистрирован.',
             'password.confirmed' => 'Пароли не совпадают.',
             'password.min' => 'Пароль должен быть минимум 6 символов.',
         ]);
+
+        $tariffNames = [
+            'starter' => 'Стартовый (299 000 UZS/мес)',
+            'business' => 'Бизнес (599 000 UZS/мес)',
+            'enterprise' => 'Корпоративный (1 199 000 UZS/мес)',
+        ];
 
         $user = User::create([
             'name' => $validated['name'],
@@ -46,24 +55,45 @@ class AuthController extends Controller
             'branch' => $validated['branch'] ?? null,
             'password' => $validated['password'],
             'position' => 'agent',
-            'status' => 'inactive', // Requires admin activation
+            'status' => 'inactive',
+            'tariff' => $validated['tariff'],
         ]);
 
         // Assign agent role if exists
-        if ($user->hasRole === null) {
-            try {
-                $user->assignRole('cashier');
-            } catch (\Exception $e) {
-                // Role might not exist
-            }
+        try {
+            $user->assignRole('cashier');
+        } catch (\Exception $e) {
+            // Role might not exist
         }
 
         Log::channel('auth')->info('New agent registered', [
             'user_id' => $user->id,
             'login' => $user->login,
             'email' => $user->email,
+            'tariff' => $validated['tariff'],
             'ip' => $request->ip(),
         ]);
+
+        // Send email notification to admin
+        try {
+            $adminEmail = config('mail.admin_email', 'admin@paynes.uz');
+            \Illuminate\Support\Facades\Mail::raw(
+                "Новая регистрация агента!\n\n" .
+                "Имя: {$user->name}\n" .
+                "Логин: {$user->login}\n" .
+                "Email: {$user->email}\n" .
+                "Телефон: " . ($user->phone ?: 'Не указан') . "\n" .
+                "Филиал: " . ($user->branch ?: 'Не указан') . "\n" .
+                "Тариф: " . $tariffNames[$validated['tariff']] . "\n\n" .
+                "Для активации аккаунта перейдите в админ-панель.",
+                function ($message) use ($adminEmail, $user) {
+                    $message->to($adminEmail)
+                            ->subject('Новая регистрация: ' . $user->name);
+                }
+            );
+        } catch (\Exception $e) {
+            Log::warning('Failed to send admin notification email', ['error' => $e->getMessage()]);
+        }
 
         return ApiResponse::success([
             'user' => new UserResource($user),

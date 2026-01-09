@@ -1,0 +1,80 @@
+/**
+ * PAYNES DESIGN TOKENS
+ * Единый источник истины для цветов, размеров и эффектов
+ */
+
+:root {
+  /* Primary Colors (RGB values for opacity support) */
+  --paynes-primary: 31 111 214;
+  --paynes-primary-hover: 26 95 204;
+
+  /* Background Colors */
+  --paynes-bg: 245 247 250;
+  --paynes-card: 255 255 255;
+
+  /* Text Colors */
+  --paynes-text: 11 42 74;
+  --paynes-muted: 107 114 128;
+
+  /* Border */
+  --paynes-border: 229 231 235;
+
+  /* Status Colors */
+  --paynes-success: 22 163 74;
+  --paynes-warning: 245 158 11;
+  --paynes-error: 220 38 38;
+  --paynes-info: 37 99 235;
+
+  /* Border Radius */
+  --paynes-radius-sm: 6px;
+  --paynes-radius-md: 8px;
+  --paynes-radius-lg: 10px;
+  --paynes-radius-xl: 16px;
+
+  /* Shadows */
+  --paynes-shadow-card: 0 1px 2px rgba(0,0,0,.04);
+  --paynes-shadow-md: 0 4px 6px rgba(0,0,0,.07);
+  --paynes-shadow-lg: 0 10px 25px rgba(0,0,0,.1);
+
+  /* Spacing */
+  --paynes-space-xs: 4px;
+  --paynes-space-sm: 8px;
+  --paynes-space-md: 16px;
+  --paynes-space-lg: 24px;
+  --paynes-space-xl: 32px;
+
+  /* Typography */
+  --paynes-font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --paynes-font-size-xs: 12px;
+  --paynes-font-size-sm: 13px;
+  --paynes-font-size-md: 14px;
+  --paynes-font-size-lg: 16px;
+  --paynes-font-size-xl: 18px;
+  --paynes-font-size-2xl: 24px;
+  --paynes-font-size-3xl: 32px;
+}
+
+/* Dark Theme */
+html.dark {
+  --paynes-bg: 15 23 42;
+  --paynes-card: 17 24 39;
+  --paynes-text: 229 231 235;
+  --paynes-muted: 156 163 175;
+  --paynes-border: 31 41 55;
+  --paynes-shadow-card: 0 1px 2px rgba(0,0,0,.25);
+}
+
+/* Semantic Color Aliases */
+:root {
+  --c-primary: rgb(var(--paynes-primary));
+  --c-primary-hover: rgb(var(--paynes-primary-hover));
+  --c-bg: rgb(var(--paynes-bg));
+  --c-card: rgb(var(--paynes-card));
+  --c-text: rgb(var(--paynes-text));
+  --c-muted: rgb(var(--paynes-muted));
+  --c-border: rgb(var(--paynes-border));
+  --c-success: rgb(var(--paynes-success));
+  --c-warning: rgb(var(--paynes-warning));
+  --c-error: rgb(var(--paynes-error));
+  --c-info: rgb(var(--paynes-info));
+}

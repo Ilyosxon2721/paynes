@@ -1,0 +1,371 @@
+/**
+ * PAYNES UI COMPONENTS
+ * Базовые стили для компонентов системы
+ */
+
+/* Base Reset & Typography */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--paynes-font-family);
+    font-size: var(--paynes-font-size-md);
+    background: var(--c-bg);
+    color: var(--c-text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ========== CARD ========== */
+.p-card {
+    background: var(--c-card);
+    border: 1px solid var(--c-border);
+    border-radius: var(--paynes-radius-xl);
+    box-shadow: var(--paynes-shadow-card);
+}
+
+.p-card__header {
+    padding: 18px 20px 12px;
+    border-bottom: 1px solid var(--c-border);
+}
+
+.p-card__title {
+    font-size: var(--paynes-font-size-lg);
+    font-weight: 700;
+    color: var(--c-text);
+}
+
+.p-card__subtitle {
+    font-size: var(--paynes-font-size-sm);
+    color: var(--c-muted);
+    margin-top: 4px;
+}
+
+.p-card__body {
+    padding: 20px;
+}
+
+.p-card__footer {
+    padding: 12px 20px;
+    border-top: 1px solid var(--c-border);
+    background: rgba(var(--paynes-bg), 0.5);
+    border-radius: 0 0 var(--paynes-radius-xl) var(--paynes-radius-xl);
+}
+
+/* ========== BUTTON ========== */
+.p-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 40px;
+    padding: 0 16px;
+    border-radius: var(--paynes-radius-lg);
+    border: none;
+    font-size: var(--paynes-font-size-md);
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.p-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.p-btn--primary {
+    background: var(--c-primary);
+    color: #fff;
+}
+
+.p-btn--primary:hover:not(:disabled) {
+    background: var(--c-primary-hover);
+}
+
+.p-btn--secondary {
+    background: var(--c-card);
+    border: 1px solid var(--c-border);
+    color: var(--c-text);
+}
+
+.p-btn--secondary:hover:not(:disabled) {
+    background: var(--c-bg);
+}
+
+.p-btn--danger {
+    background: var(--c-error);
+    color: #fff;
+}
+
+.p-btn--danger:hover:not(:disabled) {
+    opacity: 0.9;
+}
+
+.p-btn--success {
+    background: var(--c-success);
+    color: #fff;
+}
+
+.p-btn--ghost {
+    background: transparent;
+    color: var(--c-text);
+}
+
+.p-btn--ghost:hover:not(:disabled) {
+    background: rgba(var(--paynes-border), 0.5);
+}
+
+.p-btn--sm {
+    height: 32px;
+    padding: 0 12px;
+    font-size: var(--paynes-font-size-sm);
+}
+
+.p-btn--lg {
+    height: 48px;
+    padding: 0 24px;
+    font-size: var(--paynes-font-size-lg);
+}
+
+/* ========== INPUT ========== */
+.p-input {
+    height: 40px;
+    padding: 0 12px;
+    border-radius: var(--paynes-radius-md);
+    border: 1px solid var(--c-border);
+    background: var(--c-card);
+    color: var(--c-text);
+    font-size: var(--paynes-font-size-md);
+    font-family: inherit;
+    width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.p-input:focus {
+    outline: none;
+    border-color: var(--c-primary);
+    box-shadow: 0 0 0 3px rgba(var(--paynes-primary), 0.1);
+}
+
+.p-input::placeholder {
+    color: var(--c-muted);
+}
+
+.p-input--error {
+    border-color: var(--c-error);
+}
+
+.p-input--error:focus {
+    box-shadow: 0 0 0 3px rgba(var(--paynes-error), 0.1);
+}
+
+/* ========== LABEL ========== */
+.p-label {
+    display: block;
+    font-size: var(--paynes-font-size-sm);
+    font-weight: 500;
+    color: var(--c-text);
+    margin-bottom: 6px;
+}
+
+.p-label--required::after {
+    content: " *";
+    color: var(--c-error);
+}
+
+/* ========== FORM GROUP ========== */
+.p-form-group {
+    margin-bottom: var(--paynes-space-md);
+}
+
+.p-form-error {
+    font-size: var(--paynes-font-size-xs);
+    color: var(--c-error);
+    margin-top: 4px;
+}
+
+/* ========== TABLE ========== */
+.p-table-wrap {
+    border: 1px solid var(--c-border);
+    border-radius: var(--paynes-radius-xl);
+    overflow: hidden;
+}
+
+.p-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.p-table th,
+.p-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--c-border);
+}
+
+.p-table th {
+    font-weight: 600;
+    font-size: var(--paynes-font-size-sm);
+    color: var(--c-muted);
+    background: rgba(var(--paynes-bg), 0.5);
+}
+
+.p-table tr:last-child td {
+    border-bottom: none;
+}
+
+.p-table tr:hover td {
+    background: rgba(var(--paynes-bg), 0.3);
+}
+
+/* ========== STATUS DOT ========== */
+.p-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--paynes-font-size-sm);
+}
+
+.p-status__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.p-status--success .p-status__dot {
+    background: var(--c-success);
+}
+
+.p-status--warning .p-status__dot {
+    background: var(--c-warning);
+}
+
+.p-status--error .p-status__dot {
+    background: var(--c-error);
+}
+
+.p-status--info .p-status__dot {
+    background: var(--c-info);
+}
+
+.p-status--muted .p-status__dot {
+    background: var(--c-muted);
+}
+
+/* ========== BADGE ========== */
+.p-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: var(--paynes-font-size-xs);
+    font-weight: 600;
+}
+
+.p-badge--success {
+    background: rgba(var(--paynes-success), 0.1);
+    color: var(--c-success);
+}
+
+.p-badge--warning {
+    background: rgba(var(--paynes-warning), 0.1);
+    color: var(--c-warning);
+}
+
+.p-badge--error {
+    background: rgba(var(--paynes-error), 0.1);
+    color: var(--c-error);
+}
+
+.p-badge--info {
+    background: rgba(var(--paynes-info), 0.1);
+    color: var(--c-info);
+}
+
+.p-badge--muted {
+    background: rgba(var(--paynes-muted), 0.1);
+    color: var(--c-muted);
+}
+
+/* ========== ALERT ========== */
+.p-alert {
+    padding: 12px 16px;
+    border-radius: var(--paynes-radius-md);
+    font-size: var(--paynes-font-size-sm);
+}
+
+.p-alert--success {
+    background: rgba(var(--paynes-success), 0.1);
+    color: var(--c-success);
+    border: 1px solid var(--c-success);
+}
+
+.p-alert--warning {
+    background: rgba(var(--paynes-warning), 0.1);
+    color: rgb(180, 120, 8);
+    border: 1px solid var(--c-warning);
+}
+
+.p-alert--error {
+    background: rgba(var(--paynes-error), 0.1);
+    color: var(--c-error);
+    border: 1px solid var(--c-error);
+}
+
+.p-alert--info {
+    background: rgba(var(--paynes-info), 0.1);
+    color: var(--c-info);
+    border: 1px solid var(--c-info);
+}
+
+/* ========== UTILITIES ========== */
+.p-text-muted {
+    color: var(--c-muted);
+}
+
+.p-text-success {
+    color: var(--c-success);
+}
+
+.p-text-warning {
+    color: var(--c-warning);
+}
+
+.p-text-error {
+    color: var(--c-error);
+}
+
+.p-text-primary {
+    color: var(--c-primary);
+}
+
+.p-mt-sm {
+    margin-top: var(--paynes-space-sm);
+}
+
+.p-mt-md {
+    margin-top: var(--paynes-space-md);
+}
+
+.p-mt-lg {
+    margin-top: var(--paynes-space-lg);
+}
+
+.p-mb-sm {
+    margin-bottom: var(--paynes-space-sm);
+}
+
+.p-mb-md {
+    margin-bottom: var(--paynes-space-md);
+}
+
+.p-mb-lg {
+    margin-bottom: var(--paynes-space-lg);
+}

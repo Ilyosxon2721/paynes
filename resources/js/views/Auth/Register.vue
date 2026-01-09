@@ -12,6 +12,24 @@
       </div>
 
       <form @submit.prevent="handleRegister" class="register-form">
+        <!-- Тариф -->
+        <div class="form-group">
+          <label>Выберите тариф *</label>
+          <div class="tariff-selector">
+            <label v-for="tariff in tariffs" :key="tariff.id" 
+                   class="tariff-option" :class="{ selected: form.tariff === tariff.id, popular: tariff.popular }">
+              <input type="radio" v-model="form.tariff" :value="tariff.id" required />
+              <div class="tariff-content">
+                <span v-if="tariff.popular" class="popular-badge">⭐</span>
+                <div class="tariff-name">{{ tariff.name }}</div>
+                <div class="tariff-price">{{ tariff.price }}</div>
+                <div class="tariff-features">{{ tariff.features }}</div>
+              </div>
+            </label>
+          </div>
+          <span v-if="errors.tariff" class="error-message">{{ errors.tariff }}</span>
+        </div>
+
         <div class="form-row">
           <div class="form-group">
             <label for="name">Имя *</label>
@@ -63,7 +81,6 @@
         </div>
 
         <div v-if="serverError" class="alert alert-error">{{ serverError }}</div>
-        <div v-if="success" class="alert alert-success">{{ success }}</div>
 
         <button type="submit" class="btn btn-primary" :disabled="loading">
           {{ loading ? 'Регистрация...' : 'Зарегистрироваться' }}
@@ -84,7 +101,14 @@ import axios from 'axios';
 
 const router = useRouter();
 
+const tariffs = [
+  { id: 'starter', name: 'Стартовый', price: '299 000 UZS/мес', features: '1 кассир, 1 филиал', popular: false },
+  { id: 'business', name: 'Бизнес', price: '599 000 UZS/мес', features: '5 кассиров, 1 менеджер, 3 филиала', popular: true },
+  { id: 'enterprise', name: 'Корпоративный', price: '1 199 000 UZS/мес', features: '15 кассиров, 3 менеджера, 10 филиалов', popular: false }
+];
+
 const form = ref({
+  tariff: 'business',
   name: '',
   login: '',
   email: '',
@@ -96,15 +120,14 @@ const form = ref({
 
 const errors = ref({});
 const serverError = ref('');
-const success = ref('');
 const loading = ref(false);
 
 async function handleRegister() {
   errors.value = {};
   serverError.value = '';
-  success.value = '';
 
   // Validation
+  if (!form.value.tariff) { errors.value.tariff = 'Выберите тариф'; return; }
   if (!form.value.name) { errors.value.name = 'Имя обязательно'; return; }
   if (!form.value.login) { errors.value.login = 'Логин обязателен'; return; }
   if (!form.value.email) { errors.value.email = 'Email обязателен'; return; }
@@ -119,8 +142,7 @@ async function handleRegister() {
 
   try {
     await axios.post('/api/register', form.value);
-    success.value = 'Регистрация успешна! Ваш аккаунт будет активирован после проверки администратором.';
-    form.value = { name: '', login: '', email: '', phone: '', branch: '', password: '', password_confirmation: '' };
+    router.push({ name: 'ThankYou' });
   } catch (err) {
     if (err.response?.data?.errors) {
       const serverErrors = err.response.data.errors;
@@ -151,7 +173,7 @@ async function handleRegister() {
   border-radius: 16px;
   box-shadow: 0 25px 50px rgba(0,0,0,0.25);
   width: 100%;
-  max-width: 520px;
+  max-width: 560px;
   overflow: hidden;
   animation: slideUp 0.5s ease-out;
 }
@@ -189,6 +211,72 @@ async function handleRegister() {
 
 .register-form { padding: 25px 30px 30px; }
 
+/* Tariff Selector */
+.tariff-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.tariff-option {
+  position: relative;
+  cursor: pointer;
+}
+
+.tariff-option input {
+  position: absolute;
+  opacity: 0;
+}
+
+.tariff-content {
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 12px 10px;
+  text-align: center;
+  transition: all 0.3s;
+  background: #fafafa;
+}
+
+.tariff-option:hover .tariff-content {
+  border-color: #667eea;
+}
+
+.tariff-option.selected .tariff-content {
+  border-color: #667eea;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+}
+
+.tariff-option.popular .tariff-content {
+  border-color: #667eea;
+}
+
+.popular-badge {
+  position: absolute;
+  top: -8px;
+  right: 5px;
+  font-size: 14px;
+}
+
+.tariff-name {
+  font-weight: 600;
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.tariff-price {
+  font-size: 11px;
+  color: #667eea;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.tariff-features {
+  font-size: 10px;
+  color: #888;
+  line-height: 1.3;
+}
+
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
 
 .form-group { margin-bottom: 18px; }
@@ -210,7 +298,6 @@ async function handleRegister() {
 
 .alert { padding: 12px 16px; border-radius: 8px; margin-bottom: 18px; font-size: 13px; }
 .alert-error { background: #fee; border: 1px solid #fcc; color: #c33; }
-.alert-success { background: #efe; border: 1px solid #cfc; color: #363; }
 
 .btn {
   width: 100%;
@@ -239,5 +326,6 @@ async function handleRegister() {
 
 @media (max-width: 500px) {
   .form-row { grid-template-columns: 1fr; }
+  .tariff-selector { grid-template-columns: 1fr; }
 }
 </style>
