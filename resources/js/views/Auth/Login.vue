@@ -56,13 +56,6 @@
         </button>
       </form>
 
-      <div class="login-footer">
-        <p class="test-credentials">
-          <strong>Тестовые данные:</strong><br>
-          Админ: admin / admin123<br>
-          Кассир: cashier1 / cashier123
-        </p>
-      </div>
     </div>
   </div>
 </template>
@@ -265,20 +258,4 @@ async function handleLogin() {
   cursor: not-allowed;
 }
 
-.login-footer {
-  background: #f8f9fa;
-  padding: 20px 30px;
-  border-top: 1px solid #e0e0e0;
-}
-
-.test-credentials {
-  margin: 0;
-  font-size: 13px;
-  color: #666;
-  line-height: 1.6;
-}
-
-.test-credentials strong {
-  color: #333;
-}
 </style>
