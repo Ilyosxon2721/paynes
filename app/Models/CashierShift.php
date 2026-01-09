@@ -228,28 +228,31 @@ class CashierShift extends Model
     public function canClose(): array
     {
         $errors = [];
+        $warnings = [];
 
         // Проверяем, что все платежи подтверждены
         $pendingPayments = $this->payments()->pending()->count();
         if ($pendingPayments > 0) {
-            $errors[] = "Есть {$pendingPayments} неподтвержденных платежей";
+            $warnings[] = "Есть {$pendingPayments} неподтвержденных платежей";
         }
 
         // Проверяем, что все кредиты подтверждены
         $pendingCredits = $this->credits()->pending()->count();
         if ($pendingCredits > 0) {
-            $errors[] = "Есть {$pendingCredits} неподтвержденных кредитов";
+            $warnings[] = "Есть {$pendingCredits} неподтвержденных кредитов";
         }
 
         // Проверяем, что все инкассации подтверждены
         $pendingIncashes = $this->incashes()->pending()->count();
         if ($pendingIncashes > 0) {
-            $errors[] = "Есть {$pendingIncashes} неподтвержденных инкассаций";
+            $warnings[] = "Есть {$pendingIncashes} неподтвержденных инкассаций";
         }
 
+        // Смену можно закрыть всегда, но показываем предупреждения
         return [
-            'can_close' => empty($errors),
+            'can_close' => true,
             'errors' => $errors,
+            'warnings' => $warnings,
         ];
     }
 

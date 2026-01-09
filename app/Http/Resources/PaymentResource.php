@@ -20,7 +20,7 @@ class PaymentResource extends JsonResource
             'random_number' => $this->random_number,
             'payment_number' => $this->list_number . '-' . $this->random_number,
             'share_token' => $this->share_token,
-            'share_url' => $this->share_token ? url('/receipt/' . $this->share_token) : null,
+            'share_url' => $this->share_token ? 'https://paynes.uz/receipt/' . $this->share_token : null,
             'date' => $this->date?->format('d.m.Y'),
             'time' => $this->time,
             'payment_type' => new PaymentTypeResource($this->whenLoaded('paymentType')),

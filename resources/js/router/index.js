@@ -54,6 +54,11 @@ const routes = [
         component: () => import('@/views/Incashes/Index.vue')
       },
       {
+        path: 'incashes/create',
+        name: 'CashierIncashesCreate',
+        component: () => import('@/views/Incashes/Create.vue')
+      },
+      {
         path: 'tickets',
         name: 'CashierTickets',
         component: () => import('@/views/Tickets/Index.vue')
@@ -109,6 +114,11 @@ const routes = [
         path: 'incashes',
         name: 'Incashes',
         component: () => import('@/views/Incashes/Index.vue')
+      },
+      {
+        path: 'incashes/create',
+        name: 'IncashesCreate',
+        component: () => import('@/views/Incashes/Create.vue')
       },
       {
         path: 'rates',
