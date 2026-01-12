@@ -2,9 +2,13 @@
 
 namespace App\Filament\Pages\Auth;
 
+use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
+use Filament\Facades\Filament;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Http\Responses\Auth\Contracts\LoginResponse;
 use Filament\Pages\Auth\Login as BaseLogin;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 class Login extends BaseLogin
@@ -26,12 +30,34 @@ class Login extends BaseLogin
             ]);
     }
 
-    protected function getCredentialsFromFormData(array $data): array
+    public function authenticate(): ?LoginResponse
     {
-        return [
+        try {
+            $this->rateLimit(5);
+        } catch (TooManyRequestsException $exception) {
+            $this->getRateLimitedNotification($exception)?->send();
+            return null;
+        }
+
+        $data = $this->form->getState();
+
+        if (!Auth::attempt([
             'login' => $data['login'],
             'password' => $data['password'],
-        ];
+        ], $data['remember'] ?? false)) {
+            $this->throwFailureValidationException();
+        }
+
+        $user = Auth::user();
+
+        if (!$user->canAccessPanel(Filament::getCurrentPanel())) {
+            Auth::logout();
+            $this->throwFailureValidationException();
+        }
+
+        session()->regenerate();
+
+        return app(LoginResponse::class);
     }
 
     protected function throwFailureValidationException(): never
