@@ -179,6 +179,8 @@ class ClientResource extends Resource
     {
         return [
             RelationManagers\SubscriptionsRelationManager::class,
+            RelationManagers\UsersRelationManager::class,
+            RelationManagers\BranchesRelationManager::class,
         ];
     }
 
