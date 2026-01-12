@@ -88,7 +88,7 @@ const routes = [
     ]
   },
   {
-    path: '/',
+    path: '/dashboard',
     component: () => import('@/layouts/MainLayout.vue'),
     meta: { requiresAuth: true },
     children: [
@@ -174,9 +174,15 @@ router.beforeEach(async (to, from, next) => {
     await authStore.checkAuth();
   }
 
+  // Публичные страницы доступны всем
+  if (to.meta.public) {
+    next();
+    return;
+  }
+
   if (to.meta.requiresAuth && !authStore.isAuthenticated) {
     next({ name: 'Login' });
-  } else if (to.meta.guest && authStore.isAuthenticated) {
+  } else if (to.meta.guest && !to.meta.public && authStore.isAuthenticated) {
     // Переадресация в зависимости от роли после входа
     if (authStore.user?.position === 'cashier') {
       next({ name: 'CashierDashboard' });
