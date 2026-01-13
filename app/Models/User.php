@@ -6,6 +6,7 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasName;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -20,8 +21,21 @@ class User extends Authenticatable implements FilamentUser, HasName
      */
     public function canAccessPanel(Panel $panel): bool
     {
-        // Только администраторы могут получить доступ к админ-панели
-        return $this->hasRole('admin') && $this->status === 'active';
+        if ($this->status !== 'active') {
+            return false;
+        }
+
+        // Админ-панель Paynes (супер-админы)
+        if ($panel->getId() === 'admin') {
+            return $this->position === 'admin';
+        }
+
+        // Клиентская панель
+        if ($panel->getId() === 'client') {
+            return $this->client_id !== null && $this->is_client_admin;
+        }
+
+        return false;
     }
 
     /**
@@ -41,6 +55,9 @@ class User extends Authenticatable implements FilamentUser, HasName
         'branch',
         'reward_percentage',
         'tariff',
+        'client_id',
+        'branch_id',
+        'is_client_admin',
     ];
 
     /**
@@ -63,7 +80,24 @@ class User extends Authenticatable implements FilamentUser, HasName
         return [
             'password' => 'hashed',
             'reward_percentage' => 'decimal:2',
+            'is_client_admin' => 'boolean',
         ];
+    }
+
+    /**
+     * Get the client that owns the user
+     */
+    public function client(): BelongsTo
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+    /**
+     * Get the branch that the user belongs to
+     */
+    public function branchRelation(): BelongsTo
+    {
+        return $this->belongsTo(Branch::class, 'branch_id');
     }
 
     /**

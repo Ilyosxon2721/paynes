@@ -37,6 +37,22 @@ class Client extends Model
     }
 
     /**
+     * Get all branches for the client
+     */
+    public function branches(): HasMany
+    {
+        return $this->hasMany(Branch::class);
+    }
+
+    /**
+     * Get all users for the client
+     */
+    public function users(): HasMany
+    {
+        return $this->hasMany(User::class);
+    }
+
+    /**
      * Get the active subscription
      */
     public function activeSubscription(): HasOne
