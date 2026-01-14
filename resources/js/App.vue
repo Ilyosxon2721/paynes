@@ -1,12 +1,21 @@
 <template>
   <div id="app">
+    <!-- PWA Status (Offline/Update banners) -->
+    <PWAStatus />
+
+    <!-- Main App Content -->
     <router-view />
+
+    <!-- PWA Install Prompt -->
+    <PWAInstallPrompt />
   </div>
 </template>
 
 <script setup>
 import { onMounted } from 'vue';
 import { useAuthStore } from '@/stores/auth';
+import PWAInstallPrompt from '@/components/PWAInstallPrompt.vue';
+import PWAStatus from '@/components/PWAStatus.vue';
 
 const authStore = useAuthStore();
 
