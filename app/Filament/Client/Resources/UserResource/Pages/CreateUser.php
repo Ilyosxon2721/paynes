@@ -15,4 +15,18 @@ class CreateUser extends CreateRecord
         $data['is_client_admin'] = false;
         return $data;
     }
+
+    protected function afterCreate(): void
+    {
+        $user = $this->record;
+
+        // Автоматически назначаем роль в зависимости от должности
+        $role = match ($user->position) {
+            'manager' => 'manager',
+            'cashier' => 'cashier',
+            default => 'cashier',
+        };
+
+        $user->assignRole($role);
+    }
 }

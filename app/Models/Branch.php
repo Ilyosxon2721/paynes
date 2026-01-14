@@ -36,11 +36,29 @@ class Branch extends Model
     }
 
     /**
-     * Get users belonging to this branch
+     * Get users belonging to this branch (cashiers)
      */
     public function users(): HasMany
     {
         return $this->hasMany(User::class);
+    }
+
+    /**
+     * Get cashiers of this branch
+     */
+    public function cashiers(): HasMany
+    {
+        return $this->hasMany(User::class)->where('position', 'cashier');
+    }
+
+    /**
+     * Get managers of this branch (many-to-many)
+     */
+    public function managers()
+    {
+        return $this->belongsToMany(User::class, 'branch_manager', 'branch_id', 'user_id')
+            ->withTimestamps()
+            ->where('position', 'manager');
     }
 
     /**

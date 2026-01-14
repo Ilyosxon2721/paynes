@@ -70,11 +70,12 @@ class UserResource extends Resource
                         Forms\Components\Select::make('position')
                             ->label('Должность')
                             ->options([
-                                'cashier' => 'Кассир',
                                 'manager' => 'Менеджер',
+                                'cashier' => 'Кассир',
                             ])
                             ->default('cashier')
-                            ->required(),
+                            ->required()
+                            ->helperText('Менеджер управляет филиалами, кассир работает с клиентами'),
                         Forms\Components\Select::make('branch_id')
                             ->label('Филиал')
                             ->relationship(
@@ -197,8 +198,68 @@ class UserResource extends Resource
 
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()
-            ->where('client_id', auth()->user()->client_id)
+        $user = auth()->user();
+
+        $query = parent::getEloquentQuery()
+            ->where('client_id', $user->client_id)
             ->where('is_client_admin', false); // Не показываем админов клиента
+
+        // Менеджер видит только кассиров своих филиалов
+        if ($user->hasRole('manager')) {
+            $branchIds = $user->managedBranches()->pluck('branches.id')->toArray();
+            $query->where('position', 'cashier')
+                ->whereIn('branch_id', $branchIds);
+        }
+
+        return $query;
+    }
+
+    public static function canCreate(): bool
+    {
+        $user = auth()->user();
+
+        // Только client_admin и manager могут создавать пользователей
+        if (!$user->hasAnyRole(['client_admin', 'manager'])) {
+            return false;
+        }
+
+        // Проверяем лимиты подписки
+        if ($user->hasRole('client_admin')) {
+            if (!$user->client || !$user->client->canAddUser()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static function canViewAny(): bool
+    {
+        // client_admin и manager могут просматривать пользователей
+        return auth()->user()->hasAnyRole(['client_admin', 'manager']);
+    }
+
+    public static function canEdit($record): bool
+    {
+        $user = auth()->user();
+
+        // client_admin может редактировать всех
+        if ($user->hasRole('client_admin')) {
+            return true;
+        }
+
+        // Менеджер может редактировать только кассиров своих филиалов
+        if ($user->hasRole('manager')) {
+            $branchIds = $user->managedBranches()->pluck('branches.id')->toArray();
+            return $record->position === 'cashier' && in_array($record->branch_id, $branchIds);
+        }
+
+        return false;
+    }
+
+    public static function canDelete($record): bool
+    {
+        // Используем те же правила что и для редактирования
+        return static::canEdit($record);
     }
 }

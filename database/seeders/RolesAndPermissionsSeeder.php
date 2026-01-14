@@ -90,6 +90,37 @@ class RolesAndPermissionsSeeder extends Seeder
             'fines.delete',
         ];
 
+        // Создание прав для branches (филиалы)
+        $branchPermissions = [
+            'branches.view',
+            'branches.create',
+            'branches.update',
+            'branches.delete',
+        ];
+
+        // Создание прав для merchants (мерчанты)
+        $merchantPermissions = [
+            'merchants.view',
+            'merchants.create',
+            'merchants.update',
+            'merchants.delete',
+        ];
+
+        // Создание прав для commissions (комиссии)
+        $commissionPermissions = [
+            'commissions.view',
+            'commissions.create',
+            'commissions.update',
+            'commissions.delete',
+        ];
+
+        // Создание прав для shifts (кассовые смены)
+        $shiftPermissions = [
+            'shifts.open',
+            'shifts.close',
+            'shifts.view',
+        ];
+
         // Объединение всех прав
         $allPermissions = array_merge(
             $paymentPermissions,
@@ -100,7 +131,11 @@ class RolesAndPermissionsSeeder extends Seeder
             $userPermissions,
             $reportPermissions,
             $agentPermissions,
-            $finePermissions
+            $finePermissions,
+            $branchPermissions,
+            $merchantPermissions,
+            $commissionPermissions,
+            $shiftPermissions
         );
 
         // Создание всех прав
@@ -108,11 +143,152 @@ class RolesAndPermissionsSeeder extends Seeder
             Permission::create(['name' => $permission]);
         }
 
-        // Создание роли администратора и назначение всех прав
+        // ========== РОЛЬ: СУПЕР-АДМИН PAYNES ==========
+        // Полный доступ ко всей системе
         $adminRole = Role::create(['name' => 'admin']);
         $adminRole->givePermissionTo($allPermissions);
 
-        // Создание роли кассира с ограниченными правами
+        // ========== РОЛЬ: УПРАВЛЯЮЩИЙ КОМПАНИИ (CLIENT ADMIN) ==========
+        // Полный доступ к своей компании в рамках подписки
+        $clientAdminRole = Role::create(['name' => 'client_admin']);
+        $clientAdminRole->givePermissionTo([
+            // Управление филиалами
+            'branches.view',
+            'branches.create',
+            'branches.update',
+            'branches.delete',
+
+            // Управление пользователями (менеджеры, кассиры)
+            'users.view',
+            'users.create',
+            'users.update',
+            'users.delete',
+            'users.block',
+
+            // Управление платежами (полный доступ)
+            'payments.create',
+            'payments.view',
+            'payments.update',
+            'payments.delete',
+            'payments.confirm',
+
+            // Управление обменом валют
+            'exchanges.create',
+            'exchanges.view',
+            'exchanges.delete',
+
+            // Управление кредитами
+            'credits.create',
+            'credits.view',
+            'credits.update',
+            'credits.delete',
+            'credits.confirm',
+            'credits.repay',
+
+            // Управление инкассацией
+            'incashes.create',
+            'incashes.view',
+            'incashes.delete',
+
+            // Управление курсами валют
+            'rates.create',
+            'rates.view',
+            'rates.update',
+            'rates.delete',
+
+            // Управление мерчантами
+            'merchants.view',
+            'merchants.create',
+            'merchants.update',
+            'merchants.delete',
+
+            // Управление комиссиями
+            'commissions.view',
+            'commissions.create',
+            'commissions.update',
+            'commissions.delete',
+
+            // Отчеты (все в рамках компании)
+            'reports.view-all',
+            'reports.export',
+
+            // Агенты
+            'agents.view',
+            'agents.create',
+            'agents.update',
+            'agents.delete',
+
+            // Штрафы
+            'fines.view',
+            'fines.create',
+            'fines.update',
+            'fines.delete',
+
+            // Просмотр смен
+            'shifts.view',
+        ]);
+
+        // ========== РОЛЬ: МЕНЕДЖЕР ФИЛИАЛА ==========
+        // Управление назначенными филиалами
+        $managerRole = Role::create(['name' => 'manager']);
+        $managerRole->givePermissionTo([
+            // Просмотр филиалов (только свои)
+            'branches.view',
+
+            // Управление кассирами своих филиалов
+            'users.view',
+            'users.create',
+            'users.update',
+            'users.delete',
+            'users.block',
+
+            // Управление платежами (подтверждение/удаление)
+            'payments.create',
+            'payments.view',
+            'payments.update',
+            'payments.delete',
+            'payments.confirm',
+
+            // Управление обменом валют
+            'exchanges.create',
+            'exchanges.view',
+            'exchanges.delete',
+
+            // Управление кредитами
+            'credits.create',
+            'credits.view',
+            'credits.update',
+            'credits.delete',
+            'credits.confirm',
+            'credits.repay',
+
+            // Управление инкассацией
+            'incashes.create',
+            'incashes.view',
+            'incashes.delete',
+
+            // Управление курсами валют своих филиалов
+            'rates.create',
+            'rates.view',
+            'rates.update',
+            'rates.delete',
+
+            // Отчеты по своим филиалам
+            'reports.view-all',
+            'reports.export',
+
+            // Штрафы
+            'fines.view',
+            'fines.create',
+            'fines.update',
+            'fines.delete',
+
+            // Просмотр смен
+            'shifts.view',
+        ]);
+
+        // ========== РОЛЬ: КАССИР ==========
+        // Работа с клиентами и операции
         $cashierRole = Role::create(['name' => 'cashier']);
 
         // Права кассира для платежей
@@ -150,8 +326,17 @@ class RolesAndPermissionsSeeder extends Seeder
             'reports.view-own',
         ]);
 
-        $this->command->info('Роли и права успешно созданы!');
-        $this->command->info('Роль admin: все права');
-        $this->command->info('Роль cashier: ограниченные права');
+        // Права кассира для смен
+        $cashierRole->givePermissionTo([
+            'shifts.open',
+            'shifts.close',
+            'shifts.view',
+        ]);
+
+        $this->command->info('✅ Роли и права успешно созданы!');
+        $this->command->info('📋 Роль admin: все права (супер-админ Paynes)');
+        $this->command->info('🏢 Роль client_admin: полный доступ к компании');
+        $this->command->info('👔 Роль manager: управление филиалами и кассирами');
+        $this->command->info('💰 Роль cashier: работа с клиентами и операции');
     }
 }
