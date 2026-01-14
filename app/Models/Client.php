@@ -53,6 +53,22 @@ class Client extends Model
     }
 
     /**
+     * Get all merchants for the client
+     */
+    public function merchants(): HasMany
+    {
+        return $this->hasMany(Merchant::class);
+    }
+
+    /**
+     * Get all commissions for the client
+     */
+    public function commissions(): HasMany
+    {
+        return $this->hasMany(Commission::class);
+    }
+
+    /**
      * Get the active subscription
      */
     public function activeSubscription(): HasOne
@@ -69,6 +85,62 @@ class Client extends Model
     public function hasActiveSubscription(): bool
     {
         return $this->activeSubscription()->exists();
+    }
+
+    /**
+     * Check if client can add more users
+     */
+    public function canAddUser(): bool
+    {
+        $subscription = $this->activeSubscription;
+        if (!$subscription) {
+            return false;
+        }
+
+        $currentUserCount = $this->users()->count();
+        return $currentUserCount < $subscription->max_users;
+    }
+
+    /**
+     * Check if client can add more branches
+     */
+    public function canAddBranch(): bool
+    {
+        $subscription = $this->activeSubscription;
+        if (!$subscription) {
+            return false;
+        }
+
+        $currentBranchCount = $this->branches()->count();
+        return $currentBranchCount < $subscription->max_branches;
+    }
+
+    /**
+     * Get remaining user slots
+     */
+    public function getRemainingUserSlots(): int
+    {
+        $subscription = $this->activeSubscription;
+        if (!$subscription) {
+            return 0;
+        }
+
+        $currentUserCount = $this->users()->count();
+        return max(0, $subscription->max_users - $currentUserCount);
+    }
+
+    /**
+     * Get remaining branch slots
+     */
+    public function getRemainingBranchSlots(): int
+    {
+        $subscription = $this->activeSubscription;
+        if (!$subscription) {
+            return 0;
+        }
+
+        $currentBranchCount = $this->branches()->count();
+        return max(0, $subscription->max_branches - $currentBranchCount);
     }
 
     /**

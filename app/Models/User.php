@@ -25,14 +25,25 @@ class User extends Authenticatable implements FilamentUser, HasName
             return false;
         }
 
-        // Админ-панель Paynes (супер-админы)
+        // Админ-панель Paynes (супер-админы системы)
         if ($panel->getId() === 'admin') {
-            return $this->position === 'admin';
+            return $this->position === 'admin' && $this->hasRole('admin');
         }
 
-        // Клиентская панель
+        // Merchant-панель (для всех ролей компании)
         if ($panel->getId() === 'client') {
-            return $this->client_id !== null && $this->is_client_admin;
+            // Должен быть привязан к компании
+            if ($this->client_id === null) {
+                return false;
+            }
+
+            // Проверяем подписку компании
+            if (!$this->client || !$this->client->hasActiveSubscription()) {
+                return false;
+            }
+
+            // Разрешаем доступ для: client_admin, manager, cashier
+            return in_array($this->position, ['client_admin', 'manager', 'cashier']);
         }
 
         return false;
@@ -93,11 +104,28 @@ class User extends Authenticatable implements FilamentUser, HasName
     }
 
     /**
-     * Get the branch that the user belongs to
+     * Get the branch that the user belongs to (для кассиров)
      */
     public function branchRelation(): BelongsTo
     {
         return $this->belongsTo(Branch::class, 'branch_id');
+    }
+
+    /**
+     * Get the branches that the manager manages (many-to-many для менеджеров)
+     */
+    public function managedBranches()
+    {
+        return $this->belongsToMany(Branch::class, 'branch_manager', 'user_id', 'branch_id')
+            ->withTimestamps();
+    }
+
+    /**
+     * Get the user's cashier shifts.
+     */
+    public function shifts()
+    {
+        return $this->hasMany(CashierShift::class, 'cashier_id');
     }
 
     /**
@@ -167,11 +195,51 @@ class User extends Authenticatable implements FilamentUser, HasName
     }
 
     /**
+     * Scope a query to only include manager users.
+     */
+    public function scopeManagers($query)
+    {
+        return $query->role('manager');
+    }
+
+    /**
+     * Scope a query to only include client admin users.
+     */
+    public function scopeClientAdmins($query)
+    {
+        return $query->role('client_admin');
+    }
+
+    /**
      * Get the is admin attribute.
      */
     public function getIsAdminAttribute()
     {
         return $this->hasRole('admin');
+    }
+
+    /**
+     * Get the is client admin attribute.
+     */
+    public function getIsClientAdminAttribute()
+    {
+        return $this->hasRole('client_admin') || $this->is_client_admin;
+    }
+
+    /**
+     * Get the is manager attribute.
+     */
+    public function getIsManagerAttribute()
+    {
+        return $this->hasRole('manager');
+    }
+
+    /**
+     * Get the is cashier attribute.
+     */
+    public function getIsCashierAttribute()
+    {
+        return $this->hasRole('cashier');
     }
 
     /**
