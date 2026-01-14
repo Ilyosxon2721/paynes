@@ -146,4 +146,41 @@ class BranchResource extends Resource
         return parent::getEloquentQuery()
             ->where('client_id', auth()->user()->client_id);
     }
+
+    public static function canCreate(): bool
+    {
+        $user = auth()->user();
+
+        // Только client_admin может создавать филиалы
+        if (!$user->hasRole('client_admin')) {
+            return false;
+        }
+
+        // Проверяем лимиты подписки
+        if (!$user->client || !$user->client->canAddBranch()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public static function canViewAny(): bool
+    {
+        $user = auth()->user();
+
+        // client_admin и manager могут просматривать филиалы
+        return $user->hasAnyRole(['client_admin', 'manager']);
+    }
+
+    public static function canEdit($record): bool
+    {
+        // Только client_admin может редактировать
+        return auth()->user()->hasRole('client_admin');
+    }
+
+    public static function canDelete($record): bool
+    {
+        // Только client_admin может удалять
+        return auth()->user()->hasRole('client_admin');
+    }
 }
