@@ -3,7 +3,25 @@
     <div v-if="showPrompt" class="pwa-install-prompt">
       <div class="pwa-install-content">
         <div class="pwa-icon">
-          <img src="/icons/icon.svg" alt="Paynes" />
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <defs>
+              <linearGradient id="pwa-bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#1A77C9"/>
+                <stop offset="100%" style="stop-color:#0D4F8F"/>
+              </linearGradient>
+              <linearGradient id="pwa-arrow-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#4A9AE1"/>
+                <stop offset="100%" style="stop-color:#1A77C9"/>
+              </linearGradient>
+            </defs>
+            <rect width="512" height="512" rx="96" fill="url(#pwa-bg-gradient)"/>
+            <g transform="translate(96, 80)">
+              <path d="M60 352V80h100c66.27 0 120 53.73 120 120s-53.73 120-120 120H120v32"
+                    fill="none" stroke="white" stroke-width="48" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M220 200 L300 120 M300 120 L300 180 M300 120 L240 120"
+                    fill="none" stroke="url(#pwa-arrow-gradient)" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+          </svg>
         </div>
         <div class="pwa-info">
           <h4>Установить Paynes</h4>
