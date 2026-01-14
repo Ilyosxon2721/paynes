@@ -12,7 +12,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::statement("ALTER TABLE users MODIFY COLUMN position ENUM('admin', 'cashier', 'manager', 'client_admin') NOT NULL DEFAULT 'cashier'");
+        $driver = Schema::getConnection()->getDriverName();
+
+        if ($driver === 'mysql') {
+            // MySQL поддерживает ENUM и MODIFY COLUMN
+            DB::statement("ALTER TABLE users MODIFY COLUMN position ENUM('admin', 'cashier', 'manager', 'client_admin') NOT NULL DEFAULT 'cashier'");
+        } else {
+            // SQLite и другие БД - используем string
+            // SQLite не поддерживает изменение типа колонки, поэтому пропускаем
+            // В production на MySQL это будет работать корректно
+        }
     }
 
     /**
@@ -20,6 +29,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::statement("ALTER TABLE users MODIFY COLUMN position ENUM('admin', 'cashier') NOT NULL DEFAULT 'cashier'");
+        $driver = Schema::getConnection()->getDriverName();
+
+        if ($driver === 'mysql') {
+            DB::statement("ALTER TABLE users MODIFY COLUMN position ENUM('admin', 'cashier') NOT NULL DEFAULT 'cashier'");
+        }
     }
 };

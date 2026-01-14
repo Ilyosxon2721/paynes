@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('full_name');
             $table->string('added_by')->nullable();
             $table->string('password');
-            $table->enum('position', ['admin', 'cashier'])->default('cashier');
+            $table->enum('position', ['admin', 'cashier', 'manager', 'client_admin'])->default('cashier');
             $table->enum('status', ['active', 'blocked'])->default('active');
             $table->string('branch')->nullable();
             $table->decimal('reward_percentage', 5, 2)->default(0);
