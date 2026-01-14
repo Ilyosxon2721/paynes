@@ -140,18 +140,18 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // Создание всех прав
         foreach ($allPermissions as $permission) {
-            Permission::create(['name' => $permission]);
+            Permission::firstOrCreate(['name' => $permission]);
         }
 
         // ========== РОЛЬ: СУПЕР-АДМИН PAYNES ==========
         // Полный доступ ко всей системе
-        $adminRole = Role::create(['name' => 'admin']);
-        $adminRole->givePermissionTo($allPermissions);
+        $adminRole = Role::firstOrCreate(['name' => 'admin']);
+        $adminRole->syncPermissions($allPermissions);
 
         // ========== РОЛЬ: УПРАВЛЯЮЩИЙ КОМПАНИИ (CLIENT ADMIN) ==========
         // Полный доступ к своей компании в рамках подписки
-        $clientAdminRole = Role::create(['name' => 'client_admin']);
-        $clientAdminRole->givePermissionTo([
+        $clientAdminRole = Role::firstOrCreate(['name' => 'client_admin']);
+        $clientAdminRole->syncPermissions([
             // Управление филиалами
             'branches.view',
             'branches.create',
@@ -230,8 +230,8 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // ========== РОЛЬ: МЕНЕДЖЕР ФИЛИАЛА ==========
         // Управление назначенными филиалами
-        $managerRole = Role::create(['name' => 'manager']);
-        $managerRole->givePermissionTo([
+        $managerRole = Role::firstOrCreate(['name' => 'manager']);
+        $managerRole->syncPermissions([
             // Просмотр филиалов (только свои)
             'branches.view',
 
@@ -289,45 +289,26 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // ========== РОЛЬ: КАССИР ==========
         // Работа с клиентами и операции
-        $cashierRole = Role::create(['name' => 'cashier']);
-
-        // Права кассира для платежей
-        $cashierRole->givePermissionTo([
+        $cashierRole = Role::firstOrCreate(['name' => 'cashier']);
+        $cashierRole->syncPermissions([
+            // Платежи
             'payments.create',
             'payments.view',
-        ]);
-
-        // Права кассира для обмена валют
-        $cashierRole->givePermissionTo([
+            // Обмен валют
             'exchanges.create',
             'exchanges.view',
-        ]);
-
-        // Права кассира для кредитов
-        $cashierRole->givePermissionTo([
+            // Кредиты
             'credits.create',
             'credits.view',
             'credits.repay',
-        ]);
-
-        // Права кассира для инкассации
-        $cashierRole->givePermissionTo([
+            // Инкассация
             'incashes.create',
             'incashes.view',
-        ]);
-
-        // Права кассира для просмотра курсов
-        $cashierRole->givePermissionTo([
+            // Курсы валют
             'rates.view',
-        ]);
-
-        // Права кассира для отчетов (только свои)
-        $cashierRole->givePermissionTo([
+            // Отчеты (только свои)
             'reports.view-own',
-        ]);
-
-        // Права кассира для смен
-        $cashierRole->givePermissionTo([
+            // Смены
             'shifts.open',
             'shifts.close',
             'shifts.view',
