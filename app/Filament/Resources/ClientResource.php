@@ -82,6 +82,38 @@ class ClientResource extends Resource
                             ->rows(3)
                             ->columnSpanFull(),
                     ]),
+
+                Forms\Components\Section::make('Администратор компании')
+                    ->description('Создайте учетную запись администратора для управления компанией')
+                    ->schema([
+                        Forms\Components\TextInput::make('admin_login')
+                            ->label('Логин администратора')
+                            ->required()
+                            ->unique('users', 'login')
+                            ->maxLength(255)
+                            ->helperText('Логин для входа в личный кабинет'),
+                        Forms\Components\TextInput::make('admin_full_name')
+                            ->label('ФИО администратора')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('admin_email')
+                            ->label('Email администратора')
+                            ->email()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('admin_phone')
+                            ->label('Телефон администратора')
+                            ->tel()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('admin_password')
+                            ->label('Пароль')
+                            ->password()
+                            ->required()
+                            ->minLength(6)
+                            ->revealable()
+                            ->helperText('Минимум 6 символов'),
+                    ])
+                    ->columns(2)
+                    ->visibleOn('create'),
             ]);
     }
 

@@ -23,6 +23,8 @@ class Dashboard extends BaseDashboard
         if ($user->hasRole('client_admin')) {
             return [
                 \App\Filament\Client\Widgets\CompanyStatsOverview::class,
+                \App\Filament\Client\Widgets\CurrentRateWidget::class,
+                \App\Filament\Client\Widgets\LatestPaymentsWidget::class,
             ];
         }
 
@@ -30,6 +32,8 @@ class Dashboard extends BaseDashboard
         if ($user->hasRole('manager')) {
             return [
                 \App\Filament\Client\Widgets\ManagerStatsOverview::class,
+                \App\Filament\Client\Widgets\CurrentRateWidget::class,
+                \App\Filament\Client\Widgets\LatestPaymentsWidget::class,
             ];
         }
 
@@ -37,6 +41,8 @@ class Dashboard extends BaseDashboard
         if ($user->hasRole('cashier')) {
             return [
                 \App\Filament\Client\Widgets\CashierStatsOverview::class,
+                \App\Filament\Client\Widgets\CurrentRateWidget::class,
+                \App\Filament\Client\Widgets\LatestPaymentsWidget::class,
             ];
         }
 
