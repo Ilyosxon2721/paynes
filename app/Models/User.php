@@ -223,7 +223,7 @@ class User extends Authenticatable implements FilamentUser, HasName
      */
     public function getIsClientAdminAttribute()
     {
-        return $this->hasRole('client_admin') || $this->is_client_admin;
+        return $this->hasRole('client_admin') || ($this->attributes['is_client_admin'] ?? false);
     }
 
     /**
