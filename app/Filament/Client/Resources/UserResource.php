@@ -10,7 +10,6 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Hash;
 
 class UserResource extends Resource
 {
@@ -60,7 +59,6 @@ class UserResource extends Resource
                             ->label('Пароль')
                             ->password()
                             ->required(fn (string $operation): bool => $operation === 'create')
-                            ->dehydrateStateUsing(fn ($state) => filled($state) ? Hash::make($state) : null)
                             ->dehydrated(fn ($state) => filled($state))
                             ->revealable(),
                     ]),
@@ -89,7 +87,7 @@ class UserResource extends Resource
                             ->label('Статус')
                             ->options([
                                 'active' => 'Активный',
-                                'inactive' => 'Неактивный',
+                                'blocked' => 'Заблокирован',
                             ])
                             ->default('active')
                             ->required(),
@@ -136,11 +134,11 @@ class UserResource extends Resource
                     ->label('Статус')
                     ->colors([
                         'success' => 'active',
-                        'danger' => 'inactive',
+                        'danger' => 'blocked',
                     ])
                     ->formatStateUsing(fn (string $state): string => match ($state) {
                         'active' => 'Активный',
-                        'inactive' => 'Неактивный',
+                        'blocked' => 'Заблокирован',
                         default => $state,
                     }),
                 Tables\Columns\TextColumn::make('reward_percentage')
@@ -157,7 +155,7 @@ class UserResource extends Resource
                     ->label('Статус')
                     ->options([
                         'active' => 'Активный',
-                        'inactive' => 'Неактивный',
+                        'blocked' => 'Заблокирован',
                     ]),
                 Tables\Filters\SelectFilter::make('position')
                     ->label('Должность')

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -74,7 +73,7 @@ class UserController extends Controller
                 'full_name' => 'required|string|max:255',
                 'password' => 'required|string|min:6',
                 'position' => ['required', Rule::in(['admin', 'cashier'])],
-                'status' => ['required', Rule::in(['active', 'inactive'])],
+                'status' => ['required', Rule::in(['active', 'blocked'])],
                 'branch' => 'nullable|string|max:255',
                 'reward_percentage' => 'nullable|numeric|min:0|max:100',
                 'roles' => 'nullable|array',
@@ -86,7 +85,7 @@ class UserController extends Controller
             $user = User::create([
                 'login' => $validated['login'],
                 'full_name' => $validated['full_name'],
-                'password' => Hash::make($validated['password']),
+                'password' => $validated['password'],
                 'position' => $validated['position'],
                 'status' => $validated['status'],
                 'branch' => $validated['branch'] ?? null,
@@ -181,7 +180,7 @@ class UserController extends Controller
                 'full_name' => 'required|string|max:255',
                 'password' => 'nullable|string|min:6',
                 'position' => ['required', Rule::in(['admin', 'cashier'])],
-                'status' => ['required', Rule::in(['active', 'inactive'])],
+                'status' => ['required', Rule::in(['active', 'blocked'])],
                 'branch' => 'nullable|string|max:255',
                 'reward_percentage' => 'nullable|numeric|min:0|max:100',
                 'roles' => 'nullable|array',
@@ -201,7 +200,7 @@ class UserController extends Controller
 
             // Only update password if provided
             if (!empty($validated['password'])) {
-                $updateData['password'] = Hash::make($validated['password']);
+                $updateData['password'] = $validated['password'];
             }
 
             $user->update($updateData);

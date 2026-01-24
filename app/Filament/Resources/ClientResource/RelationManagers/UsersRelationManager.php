@@ -7,7 +7,6 @@ use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Support\Facades\Hash;
 
 class UsersRelationManager extends RelationManager
 {
@@ -51,7 +50,6 @@ class UsersRelationManager extends RelationManager
                             ->label('Пароль')
                             ->password()
                             ->required(fn (string $operation): bool => $operation === 'create')
-                            ->dehydrateStateUsing(fn ($state) => filled($state) ? Hash::make($state) : null)
                             ->dehydrated(fn ($state) => filled($state))
                             ->revealable(),
                     ]),
@@ -74,7 +72,7 @@ class UsersRelationManager extends RelationManager
                             ->label('Статус')
                             ->options([
                                 'active' => 'Активный',
-                                'inactive' => 'Неактивный',
+                                'blocked' => 'Заблокирован',
                             ])
                             ->default('active')
                             ->required(),
@@ -117,11 +115,11 @@ class UsersRelationManager extends RelationManager
                     ->label('Статус')
                     ->colors([
                         'success' => 'active',
-                        'danger' => 'inactive',
+                        'danger' => 'blocked',
                     ])
                     ->formatStateUsing(fn (string $state): string => match ($state) {
                         'active' => 'Активный',
-                        'inactive' => 'Неактивный',
+                        'blocked' => 'Заблокирован',
                         default => $state,
                     }),
                 Tables\Columns\TextColumn::make('created_at')
@@ -135,7 +133,7 @@ class UsersRelationManager extends RelationManager
                     ->label('Статус')
                     ->options([
                         'active' => 'Активный',
-                        'inactive' => 'Неактивный',
+                        'blocked' => 'Заблокирован',
                     ]),
                 Tables\Filters\TernaryFilter::make('is_client_admin')
                     ->label('Администратор'),

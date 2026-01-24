@@ -6,7 +6,6 @@ use App\Filament\Resources\ClientResource;
 use App\Models\User;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\CreateRecord;
-use Illuminate\Support\Facades\Hash;
 
 class CreateClient extends CreateRecord
 {
@@ -36,7 +35,7 @@ class CreateClient extends CreateRecord
             'full_name' => $formData['admin_full_name'],
             'email' => $formData['admin_email'] ?? null,
             'phone' => $formData['admin_phone'] ?? null,
-            'password' => Hash::make($formData['admin_password']),
+            'password' => $formData['admin_password'],
             'position' => 'client_admin',
             'status' => 'active',
             'client_id' => $this->record->id,
